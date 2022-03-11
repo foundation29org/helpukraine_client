@@ -1,0 +1,206 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from 'environments/environment';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/toPromise';
+import { catchError, debounceTime, distinctUntilChanged, map, tap, switchMap, merge, mergeMap, concatMap } from 'rxjs/operators'
+
+@Injectable()
+export class ApiDx29ServerService {
+    constructor(private http: HttpClient) {}
+
+    getSymptoms(id){
+      return this.http.get(environment.api+'/api/phenotypes/'+id)
+        .map( (res : any) => {
+          return res;
+         }, (err) => {
+           console.log(err);
+           return err;
+         })
+    }
+    
+    getDetectLanguage(text){
+      var jsonText = [{ "text": text }];
+        return this.http.post(environment.api+'/api/getDetectLanguage', jsonText)
+        .map( (res : any) => {
+            return res;
+        }, (err) => {
+            console.log(err);
+            return err;
+        })
+    }
+    getTranslationDictionary(text){
+      var jsonText = [{ "text": text }];
+        return this.http.post(environment.api+'/api/getTranslationDictionary', jsonText)
+        .map( (res : any) => {
+            return res;
+        }, (err) => {
+            console.log(err);
+            return err;
+        })
+    }
+
+    getAzureBlobSasToken(containerName){
+      return this.http.get(environment.api+'/api/getAzureBlobSasTokenWithContainer/'+containerName)
+      .map( (res : any) => {
+          return res.containerSAS;
+      }, (err) => {
+          console.log(err);
+          return err;
+      })
+  }
+
+    calculate(info, lang) {
+      return this.http.post(environment.api + '/api/gateway/Diagnosis/calculate/'+lang, info)
+        .map((res: any) => {
+          return res;
+        }, (err) => {
+          console.log(err);
+          return err;
+        })
+    }
+
+    searchDiseases(info) {
+      return this.http.post(environment.api + '/api/gateway/search/disease/', info)
+        .map((res: any) => {
+          return res;
+        }, (err) => {
+          console.log(err);
+          return err;
+        })
+    }
+
+    searchSymptoms(info) {
+      return this.http.post(environment.api + '/api/gateway/search/symptoms/', info)
+        .map((res: any) => {
+          return res;
+        }, (err) => {
+          console.log(err);
+          return err;
+        })
+    }
+
+    sendEmailResultsUndiagnosed(info) {
+      return this.http.post(environment.api + '/api/sendEmailResultsUndiagnosed', info)
+        .map((res: any) => {
+          return res;
+        }, (err) => {
+          console.log(err);
+          return err;
+        })
+    }
+
+    sendEmailResultsDiagnosed(info) {
+      return this.http.post(environment.api + '/api/sendEmailResultsDiagnosed', info)
+        .map((res: any) => {
+          return res;
+        }, (err) => {
+          console.log(err);
+          return err;
+        })
+    }
+
+    sendEmailRevolution(info) {
+      return this.http.post(environment.api + '/api/sendEmailRevolution', info)
+        .map((res: any) => {
+          return res;
+        }, (err) => {
+          console.log(err);
+          return err;
+        })
+    }
+
+    createblobOpenDx29(symptoms) {
+      return this.http.post(environment.api + '/api/blobOpenDx29', symptoms)
+        .map((res: any) => {
+          return res;
+        }, (err) => {
+          console.log(err);
+          return err;
+        })
+    }
+
+    createblobOpenDx29Timeline(symptoms) {
+      return this.http.post(environment.api + '/api/blobOpenDx29Timeline', symptoms)
+        .map((res: any) => {
+          return res;
+        }, (err) => {
+          console.log(err);
+          return err;
+        })
+    }
+
+    chekedSymptomsOpenDx29(info) {
+      return this.http.post(environment.api + '/api/chekedSymptomsOpenDx29', info)
+        .map((res: any) => {
+          return res;
+        }, (err) => {
+          console.log(err);
+          return err;
+        })
+    }
+    
+    searchwiki(info) {
+      return this.http.post(environment.api + '/api/wiki', info)
+        .map((res: any) => {
+          return res;
+        }, (err) => {
+          console.log(err);
+          return err;
+        })
+    }
+
+    searchwikiSearch(info) {
+      return this.http.post(environment.api + '/api/wikiSearch', info)
+        .map((res: any) => {
+          return res;
+        }, (err) => {
+          console.log(err);
+          return err;
+        })
+    }
+
+    getPatientGroups(idDisease) {
+      return this.http.get(environment.api + '/api/patientgroups/'+idDisease)
+        .map((res: any) => {
+          return res;
+        }, (err) => {
+          console.log(err);
+          return err;
+        })
+    }
+
+    getblob(patientId, blobName){
+      var jsonText = { "patientId": patientId, "blobName": blobName };
+        return this.http.post(environment.api+'/api/getblob', jsonText)
+        .map( (res : any) => {
+            return res;
+        }, (err) => {
+            console.log(err);
+            return err;
+        })
+    }
+
+    loadGroups() {
+      return this.http.get(environment.api+'/api/groupsnames/')
+      .map( (res : any) => {
+        return res;
+       }, (err) => {
+        console.log(err);
+        return err;
+       });
+    }
+
+    callOpenAi(textf){
+      console.log(textf);
+      return this.http.post(environment.api+'/api/callopenai', textf)
+      .map( (res : any) => {
+          return res;
+      }, (err) => {
+          console.log(err);
+          return err;
+      })
+  }
+
+}

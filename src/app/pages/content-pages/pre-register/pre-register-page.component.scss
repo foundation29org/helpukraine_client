@@ -1,0 +1,25 @@
+/*::ng-deep .carousel-control-prev:hover{
+    background: rgba(0, 0, 0, 0.21)
+}
+::ng-deep .carousel-control-next:hover{
+    background: rgba(0, 0, 0, 0.21)
+}*/
+
+.carousel-caption {
+    position: relative;
+    right: 15%;
+    top: 0px;
+    left: 0%;
+    z-index: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+  }
+
+  @media ( max-width: 450px ){
+
+    .carrusel-img{
+        width: 50%;
+    }
+  }

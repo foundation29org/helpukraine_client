@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://raito29.azurewebsites.net/sitemap.xml
