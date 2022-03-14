@@ -106,7 +106,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   userId: string = '';
   loadedPatientId: boolean = false;
   selectedPatient: any = {};
-  userName: string = '';
+  userInfo: any = {};
   loadedInfoPatient: boolean = false;
   basicInfoPatient: any;
   basicInfoPatientCopy: any;
@@ -180,6 +180,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     lng: number = 30.654701;
     zoom = 4;
     showMarker: boolean = false;
+    iscaretaker: boolean = false;
 
   constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private patientService: PatientService, public searchFilterPipe: SearchFilterPipe, public toastr: ToastrService, private dateService: DateService, private apiDx29ServerService: ApiDx29ServerService, private sortService: SortService, private adapter: DateAdapter<any>, private searchService: SearchService, private router: Router, private apiExternalServices: ApiExternalServices) {
     this.adapter.setLocale(this.authService.getLang());
@@ -206,7 +207,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscription.add(this.apiDx29ServerService.loadGroups()
       .subscribe((res: any) => {
         this.groups = res;
-        this.groups.sort(this.sortService.GetSortOrder("name"));
+        this.groups.sort(this.sortService.GetSortOrder("_id"));
       }, (err) => {
         console.log(err);
       }));
@@ -218,6 +219,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    this.getUserInfo();
     this.initEnvironment();
   }
 
@@ -507,10 +509,10 @@ export class HomeComponent implements OnInit, OnDestroy {
      }));
   }
 
-  getUserName() {
+  getUserInfo() {
     this.subscription.add(this.http.get(environment.api + '/api/users/name/' + this.authService.getIdUser())
       .subscribe((res: any) => {
-        this.userName = res.userName;
+        this.userInfo = res;
       }, (err) => {
         console.log(err);
       }));
@@ -1480,6 +1482,17 @@ changePickupMarkerLocation($event: { coords:any}) {
   this.basicInfoPatient.lat=$event.coords.lat;
   this.basicInfoPatient.lng=$event.coords.lng;
   this.showMarker=true;
+  }
+
+  changedCaretaker(event){
+    if(event){
+      this.basicInfoPatient.patientName= this.userInfo.userName;
+      this.basicInfoPatient.surname= this.userInfo.lastName;
+    }else{
+      this.basicInfoPatient.patientName= '';
+      this.basicInfoPatient.surname= '';
+    }
+    this.iscaretaker = event;
   }
 
 }
