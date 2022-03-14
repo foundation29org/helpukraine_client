@@ -198,7 +198,7 @@
     "Upload": "Upload",
     "There are no results for the search": "There are no results for the search",
     "Sort": "Sort by",
-    "Welcome to dx29": "Welcome to Raito",
+    "Welcome to ucr": "Welcome, we need some information about you",
     "Please enter the basic data": "Add information about your condition and symptoms.",
     "Change": "Change",
     "Foundation 29": "Foundation 29",
@@ -1302,7 +1302,7 @@
   },
   "landraito":{
     "t1": "You have the power to boost medicine",
-    "p1": "Patient data are critical for research. Help to develop new treatments and improve research without leaving home. Raito is your personal health data container",
+    "p1": "This application tries to connect Ukrainian patients with medical needs with European organizations that distribute medical and pharmaceutical aid. In a war situation where medical services do not work, the solidarity of Europeans is the only hope for thousands of people. If you are a citizen of Ukraine and you need medical or pharmaceutical help, you can tell us your need and where you are. We will provide that information to patient groups for your disease and NGOs that work to try to help you.",
     "t2": "How it works",
     "t2.1t": "Get on board",
     "t2.1a": "Create your account to get on board of your data container. We will help you to easily create it to store your data on your own devices.",
@@ -1317,9 +1317,9 @@
   "homeraito":{
     "t1": "Do you belong to a patient organization?",
     "t1.1": "Thanks, joining a patient organization lets you boost research by aggregating your data with the data of other patients. We will ask you later to see whether you have joined.",
-    "t2": "Thanks, please select your patient organization",
+    "t2": "Select your disease",
     "t3": "Do you give us your consent to do so?",
-    "p1": "Your data is collected for the purpose of helping you in this war situation. Your data will only be shared for that purpose with your patient group.",
+    "p1": "Your data is collected in order to help you in this war situation. We want to know the medication you are taking, the medical help you need and your location so that NGOs working in Europe can help you. Your data will only be accessible to the coordinators of these NGOs and the patient groups of your disease. We will never share this data with others.",
     "p1.1": "Your data will be sent periodically to your patient organization. You can grant and revoke access at any moment with a single tap from Raito.",
     "p2": "Thank you.",
     "p2.1": "Ok, we will ask you later.",
@@ -1553,7 +1553,10 @@
     "status.opt6": "Helped",
     "Save notes": "Save notes",
     "What needs do they have": "What needs do they have?",
-    "needsTitle": "What do you need? Indicate the drug and the quantity. Eg: 3 boxes per month. You can also indicate if you have any other needs."
+    "needsTitle": "What do you need? Indicate the drug and the quantity. Eg: 3 boxes per month. You can also indicate if you have any other needs.",
+    "Indicates the approximate location": "Indicates the approximate location. Select on the map:",
+    "titleNoti1": "If you need help of any kind, write to support and we will get back to you as soon as possible.",
+    "titleNoti2": "If you have changed the location, you can change it in the patient profile."
   }
 }
 

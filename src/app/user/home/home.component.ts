@@ -175,6 +175,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   @ViewChild('f') personalInfoForm: NgForm;
   sending: boolean = false;
 
+    // Google map lat-long
+    lat: number = 50.431134;
+    lng: number = 30.654701;
+    zoom = 4;
+    showMarker: boolean = false;
+
   constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private patientService: PatientService, public searchFilterPipe: SearchFilterPipe, public toastr: ToastrService, private dateService: DateService, private apiDx29ServerService: ApiDx29ServerService, private sortService: SortService, private adapter: DateAdapter<any>, private searchService: SearchService, private router: Router, private apiExternalServices: ApiExternalServices) {
     this.adapter.setLocale(this.authService.getLang());
     this.lang = this.authService.getLang();
@@ -455,6 +461,10 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.calculateMinDate();
           this.loadData();
         }));
+    }else{
+      this.loadingDataGroup = false;
+      this.calculateMinDate();
+      this.loadData();
     }
   }
 
@@ -539,16 +549,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.age = age;
   }
 
-  question1(response) {
+  question1() {
 
-    if (response == 'No') {
-      //set patient Group to none
-      //this.setPatientGroup('None');
-      this.step = '4';
-    } else {
-      this.step = '1';
-      this.loadGroups();
-    }
+    this.step = '1';
+    this.loadGroups();
   }
 
   question2() {
@@ -1471,6 +1475,12 @@ getWeek(newdate, dowOffset?) {
     console.log(respDrugs);
     return respDrugs;
 }
+
+changePickupMarkerLocation($event: { coords:any}) {
+  this.basicInfoPatient.lat=$event.coords.lat;
+  this.basicInfoPatient.lng=$event.coords.lng;
+  this.showMarker=true;
+  }
 
 }
 

@@ -198,7 +198,7 @@
     "Upload": "Subir",
     "There are no results for the search": "No hay resultados para la búsqueda",
     "Sort": "Ordenar por",
-    "Welcome to dx29": "Bienvenido a Raito",
+    "Welcome to ucr": "Bienvenido, necesitamos algún dato sobre ti",
     "Please enter the basic data": "Añade información sobre tu condición y tus síntomas.",
     "Change": "Cambiar",
     "Foundation 29": "Fundación 29",
@@ -1304,7 +1304,7 @@
   },
   "landraito":{
     "t1": "Tienes el poder de impulsar la medicina",
-    "p1": "Le ayudamos a almacenar mejor la información de sus pacientes para que pueda compartirla y beneficiarse de la investigación clínica y el desarrollo de nuevos medicamentos",
+    "p1": "Esta aplicación intenta conectar pacientes de Ucrania con necesidades médicas con las organizaciones europeas que distribuyen ayuda médica y de fármacos. En una situación de guerra donde los servicios médicos no funcionan la solidaridad de los europeos es la única esperanza para miles de personas. Si eres un ciudadano de Ucrania y necesitas ayuda médica o de fármacos puedes decirnos tu necesidad y el lugar donde te encuentras. Nosotros proporcionaremos esa información a los grupos de pacientes de tu enfermedad y a las ONG que trabajan para intentar ayudarte.",
     "t2": "Cómo funciona",
     "t2.1t": "Sube a bordo",
     "t2.1a": "Crea tu cuenta. Te ayudaremos a empezar a subir tus datos de forma segura en la carpeta de tu nube. Únete a la revolución de la recopilación de datos de pacientes.",
@@ -1319,9 +1319,9 @@
   "homeraito":{
     "t1": "¿Perteneces a una organización de pacientes?",
     "t1.1": "Gracias, unirse a una organización de pacientes le permite impulsar la investigación al agregar sus datos con los de otros pacientes. Le preguntaremos más adelante para ver si se ha unido.",
-    "t2": "Seleccione su organización de pacientes",
+    "t2": "Seleccione tu enfermedad",
     "t3": "¿Nos das tu consentimiento para ello?",
-    "p1": "Tus datos se recogen con el fin de ayudarte en esta situación de guerra. Tus datos sólo se compartirán con ese fin con tu grupo de pacientes.",
+    "p1": "Tus datos se recogen con el fin de ayudarte en esta situación de guerra. Queremos saber la medicación que estás tomando, la ayuda médica que necesitas y tu ubicación para que las ONGs que trabajan en Europa puedan ayudarte. Tus datos solo serán accesible para los coordinadores de estas ONG y los grupos de pacientes de tu enfermedad. Nunca compartiremos estos datos con otros.",
     "p1.1": "Tus datos serán enviados periódicamente a tu organización de pacientes. Puedes conceder y revocar el acceso en cualquier momento con un solo toque de Raito.",
     "p2": "¡Gracias!",
     "p2.1": "De acuerdo, le preguntaremos más tarde.",
@@ -1555,6 +1555,9 @@
     "status.opt6": "Ayudado",
     "Save notes": "Guardar notas",
     "What needs do they have": "Qué necesidades tienen?",
-    "needsTitle": "¿Qué necesitas? Indica el fármaco y la cantidad. Ej: 3 cajas al mes. Puedes indicar también si tienes alguna necesidad mas."
+    "needsTitle": "¿Qué necesitas? Indica el fármaco y la cantidad. Ej: 3 cajas al mes. Puedes indicar también si tienes alguna necesidad mas.",
+    "Indicates the approximate location": "Indica la ubicación aproximada. Seleccione en el mapa:",
+    "titleNoti1": "Si necesitas ayuda de cualquier tipo, escribe a soporte y nos pondremos en contacto contigo lo antes posible.",
+    "titleNoti2": "Si has cambiado la ubicación, puedes cambiarla en el perfil del paciente."
   }
 }

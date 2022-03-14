@@ -130,6 +130,12 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   timeformat="";
   actualLocation: any = {};
 
+  // Google map lat-long
+  lat: number = 50.431134;
+  lng: number = 30.654701;
+  zoom = 4;
+  showMarker: boolean = false;
+
   constructor(private http: HttpClient, public translate: TranslateService, private dateAdapter: DateAdapter<Date>, private authService: AuthService, public toastr: ToastrService, private dateService: DateService, private patientService: PatientService, public searchTermService: SearchTermService, private eventsService: EventsService, private sortService: SortService, private apiDx29ServerService: ApiDx29ServerService, private modalService: NgbModal, private authGuard: AuthGuard, private apiExternalServices: ApiExternalServices) {
     this.dateAdapter.setLocale(this.authService.getLang());
     this.lang =this.authService.getLang();
@@ -955,5 +961,11 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     return d.toLocaleString('es-ES').split(" ")[0];
 
   }
+
+  changePickupMarkerLocation($event: { coords:any}) {
+    this.datainfo.lat=$event.coords.lat;
+    this.datainfo.lng=$event.coords.lng;
+    this.showMarker=true;
+    }
 
 }

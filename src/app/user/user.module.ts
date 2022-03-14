@@ -15,6 +15,7 @@ import { TagInputModule } from 'ngx-chips';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AgmCoreModule } from '@agm/core';
 
 import { HomeComponent } from './home/home.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
@@ -45,6 +46,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
         UiSwitchModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        AgmCoreModule,
         NgxChartsModule,
         MatCheckboxModule,
         NgxSliderModule

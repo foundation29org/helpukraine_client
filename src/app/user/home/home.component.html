@@ -21,11 +21,9 @@
                     <div *ngIf="basicInfoPatient.group==null || step!='0'"
                         class="justify-content-center align-items-center text-center">
                         <div *ngIf="step=='0'">
-                            <h2>{{'homeraito.t1' | translate }}</h2>
+                            <h2>{{'generics.Welcome to ucr' | translate }}</h2>
                             <div class="center-elements">
-                                <button class="mr-1 btn btn-primary" (click)="question1('No');">{{'generics.No' |
-                                    translate }}</button>
-                                <button class="ml-1 btn btn-primary" (click)="question1('Yes');">{{'generics.Yes' |
+                                <button class="ml-1 btn btn-primary" (click)="question1();">{{'registration.Get Started' |
                                     translate }}</button>
                             </div>
                         </div>
@@ -67,7 +65,6 @@
                             </div>
                         </div>
                         <div *ngIf="step=='3'">
-                            <h2 *ngIf="basicInfoPatient.consentgroup">{{'homeraito.p2' | translate }}</h2>
                             <p *ngIf="!basicInfoPatient.consentgroup">{{'homeraito.p2.1' | translate }}</p>
                             <div *ngIf="basicInfoPatient.consentgroup">
                                 <h2 class="content-header mt-0 mb-2">{{'menu.Basic Info' |
@@ -119,6 +116,13 @@
                                             <!--<p *ngIf="datainfo.birthDate ==null || datainfo.birthDate ==''" class="danger">{{'generics.required' | translate }}</p>-->
                                         </div>
                                     </div>
+                                    <div class="row mb-3">
+                                        <p class="mb-0">{{'war.Indicates the approximate location' | translate }}</p>
+                                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"  (mapClick)="changePickupMarkerLocation($event)">
+                                            <agm-marker *ngIf="showMarker" [latitude]="basicInfoPatient.lat" [longitude]="basicInfoPatient.lng" [title]="'Pickup Location'"></agm-marker>
+                                        </agm-map>
+                                    </div>
+                                    <!--
                                     <div class="form-group row">
                                         <div class="col-md-6">
                                             <input type="text" id="lat" class="form-control" name="lat" placeholder="lat"
@@ -167,7 +171,7 @@
                                             </option>
                                         </select>
                                         <small class="text-muted">Detected: {{actualLocation.country}}</small>
-                                    </div>
+                                    </div>-->
         
                                     <div class="form-group text-center mb-0">
                                         <span *ngIf="!sending">
@@ -209,11 +213,11 @@
                             <div class="center-elements mt-2">
                                 <button class="btn btn-dark mr-1"
                                     (click)="step='3'">{{'generics.Previous' | translate }}</button>
-                                <button class="btn btn-primary ml-1" (click)="goStep('6');setNeeds();">{{'wizard.btn' | translate
+                                <button class="btn btn-primary ml-1" (click)="goStep('0');setNeeds();">{{'wizard.btn' | translate
                                     }}</button>
                             </div>
                         </div>
-                        <div *ngIf="step=='6'">
+                        <!--<div *ngIf="step=='6'">
                             <h2>{{'homeraito.p2' | translate }}</h2>
                             <div class="center-elements">
                                 <button class="btn btn-dark mr-1"
@@ -221,7 +225,7 @@
                                 <button class="btn btn-primary ml-1" (click)="goStep('0')">{{'wizard.btn' | translate
                                     }}</button>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -237,17 +241,33 @@
                 </div>
                 <div class="pl-2 pr-2 pb-2" style="line-height: 1.2em;">
                     <!--One notification-->
-                    <div class="row font-small-3 mb-1" *ngIf="!checks.check1">
+                    <div class="row font-small-3 mb-1">
                         <div class="col-1 pr-0">
                             <em class="fas fa-info-circle"></em>
                         </div>
                         <div class="col-7 pl-2 pr-0">
-                            <p class="">If you need help of any kind, write to support and we will get back to you as soon as possible.</p>
+                            <p class="">{{'war.titleNoti1' | translate }}</p>
                         </div>
                         <div class="col-4">
                             <a class="btn btn-white btn-sm w-100" style="word-wrap: normal;" routerLink="/pages/support">
                                 <span class="">
                                     {{'support.support' | translate }}
+                                </span>
+                              </a>
+                        </div>
+                    </div>
+
+                    <div class="row font-small-3 mb-1">
+                        <div class="col-1 pr-0">
+                            <em class="fas fa-info-circle"></em>
+                        </div>
+                        <div class="col-7 pl-2 pr-0">
+                            <p class="">{{'war.titleNoti2' | translate }}</p>
+                        </div>
+                        <div class="col-4">
+                            <a class="btn btn-white btn-sm w-100" style="word-wrap: normal;" routerLink="/patient-info">
+                                <span class="">
+                                    {{'generics.Update' | translate }}
                                 </span>
                               </a>
                         </div>
@@ -519,7 +539,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" *ngIf="feels.length > 0">
+                    <div class="row" *ngIf="feels.length > 0 && loadedFeels">
                         <div class="col-sm-12">
                             <div class="card mb-1 mt-1">
                                 <div class="mb-2">
