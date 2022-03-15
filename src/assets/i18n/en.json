@@ -1430,7 +1430,7 @@
     "No symptoms have been added in Raito": "No symptoms have been added in Raito."
   },
   "mydata":{
-    "title": "My data container",
+    "title": "My data",
     "desc": "Your container is your own personal space to store your data and share it for your own disease management and research. Here you can manage your container.",
     "q1": "Container location",
     "a1": "In Raito you are the only owner of your data. Your data is stored in your device and periodically backed up to your own cloud storage such as OneDrive, GoogleDrive or iCloud, depending on your preferences.",
@@ -1554,11 +1554,17 @@
     "status.opt6": "Helped",
     "Save notes": "Save notes",
     "What needs do they have": "What needs do they have?",
-    "needsTitle": "What do you need? Indicate the drug and the quantity. Eg: 3 boxes per month. You can also indicate if you have any other needs.",
+    "needsTitle": "What do you need?",
+    "needsSubtitle": "Indicate the drug and the quantity. Eg: 3 boxes per month. You can also indicate if you have any other needs.",
     "Indicates the approximate location": "Select your location on the map:",
     "titleNoti1": "If you need help of any kind, write to support and we will get back to you as soon as possible.",
     "titleNoti2": "If you have changed the location, you can change it in the patient profile.",
-    "titletoogle": "I am the patient"
+    "titletoogle": "I am the patient",
+    "Last login": "Last login",
+    "Date of registration": "Date of registration",
+    "Detailed information": "Detailed information",
+    "Users": "Users",
+    "No users": "No users"
   }
 }
 

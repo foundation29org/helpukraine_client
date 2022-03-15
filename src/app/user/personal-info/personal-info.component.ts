@@ -28,29 +28,11 @@ export function getCulture() {
   return sessionStorage.getItem('culture');
 }
 
-@Injectable()
-export class SearchTermService {
-  constructor(private apiDx29ServerService: ApiDx29ServerService) { }
-
-  search(term: string) {
-    if (term === '') {
-      return of([]);
-    }
-    var info = {
-      "text": term,
-      "lang": sessionStorage.getItem('lang')
-    }
-    return this.apiDx29ServerService.searchDiseases(info).pipe(
-      map(response => response)
-    );
-  }
-}
-
 @Component({
   selector: 'app-personal-info',
   templateUrl: './personal-info.component.html',
   styleUrls: ['./personal-info.component.scss'],
-  providers: [PatientService, SearchTermService, { provide: LOCALE_ID, useFactory: getCulture }, ApiDx29ServerService, ApiExternalServices]
+  providers: [PatientService, { provide: LOCALE_ID, useFactory: getCulture }, ApiDx29ServerService, ApiExternalServices]
 })
 export class PersonalInfoComponent implements OnInit, OnDestroy {
   lang: string = 'en';
@@ -136,7 +118,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   zoom = 4;
   showMarker: boolean = false;
 
-  constructor(private http: HttpClient, public translate: TranslateService, private dateAdapter: DateAdapter<Date>, private authService: AuthService, public toastr: ToastrService, private dateService: DateService, private patientService: PatientService, public searchTermService: SearchTermService, private eventsService: EventsService, private sortService: SortService, private apiDx29ServerService: ApiDx29ServerService, private modalService: NgbModal, private authGuard: AuthGuard, private apiExternalServices: ApiExternalServices) {
+  constructor(private http: HttpClient, public translate: TranslateService, private dateAdapter: DateAdapter<Date>, private authService: AuthService, public toastr: ToastrService, private dateService: DateService, private patientService: PatientService, private eventsService: EventsService, private sortService: SortService, private apiDx29ServerService: ApiDx29ServerService, private modalService: NgbModal, private authGuard: AuthGuard, private apiExternalServices: ApiExternalServices) {
     this.dateAdapter.setLocale(this.authService.getLang());
     this.lang =this.authService.getLang();
     this.datainfo = {
@@ -245,7 +227,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
      }, (err) => {
        console.log(err);
      }));
-     this.loadEnvir();
+     //this.loadEnvir();
      this.loadSettings();
 
     this.initEnvironment();
@@ -331,7 +313,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   }
 
   getInfoPatient(){
-    this.getLocationInfo();
+    //this.getLocationInfo();
     this.loadedInfoPatient = false;
     this.subscription.add( this.http.get(environment.api+'/api/patients/'+this.authService.getCurrentPatient().sub)
         .subscribe( (res : any) => {
@@ -339,10 +321,6 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
           this.datainfo = res.patient;
           this.datainfo.birthDate=this.dateService.transformDate(res.patient.birthDate);
           this.datainfoCopy = JSON.parse(JSON.stringify(res.patient));
-          if(res.patient.previousDiagnosis!=null){
-            this.searchDiseases2(res.patient.previousDiagnosis);
-          }
-          
           this.loadedInfoPatient = true;
          }, (err) => {
            console.log(err);
@@ -391,7 +369,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
       this.subscription.add( this.http.put(environment.api+'/api/patients/'+this.authService.getCurrentPatient().sub, this.datainfo)
         .subscribe((res: any) => {
           this.sending = false;
-          this.loadEnvir();
+          //this.loadEnvir();
         }, (err) => {
           console.log(err);
           Swal.fire(this.translate.instant("generics.Warning"), this.translate.instant("generics.error try again"), "warning");
@@ -451,37 +429,6 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
       //this.searchDiseaseField =$e.item
     }
   }
-
-  searchDiseases2(text){
-    var info = {
-      "text": text,
-      "lang": sessionStorage.getItem('lang')
-    }
-    this.subscription.add( this.apiDx29ServerService.searchDiseases(info)
-    .subscribe( (res : any) => {
-      console.log(res);
-      this.actualInfoOneDisease = res[0];
-    }, (err) => {
-      console.log(err);
-    }));
-
-  }
-
-  searchDiseases: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      tap(() => this.callListOfDiseases = true),
-      switchMap(term =>
-        this.searchTermService.search(term).pipe(
-          tap(() => this.nothingFoundDisease = false),
-          catchError(() => {
-            this.nothingFoundDisease = true;
-            return of([]);
-          }))
-      ),
-      tap(() => this.callListOfDiseases = false)
-    )
 
 
     

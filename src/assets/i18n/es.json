@@ -1432,7 +1432,7 @@
     "No symptoms have been added in Raito": "No ha añadido síntomas en Raito."
   },
   "mydata":{
-    "title": "Mi contenedor de datos",
+    "title": "Mis datos",
     "desc": "Tu contenedor es tu propio espacio personal para almacenar tus datos y compartirlos para tu propia gestión e investigación de la enfermedad. Aquí puedes gestionar tu contenedor.",
     "q1": "Ubicación del contenedor",
     "a1": "En Raito eres el único dueño de tus datos.Tus datos serán respaldados periódicamente en OneDrive, GoogleDrive o iCloud dependiendo de tu dispositivo.",
@@ -1556,10 +1556,16 @@
     "status.opt6": "Ayudado",
     "Save notes": "Guardar notas",
     "What needs do they have": "Qué necesidades tienen?",
-    "needsTitle": "¿Qué necesitas? Indica el fármaco y la cantidad. Ej: 3 cajas al mes. Puedes indicar también si tienes alguna necesidad mas.",
+    "needsTitle": "¿Qué necesitas?",
+    "needsSubtitle": "Indica el fármaco y la cantidad. Ej: 3 cajas al mes. Puedes indicar también si tienes alguna necesidad mas.",
     "Indicates the approximate location": "Seleccione su ubicación en el mapa:",
     "titleNoti1": "Si necesitas ayuda de cualquier tipo, escribe a soporte y nos pondremos en contacto contigo lo antes posible.",
     "titleNoti2": "Si has cambiado la ubicación, puedes cambiarla en el perfil del paciente.",
-    "titletoogle": "Soy el paciente"
+    "titletoogle": "Soy el paciente",
+    "Last login": "Último acceso",
+    "Date of registration": "Fecha de registro",
+    "Detailed information": "Información detallada",
+    "Users": "Usuarios",
+    "No users": "No hay usuarios"
   }
 }

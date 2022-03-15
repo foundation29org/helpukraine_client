@@ -263,7 +263,7 @@ loadSymptoms() {
   
 }
 
-confirmDelete(index, index2) {
+confirmDelete() {
   Swal.fire({
     title: this.translate.instant("generics.This action will not be reversed"),
     html: this.translate.instant("generics.confirm delete data"),

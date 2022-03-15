@@ -8,7 +8,7 @@ import { DateService } from 'app/shared/services/date.service';
 import { AuthGuard } from 'app/shared/auth/auth-guard.service';
 import { ToastrService } from 'ngx-toastr';
 import swal from 'sweetalert2';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs/Subscription';
 import {DateAdapter} from '@angular/material/core';
 import { SortService} from 'app/shared/services/sort.service';
@@ -230,7 +230,11 @@ export class UsersAdminComponent implements OnDestroy{
   viewInfoPatient(user,InfoPatient){
     console.log(user);
     this.user = user;
-    this.modalReference = this.modalService.open(InfoPatient);
+    let ngbModalOptions: NgbModalOptions = {
+      keyboard: false,
+      windowClass: 'ModalClass-lg'// xl, lg, sm
+    };
+    this.modalReference = this.modalService.open(InfoPatient, ngbModalOptions);
   }
 
 }
