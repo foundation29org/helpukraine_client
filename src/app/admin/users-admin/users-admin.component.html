@@ -11,7 +11,7 @@
 								<agm-info-window>
 									<strong>{{m.userName}}</strong>
 									<p class="mb-1 mt-1">{{m.email}}</p>
-									<p>{{m.phone}}</p>
+									<p>{{m.countryPhoneCode}} {{m.phone}}</p>
 									<a (click)="viewInfoPatient(m,InfoPatient)" href="javascript:void(0)"><i
 											class="btn btn-dark ft-eye"></i></a>
 								</agm-info-window>
@@ -156,18 +156,18 @@
 							<strong>{{'generics.Email' | translate }}:</strong> {{user.email}}
 						</p>
 						<p class="mb-0">
-							<strong>{{'personalinfo.Phone' | translate }}:</strong> {{user.phone}}
+							<strong>{{'personalinfo.Phone' | translate }}:</strong> {{user.countryPhoneCode}} {{user.phone}}
 						</p>
 						<div class="row">
 							<div class="col-md-6">
 								<p class="mb-0">
 									<strong>{{'war.Date of registration' | translate }}:</strong> {{user.signupDate
-									|date}}
+									| date: 'dd MMM y': '' : translate.currentLang}}
 								</p>
 							</div>
 							<div class="col-md-6">
 								<p class="mb-0">
-									<strong>{{'war.Last login' | translate }}:</strong> {{user.lastLogin | date}}
+									<strong>{{'war.Last login' | translate }}:</strong> {{user.lastLogin | date: 'dd MMM y': '' : translate.currentLang}}
 								</p>
 							</div>
 						</div>
@@ -196,8 +196,7 @@
 							</div>
 							<div class="col-md-6">
 								<p class="mb-0">
-									<strong>{{'personalinfo.Birth Date' | translate }}:</strong> {{user.birthDate |
-									date}}
+									<strong>{{'personalinfo.Birth Date' | translate }}:</strong> {{user.birthDate | date: 'dd MMM y': '' : translate.currentLang}}
 								</p>
 							</div>
 

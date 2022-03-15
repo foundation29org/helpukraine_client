@@ -210,7 +210,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscription.add(this.apiDx29ServerService.loadGroups()
       .subscribe((res: any) => {
         this.groups = res;
-        this.groups.sort(this.sortService.GetSortOrder("_id"));
+        this.groups.sort(this.sortService.GetSortOrder("order"));
       }, (err) => {
         console.log(err);
       }));
@@ -427,10 +427,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.basicInfoPatient.birthDate = this.dateService.transformDate(res.patient.birthDate);
         this.basicInfoPatientCopy = JSON.parse(JSON.stringify(res.patient));
         this.loadedInfoPatient = true;
-        if (this.basicInfoPatient.birthDate != null && this.basicInfoPatient.birthDate != '') {
-          this.ageFromDateOfBirthday(res.patient.birthDate);
-        } else if (this.basicInfoPatient.birthDate == null || this.basicInfoPatient.birthDate == '') {
-        }
       }, (err) => {
         console.log(err);
         this.loadedInfoPatient = true;

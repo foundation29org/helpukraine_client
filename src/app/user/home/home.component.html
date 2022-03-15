@@ -192,12 +192,12 @@
                             <p class="">{{'generics.Status' | translate }}</p>
                         </div>
                         <div class="col-4">
-                            <span *ngIf="basicInfoPatient.status == null || basicInfoPatient.status == 'new'">{{'war.status.opt1' | translate }}</span>
-									<span *ngIf="basicInfoPatient.status == 'contacted'">{{'war.status.opt2' | translate }}</span>
-									<span *ngIf="basicInfoPatient.status == 'pending'">{{'war.status.opt3' | translate }}</span>
-									<span *ngIf="basicInfoPatient.status == 'ontheway'">{{'war.status.opt4' | translate }}</span>
-									<span *ngIf="basicInfoPatient.status == 'contactlost'">{{'war.status.opt5' | translate }}</span>
-									<span *ngIf="basicInfoPatient.status == 'helped'">{{'war.status.opt6' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == null || basicInfoPatient.status == 'new'" class="badge badge-secondary" style="white-space: inherit !important;">{{'war.status.opt1' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'contacted'" class="badge badge-secondary">{{'war.status.opt2' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'pending'" class="badge badge-secondary">{{'war.status.opt3' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'ontheway'" class="badge badge-secondary">{{'war.status.opt4' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'contactlost'" class="badge badge-secondary">{{'war.status.opt5' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'helped'" class="badge badge-secondary">{{'war.status.opt6' | translate }}</span>
                         </div>
                     </div>
                     <!--One notification-->

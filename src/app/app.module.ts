@@ -1,8 +1,12 @@
 import * as $ from 'jquery';
 import { NgModule ,LOCALE_ID  } from '@angular/core';
 import es from '@angular/common/locales/es'
+import ru from '@angular/common/locales/ru'
+import uk from '@angular/common/locales/uk'
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(es);
+registerLocaleData(ru);
+registerLocaleData(uk);
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';

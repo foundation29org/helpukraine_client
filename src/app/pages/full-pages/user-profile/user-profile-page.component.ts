@@ -107,8 +107,14 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
       .subscribe( (res : any) => {
         console.log(res);
         this.user = res.user;
+        if(this.user.lang!=sessionStorage.getItem('lang')){
+          this.translate.use(this.user.lang);
+          var eventsLang = this.inj.get(EventsService);
+          eventsLang.broadcast('changelang', this.user.lang);
+        }
         this.userCopy = JSON.parse(JSON.stringify(res.user));
-        this.role = res.user.role;
+        //this.role = res.user.role;
+        this.role = this.authService.getRole();
         this.subrole = res.user.subrole;
         this.loading = false;
         if(this.role == 'User'){
@@ -199,7 +205,7 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
       this.translate.get('generics.Download').subscribe((res: string) => {
         this.msgDownload=res;
       });
-      this.translate.get('permissions.Permissions').subscribe((res: string) => {
+      this.translate.get('generics.Account data').subscribe((res: string) => {
         this.tittlePermissions=res;
       });
     }
@@ -208,14 +214,6 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
       this.translate.use(newValue);
       var eventsLang = this.inj.get(EventsService);
       eventsLang.broadcast('changelang', newValue);
-      if(newValue=='es'){
-        Swal.fire({
-            title: this.translate.instant("Los textos en este idioma pueden contener errores"),
-            html: '<p>Este idioma está en desarrollo. Los nombres de los síntomas y las enfermedades, así como sus descripciones y sinónimos pueden contener errores.</p> <p>Para mejorar las traducciones, por favor, envíanos cualquier error a <a href="mailto:support@foundation29.org">support@foundation29.org</a></p>',
-            confirmButtonText: this.translate.instant("generics.Accept"),
-            icon:"warning"
-        })
-      }
     }
 
     resetForm() {
@@ -346,6 +344,81 @@ export class UserProfilePageComponent implements OnInit, OnDestroy {
            this.passwordForm.reset();
          }));
 
+    }
+
+    confirmDelete() {
+      Swal.fire({
+        title: this.translate.instant("generics.This action will not be reversed"),
+        html: this.translate.instant("generics.confirm delete data"),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#33658a',
+        cancelButtonColor: '#B0B6BB',
+        confirmButtonText: this.translate.instant("generics.Yes"),
+        cancelButtonText: this.translate.instant("generics.No"),
+        showLoaderOnConfirm: true,
+        allowOutsideClick: false,
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire({
+            title: this.translate.instant("mydata.please enter your password"),
+            inputPlaceholder: this.translate.instant("mydata.Write your password here"),
+            input: 'password',
+            confirmButtonText: this.translate.instant("mydata.Deletedata"),
+            cancelButtonText: this.translate.instant("generics.Cancel"),
+            showCancelButton: true,
+            reverseButtons: true
+          }).then(function (pw) {
+            if (pw.value) {
+              var password = sha512(pw.value);
+              this.deleteData(password);
+            } else {
+              console.log('rechaza');
+            }
+            
+          }.bind(this))
+          
+        }
+      });
+    
+    }
+    
+    deleteData(password){
+      //cargar los datos del usuario
+      this.loading = true;
+      var info = {password: password, email: this.user.email}
+      this.subscription.add( this.http.post(environment.api+'/api/deleteaccount/'+this.authService.getIdUser(), info)
+      .subscribe( (res : any) => {
+        if(res.message=='The case has been eliminated'){
+          Swal.fire({
+            title: this.translate.instant("generics.It has been successfully removed"),
+            icon: 'success',
+            showCancelButton: false,
+            showConfirmButton: false,
+            allowOutsideClick: false
+          }).then((result) => {
+        
+          });
+            setTimeout(function () {
+              
+              Swal.close();
+              window.location.reload();
+          }.bind(this), 1500);
+        }else{
+          Swal.fire(this.translate.instant("mydata.Password is incorrect"), this.translate.instant("mydata.we will close your session"), "warning");
+          this.authService.logout();
+          this.router.navigate([this.authService.getLoginUrl()]);
+        }
+        
+        
+        
+        /*this.authService.logout();
+        this.router.navigate([this.authService.getLoginUrl()]);*/
+       }, (err) => {
+         console.log(err);
+         this.loading = false;
+       }));
     }
 
 }

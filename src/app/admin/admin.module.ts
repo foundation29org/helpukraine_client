@@ -11,7 +11,6 @@ import { UiSwitchModule } from 'ngx-ui-switch';
 import { AgmCoreModule } from '@agm/core';
 
 import { UsersAdminComponent } from "./users-admin/users-admin.component";
-import { MedicationComponent } from './medication/medication.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -38,7 +37,6 @@ import { SupportComponent } from './support/support.component';
     exports: [TranslateModule],
     declarations: [
         UsersAdminComponent,
-        MedicationComponent,
         SupportComponent
     ],
     providers: [],

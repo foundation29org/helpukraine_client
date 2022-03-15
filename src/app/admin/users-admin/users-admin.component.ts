@@ -102,7 +102,7 @@ export class UsersAdminComponent implements OnDestroy{
       this.loadingUsers = false;
       for(var j=0;j<res.length;j++){
         res[j].userName = this.capitalizeFirstLetter(res[j].userName);
-        res[j].phone = res[j].countryselectedPhoneCode +' '+res[j].phone;
+        //res[j].phone = res[j].countryPhoneCode +' '+res[j].phone;
         //res[j].iconUrl = 'https://i.pinimg.com/564x/5e/98/5e/5e985e71d0f954f7c602794318eb323d.jpg'
       }
 

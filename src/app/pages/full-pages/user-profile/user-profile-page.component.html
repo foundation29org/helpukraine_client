@@ -20,7 +20,7 @@
 				<a class="list-group-item no-border" (click)="SetActive($event, 'panelPassword')">
 						{{tittlePassword}}
 				</a>
-				<a *ngIf="phenotype_id!=''" class="list-group-item no-border" (click)="SetActive($event, 'PanelPermissions')">
+				<a *ngIf="role!='Admin'" class="list-group-item no-border" (click)="SetActive($event, 'PanelPermissions')">
 						{{tittlePermissions}}
 				</a>
 			</div>
@@ -31,7 +31,7 @@
 					<h4 class="form-section">
 						<i [ngClass]="{'ft-user success': activeTittleMenu=='General'}"></i>
 						<i [ngClass]="{'ft-lock danger': activeTittleMenu=='Password'}"></i>
-						<i [ngClass]="{'ft-share-2 danger': activeTittleMenu=='Permissions'}"></i>
+						<i [ngClass]="{'fas fa-archive danger': activeTittleMenu=='Permissions'}"></i>
 						{{ msgActiveTittleMenu }}
 					</h4>
 				</div>
@@ -43,13 +43,11 @@
 					<div class="row" *ngIf="!loading">
 						<div class="col-md-12">
 							<div class="card" style="margin-top:0px;">
-								<div class="card-header">
-								</div>
 								<div class="card-body">
 									<div>
 										<form class="form" (ngSubmit)="onSubmit()" #f="ngForm" *ngIf="user">
 											<div class="form-body">
-												<div class="row">
+												<div class="row" *ngIf="role!='Admin'">
 													<div class="col-md-6">
 														<div class="form-group">
 															<label for="userName">{{'generics.Name' | translate }}</label>
@@ -65,7 +63,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
+												<div class="row" *ngIf="role!='Admin'">
 													<div class="col-sm-6">
 													  <div class="input-group mb-0">
 														<span class="input-group-text">
@@ -117,7 +115,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
+												<div class="row" *ngIf="role!='Admin'">
 													<div class="col-md-6">
 														<div class="form-group">
 															<label for="massunit">{{'profile.Mass unit' | translate }}</label>
@@ -160,8 +158,6 @@
 					<div class="row" *ngIf="!loading">
 						<div class="col-md-12">
 							<div class="card" style="margin-top:0px;">
-								<div class="card-header">
-								</div>
 								<div class="card-body">
 									<div>
 										<form class="form" (ngSubmit)="onSubmitPass()" #fPass="ngForm" *ngIf="user">
@@ -195,8 +191,8 @@
 												<div class="form-group" *ngIf="!sending">
 														<div class="text-center mt-4">
 															<div *ngIf="fPass.valid;then formValid else formError"></div>
-															<ng-template #formValid><button class="btn btn-dark" type="submit">{{'generics.Submit' | translate }}</button></ng-template>
-															<ng-template #formError><button class="btn btn-dark" type="button" (click)="submitInvalidPassForm()">{{'generics.Submit' | translate }}</button></ng-template>
+															<ng-template #formValid><button class="mb-0 btn btn-dark" type="submit">{{'generics.Submit' | translate }}</button></ng-template>
+															<ng-template #formError><button class="mb-0 btn btn-dark" type="button" (click)="submitInvalidPassForm()">{{'generics.Submit' | translate }}</button></ng-template>
 														</div>
 												</div>
 												<div class="form-group pt-2 text-center" *ngIf="sending">
@@ -215,18 +211,14 @@
 					<div class="row" *ngIf="!loading">
 						<div class="col-md-12">
 							<div class="card" style="margin-top:0px;">
-								<div class="card-header">
-								</div>
 								<div class="card-body">
 									<div>
 										<div class="form-body">
 											<div class="row">
 												<div class="col-md-12">
 													<div class="form-group">
-														<label for="userName">{{'permissions.Share the symptoms with the community' | translate }}</label>
-														<button (click)="changeStatePermissions('shareWithCommunity')" style="min-width: 20px;min-height: 20px;float:left;" [ngClass]="(symptomsPermissions.shareWithCommunity==true)?'p-0 btn btn-success btn-sm mr-1 mb-0 btn-fab':'p-0 btn btn-secondary btn-sm mr-1 mb-0 btn-fab'" href="javascript:void(0)">
-															<i *ngIf="symptomsPermissions.shareWithCommunity" class="fa fa-check"></i>
-														</button>
+														<button class="btn btn-primary" type="button"
+																(click)="confirmDelete()">{{'generics.Delete data' | translate }}</button>
 													</div>
 												</div>
 											</div>
