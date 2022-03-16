@@ -300,7 +300,7 @@
         "Father": "Батько",
         "Mother": "мати",
         "Select the sex to change the avatar": "Виберіть стать, щоб змінити аватар.",
-        "I dont belong to a patient group": "Я не належу до групи пацієнтів",
+        "I dont belong to a patient group": "Моя хвороба тут не з'являється",
         "I dont have a diagnosis": "Я не маю діагнозу",
         "Patients with epilepsy": "Європейська федерація синдрому Драве"
     },
@@ -1561,11 +1561,14 @@
         "Indicates the approximate location": "Виберіть своє місце розташування на карті:",
         "titleNoti1": "Якщо вам потрібна будь-яка допомога, напишіть у службу підтримки, і ми зв'яжемося з вами якомога швидше.",
         "titleNoti2": "Якщо ви змінили розташування, ви можете змінити його в профілі пацієнта.",
-        "titletoogle": "Я пацієнт",
+        "titletoogle": "Я доглядальниця",
+        "is the caretaker": "є доглядачем",
         "Last login": "Останній вхід",
         "Date of registration": "Дата реєстрації",
         "Detailed information": "Детальна інформація",
         "Users": "Користувачі",
-        "No users": "Немає користувачів"
+        "No users": "Немає користувачів",
+        "Need shelter": "Потребують укриття",
+        "Links": "Посилання"
     }
 }

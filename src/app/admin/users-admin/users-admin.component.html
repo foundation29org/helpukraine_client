@@ -72,19 +72,21 @@
 							</span>
 						</ng-template>
 					</ngx-datatable-column>
-					<ngx-datatable-column name="{{'generics.Name' | translate }} ({{'menu.Patient' | translate }})"
-						prop="patientName" [flexGrow]="3" [sortable]="true">
+					<ngx-datatable-column name="{{'war.is the caretaker' | translate }}"
+						prop="iscaregiver" [flexGrow]="3" [sortable]="true">
 						<ng-template let-value="value" ngx-datatable-cell-template>
 							<span>
-								{{value}}
+								<span *ngIf="value">{{'generics.Yes' | translate }}</span>
+								<span *ngIf="!value">{{'generics.No' | translate }}</span>
 							</span>
 						</ng-template>
 					</ngx-datatable-column>
-					<ngx-datatable-column name="{{'personalinfo.Last Name' | translate }}" prop="surname" [flexGrow]="3"
-						[sortable]="true">
+					<ngx-datatable-column name="{{'war.Need shelter' | translate }}"
+						prop="needShelter" [flexGrow]="3" [sortable]="true">
 						<ng-template let-value="value" ngx-datatable-cell-template>
 							<span>
-								{{value}}
+								<span *ngIf="value">{{'generics.Yes' | translate }}</span>
+								<span *ngIf="!value">{{'generics.No' | translate }}</span>
 							</span>
 						</ng-template>
 					</ngx-datatable-column>
@@ -149,15 +151,30 @@
 						<h4 class="mb-0 text-bold-400">
 							{{'menu.User Profile' | translate }}
 						</h4>
-						<p class="mb-0">
-							<strong>{{'personalinfo.First Name' | translate }}:</strong> {{user.userName}}
-						</p>
-						<p class="mb-0">
-							<strong>{{'generics.Email' | translate }}:</strong> {{user.email}}
-						</p>
-						<p class="mb-0">
-							<strong>{{'personalinfo.Phone' | translate }}:</strong> {{user.countryPhoneCode}} {{user.phone}}
-						</p>
+						<div class="row">
+							<div class="col-md-6">
+								<p class="mb-0">
+									<strong>{{'personalinfo.First Name' | translate }}:</strong> {{user.userName}}
+								</p>
+							</div>
+							<div class="col-md-6">
+								<p class="mb-0">
+									<strong>{{'personalinfo.Phone' | translate }}:</strong> {{user.countryPhoneCode}} {{user.phone}}
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<p class="mb-0">
+									<strong>{{'war.is the caretaker' | translate }}:</strong> <span *ngIf="user.iscaregiver" class="ml-1">{{'generics.Yes' | translate }}</span><span *ngIf="!user.iscaregiver" class="ml-1">{{'generics.No' | translate }}</span>
+								</p>
+							</div>
+							<div class="col-md-6">
+								<p class="mb-0">
+									{{user.email}}
+								</p>
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<p class="mb-0">
@@ -176,25 +193,12 @@
 							{{'menu.Basic Info' | translate }}
 						</h4>
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-12">
 								<p class="mb-0">
-									<strong>{{'personalinfo.First Name' | translate }}:</strong> {{user.patientName}}
+									<strong>{{'war.Need shelter' | translate }}:</strong> <span *ngIf="user.needShelter" class="ml-1">{{'generics.Yes' | translate }}</span><span *ngIf="!user.needShelter" class="ml-1">{{'generics.No' | translate }}</span>
 								</p>
 							</div>
-							<div class="col-md-6">
-								<p class="mb-0">
-									<strong>{{'personalinfo.Last Name' | translate }}:</strong> {{user.surname}}
-								</p>
-							</div>
-							<div class="col-md-6">
-								<p class="mb-0">
-									<strong>{{'personalinfo.Gender' | translate }}:</strong><span
-										*ngIf="user.gender=='female'" class="ml-1">{{'personalinfo.Female' | translate
-										}}</span><span *ngIf="user.gender=='male'" class="ml-1">{{'personalinfo.Male' |
-										translate }}</span>
-								</p>
-							</div>
-							<div class="col-md-6">
+							<div class="col-md-12">
 								<p class="mb-0">
 									<strong>{{'personalinfo.Birth Date' | translate }}:</strong> {{user.birthDate | date: 'dd MMM y': '' : translate.currentLang}}
 								</p>
@@ -244,7 +248,7 @@
 										<tr>
 											<th>{{'generics.Name' | translate }}</th>
 											<th>{{'medication.Dose' | translate }}</th>
-											<th>Links</th>
+											<th>{{'war.Links' | translate }}</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -252,7 +256,8 @@
 											<td>{{drug.name}}</td>
 											<td>{{drug.dose}}</td>
 											<td>
-												<a class="info" data-original-title="" title=""
+												<span *ngIf="drug.link!=''">
+													<a class="info" data-original-title="" title=""
 													href="https://www.whocc.no/atc_ddd_index/?code={{drug.link}}"
 													target="_blank">
 													www.whocc.no
@@ -262,6 +267,7 @@
 													target="_blank">
 													www.rxreasoner.com
 												</a>
+												</span>
 											</td>
 										</tr>
 									</tbody>

@@ -300,7 +300,7 @@
     "Father": "Padre",
     "Mother": "Madre",
     "Select the sex to change the avatar": "Selecciona el sexo para cambiar el avatar.",
-    "I dont belong to a patient group": "No pertenezco a un grupo de pacientes",
+    "I dont belong to a patient group": "Mi enfermedad no aparece aquí",
     "I dont have a diagnosis": "No tengo un diagnóstico",
     "Patients with epilepsy": "Dravet Syndrome European Federation"
   },
@@ -1561,11 +1561,14 @@
     "Indicates the approximate location": "Seleccione su ubicación en el mapa:",
     "titleNoti1": "Si necesitas ayuda de cualquier tipo, escribe a soporte y nos pondremos en contacto contigo lo antes posible.",
     "titleNoti2": "Si has cambiado la ubicación, puedes cambiarla en el perfil del paciente.",
-    "titletoogle": "Soy el paciente",
+    "titletoogle": "Soy el cuidador",
+    "is the caretaker": "Es el cuidador",
     "Last login": "Último acceso",
     "Date of registration": "Fecha de registro",
     "Detailed information": "Información detallada",
     "Users": "Usuarios",
-    "No users": "No hay usuarios"
+    "No users": "No hay usuarios",
+    "Need shelter": "Necesita refugio",
+    "Links": "Enlaces"
   }
 }

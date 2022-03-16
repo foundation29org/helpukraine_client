@@ -300,7 +300,7 @@
     "Father": "Father",
     "Mother": "Mother",
     "Select the sex to change the avatar": "Select the sex to change the avatar.",
-    "I dont belong to a patient group": "I don't belong to a patient group",
+    "I dont belong to a patient group": "My disease does not appear here",
     "I dont have a diagnosis": "I don't have a diagnosis",
     "Patients with epilepsy": "Dravet Syndrome European Federation"
   },
@@ -1559,12 +1559,15 @@
     "Indicates the approximate location": "Select your location on the map:",
     "titleNoti1": "If you need help of any kind, write to support and we will get back to you as soon as possible.",
     "titleNoti2": "If you have changed the location, you can change it in the patient profile.",
-    "titletoogle": "I am the patient",
+    "titletoogle": "I am the caregiver",
+    "is the caretaker": "Is the caretaker",
     "Last login": "Last login",
     "Date of registration": "Date of registration",
     "Detailed information": "Detailed information",
     "Users": "Users",
-    "No users": "No users"
+    "No users": "No users",
+    "Need shelter": "Need shelter",
+    "Links": "Links"
   }
 }
 

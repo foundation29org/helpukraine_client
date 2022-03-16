@@ -180,7 +180,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   lng: number = 30.654701;
   zoom = 4;
   showMarker: boolean = false;
-  iscaretaker: boolean = false;
   resTextAnalyticsSegments = [];
   newDrugs: any = [];
   callingTextAnalytics: boolean = false;
@@ -677,14 +676,41 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   changedCaretaker(event) {
-    if (event) {
-      this.basicInfoPatient.patientName = this.userInfo.userName;
-      this.basicInfoPatient.surname = this.userInfo.lastName;
-    } else {
-      this.basicInfoPatient.patientName = '';
-      this.basicInfoPatient.surname = '';
-    }
-    this.iscaretaker = event;
+    this.userInfo.iscaregiver = event;
+    this.setCaretaker();
+  }
+
+  setCaretaker(){
+    var data = {iscaregiver: this.userInfo.iscaregiver};
+    this.subscription.add( this.http.put(environment.api+'/api/users/changeiscaregiver/'+this.authService.getIdUser(), data)
+    .subscribe( (res : any) => {
+      console.log(res);
+      //this.getUsers();
+     }, (err) => {
+       console.log(err);
+     }));
+    //this.user = user;
+  }
+
+  confirmDeleteDrug(index){
+    Swal.fire({
+        title: this.translate.instant("generics.Are you sure?"),
+        html: this.translate.instant("generics.Delete")+': '+ this.basicInfoPatient.drugs[index].name,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#0CC27E',
+        cancelButtonColor: '#FF586B',
+        confirmButtonText: this.translate.instant("generics.Delete"),
+        cancelButtonText: this.translate.instant("generics.No, cancel"),
+        showLoaderOnConfirm: true,
+        allowOutsideClick: false
+    }).then((result) => {
+      if (result.value) {
+        this.basicInfoPatient.drugs.splice(index, 1);
+        this.newDrugs = this.basicInfoPatient.drugs;
+        this.saveDrugs();
+      }
+    });
   }
 
 }
