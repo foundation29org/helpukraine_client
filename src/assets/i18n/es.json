@@ -214,7 +214,7 @@
     "Show": "Mostrar",
     "Hide": "Ocultar",
     "Details": "Details",
-    "Dx29 score":"Puntuación Raito",
+    "Dx29 score":"Puntuación Relief Ukraine",
     "Accept": "Aceptar",
     "Reject": "Rechazar",
     "Description": "Descripción",
@@ -567,7 +567,7 @@
   },
   "sharesection":{
     "Sharing menu": "Menú de compartición",
-    "Invite": "Invitar a usar Raito",
+    "Invite": "Invitar a usar Relief Ukraine",
     "What can it be done": "¿Qué se puede hacer con el caso?",
     "Write a message for the receptor": "Escribe un mensaje para darle contexto al receptor.",
     "Role": "Rol"
@@ -637,8 +637,8 @@
     "step5": "Cesión de los datos",
     "step1-1": "De conformidad con la normativa vigente, se informa al interesado, de que los datos facilitados serán tratados por Fundación 29 de Febrero (en adelante, 'F29'), cuyos datos de contacto son los siguientes",
     "step1-2": "Domicilio social",
-    "step2-1": "Cuando los usuarios faciliten datos personales a través de los formularios de Raito, sus datos personales serán tratados con las siguientes finalidades.",
-    "step2-2": "Cuando los usuarios faciliten datos personales a través del formulario de creación de cuenta de usuario, la finalidad es gestionar el registro y la administración de la cuenta de usuario registrada en la aplicación. Para ello, sus datos personales serán tratados hasta que nos comunique su deseo de darse de baja como usuario registrado de Raito.",
+    "step2-1": "Cuando los usuarios faciliten datos personales a través de los formularios de Relief Ukraine, sus datos personales serán tratados con las siguientes finalidades.",
+    "step2-2": "Cuando los usuarios faciliten datos personales a través del formulario de creación de cuenta de usuario, la finalidad es gestionar el registro y la administración de la cuenta de usuario registrada en la aplicación. Para ello, sus datos personales serán tratados hasta que nos comunique su deseo de darse de baja como usuario registrado de Relief Ukraine.",
     "step2-3": "Salvo que nos indique su voluntad en contra, serán de aplicación los plazos legales de conservación de los datos personales indicados anteriormente, por lo que es su responsabilidad mantenerlos actualizados, ya que serán utilizados para realizar comunicaciones sobre las altas, bajas o modificaciones de las cuentas registradas.",
     "step3-1": "Sus datos serán tratados sobre la base de la ejecución del contrato en los supuestos de alta de usuario: sin el tratamiento de estos datos no podríamos llevar a cabo los servicios mencionados.",
     "step4-1": "El interesado tiene derecho a",
@@ -654,10 +654,10 @@
   },
   "dataprocessing": {
     "I agree with the": "Estoy de acuerdo con el",
-    "data processing by DX29": "tratamiento de datos por Raito.",
-    "title": "ACUERDO DE TRATAMIENTO DE DATOS POR PARTE DE Raito",
-    "p1-1": "El servicio prestado por Fundación 29 de Febrero a través de la herramienta Raito está enfocado a ayudar a profesionales de la medicina y la genética durante el proceso de diagnóstico de enfermedades raras, reduciendo el tiempo y haciéndolo más preciso. Usando algoritmos de inteligencia artificial, ayuda a los especialistas a incorporar información del paciente para identificar síntomas y buscar conexiones entre los mismos, guiándoles en la identificación de nuevos síntomas. Finalmente, Raito sugiere una lista clasificada de patologías para que el profesional considere la realización de nuevas pruebas y así confirmar el diagnóstico final. Los algoritmos utilizados durante este proceso se mejoran periódicamente con los datos aportados por los especialistas.",
-    "p1-2": "Los usuarios son profesionales especialistas, relacionados con la medicina y la genética (en adelante, 'el usuario' / 'los usuarios'), que quieren hacer uso del servicio prestado por Raito. Como tales, son RESPONSABLES DEL TRATAMIENTO de los datos de sus pacientes",
+    "data processing by DX29": "tratamiento de datos por Relief Ukraine.",
+    "title": "ACUERDO DE TRATAMIENTO DE DATOS POR PARTE DE Relief Ukraine",
+    "p1-1": "El servicio prestado por Fundación 29 de Febrero a través de la herramienta Relief Ukraine está enfocado a ayudar a profesionales de la medicina y la genética durante el proceso de diagnóstico de enfermedades raras, reduciendo el tiempo y haciéndolo más preciso. Usando algoritmos de inteligencia artificial, ayuda a los especialistas a incorporar información del paciente para identificar síntomas y buscar conexiones entre los mismos, guiándoles en la identificación de nuevos síntomas. Finalmente, Relief Ukraine sugiere una lista clasificada de patologías para que el profesional considere la realización de nuevas pruebas y así confirmar el diagnóstico final. Los algoritmos utilizados durante este proceso se mejoran periódicamente con los datos aportados por los especialistas.",
+    "p1-2": "Los usuarios son profesionales especialistas, relacionados con la medicina y la genética (en adelante, 'el usuario' / 'los usuarios'), que quieren hacer uso del servicio prestado por Relief Ukraine. Como tales, son RESPONSABLES DEL TRATAMIENTO de los datos de sus pacientes",
     "p1-3": "De esta forma Fundación 29 será el ENCARGADO DEL TRATAMIENTO de los datos para proveer del servicio con la finalidad expresada en el párrafo primero.",
     "p1-4": "Para la prestación de dicho servicio es necesario que el ENCARGADO tenga acceso y realice tratamientos de datos de carácter personal de los pacientes",
     "p1-5": "Ambas partes, RESPONSABLE y ENCARGADO, reconocen cumplir con todas las obligaciones derivadas de la normativa comunitaria y nacional en materia de protección de datos, en especial las relativas al derecho de información, consentimiento y deber de secreto, y a la adopción de las medidas de seguridad técnicas y organizativas que garanticen la seguridad de los datos personales.",
@@ -720,7 +720,7 @@
   "homepatientdx": {
     "title": "Donando sangre puedes salvar una vida",
     "subtitle": "Donando tus datos médicos, puedes salvar muchas",
-    "titlep1.1": "Regístrate como paciente en Raito y ayúda a otros pacientes como tú.",
+    "titlep1.1": "Regístrate como paciente en Relief Ukraine y ayúda a otros pacientes como tú.",
     "titlep1.2": "Con la información de todos los donantes queremos avanzar en el conocimiento de las enfermedades raras para que otros pacientes puedan finalmente tener un diagnóstico",
     "titlep2.1.1": "Cada vez que visitas a un medico o te hacen una prueba, generas datos de salud.",
     "titlep2.1.2": "Tú eres el único propietario de esos datos y decides cómo se deben usar.",
@@ -734,7 +734,7 @@
     "titlep3.3": "Tus datos apoyarán proyectos de investigación",
     "subtitlep3.3": "Con el fin de valorar tu adecuación al programa, cedemos los datos de salud del menor a tu cargo a profesionales de la salud para que emitan una opinión.",
     "titlep4.1": "Cómo donar tus datos",
-    "subtitlep4.1": "Date de alta como paciente en Raito",
+    "subtitlep4.1": "Date de alta como paciente en Relief Ukraine",
     "subtitlep4.2": "y sigue un sencillo proceso para compartir tus datos médicos (diagnóstico, informes, síntomas...). Podrás completarlo aunque no tengas un diagnóstico todavía.",
     "subtitlep4.3": "Al finalizar el proceso obtendrás un informe descargable que resume tu condición y una representación gráfica de tu situación en el complejo universo de las enfermedades raras y tu carnet de donante de datos digital.",
     "titlep5": "Ayúdanos a conseguir más donantes",
@@ -742,12 +742,12 @@
     "titlep5.2": "Comparte esta imagen en tus redes sociales.",
     "titlep5.3": "Pídele a tu medico que se de alta como profesional.",
     "subtitlep5.3": "Regístrate",
-    "Dx29 for patients": "Raito para pacientes"
+    "Dx29 for patients": "Relief Ukraine para pacientes"
   },
   "dashboardpatient": {
     "My data": "Mis datos",
     "BackMydata": "Volver a mis datos",
-    "msgIntro": "Raito is a tool to change the way we do medicine. With Raito you can indicate the symptoms you have as a patient. This information is important so that we can use it to diagnose other patients as the information we have in current databases is not correct. Your data are yours, we will only use them to improve the diagnostic engines, always with anonymous information. In exchange, we will try to give you features that will help you on a daily basis, such as a map that indicates where you are compared to other patients like you or a report that helps you explain your condition. But the most important thing is that with your help you will be able to help others like you. Can you help us?",
+    "msgIntro": "Relief Ukraine is a tool to change the way we do medicine. With Relief Ukraine you can indicate the symptoms you have as a patient. This information is important so that we can use it to diagnose other patients as the information we have in current databases is not correct. Your data are yours, we will only use them to improve the diagnostic engines, always with anonymous information. In exchange, we will try to give you features that will help you on a daily basis, such as a map that indicates where you are compared to other patients like you or a report that helps you explain your condition. But the most important thing is that with your help you will be able to help others like you. Can you help us?",
     "Calculating your position on the map": "Calculando tu posición en el mapa",
     "Condition": "Condición",
     "This is you": "Este eres tú!!",
@@ -785,7 +785,7 @@
     "Enter at least one symptom to see the patient map": "No tienes síntomas todavía. Introduce al menos un síntoma para ver el mapa de paciente.",
     "Loading data": "Cargando información",
     "Share": "Compartir",
-    "Send invite to use Dx29": "Paciente – envía invitación para unirse a Raito",
+    "Send invite to use Dx29": "Paciente – envía invitación para unirse a Relief Ukraine",
     "Share your data anonymously": "Médico",
     "Invite": "Invitar",
     "Shared with": "Casos compartidos",
@@ -847,7 +847,7 @@
     "Invited": "Invitado"
   },
   "footer":{
-    "Dx29info": "Raito es una herramienta de búsqueda y referencia que se proporciona con fines informativos y no pretende sustituir el juicio o la experiencia del clínico. No debe utilizarse para diagnosticar o tratar afecciones médicas."
+    "Dx29info": "Relief Ukraine es una herramienta de búsqueda y referencia que se proporciona con fines informativos y no pretende sustituir el juicio o la experiencia del clínico. No debe utilizarse para diagnosticar o tratar afecciones médicas."
   },
   "patdiagdashboard":{
     "Show full text": "Mostrar todo el texto",
@@ -859,12 +859,12 @@
     }
   },
   "InfoSystem":{
-    "titleReload": "Hay una nueva versión disponible de Raito",
+    "titleReload": "Hay una nueva versión disponible de Relief Ukraine",
     "bodyReload": "Se va a recargar la página automáticamente para que estés actualizado",
-    "TitleNewVersion": "Se acerca una nueva versión de Raito",
-    "SubtitleNewVersion1": "Raito estará en mantenimiento entre las",
+    "TitleNewVersion": "Se acerca una nueva versión de Relief Ukraine",
+    "SubtitleNewVersion1": "Relief Ukraine estará en mantenimiento entre las",
     "SubtitleNewVersion2": "del",
-    "SubtitleNewVersion3": "Por favor, evita usar Raito. Los cambios no pueden ser guardados durante este período.",
+    "SubtitleNewVersion3": "Por favor, evita usar Relief Ukraine. Los cambios no pueden ser guardados durante este período.",
     "Spanishtranslations": "Algunas traducciones en español son automáticas. Si ves algo raro, escribe a support@foundation29.org",
     "Spanishtranslations2": "Algunas traducciones en español son automáticas. Si ves algo raro, escribe a <a href='mailto:support@foundation29.org'>support@foundation29.org</a>"
   },
@@ -965,14 +965,14 @@
     "Email sent to": "Email enviado a",
     "Sponsor": "Haz clic aquí para saber todo sobre",
     "click here": "ESTÁ AQUÍ",
-    "If you want to know how Dx29": "Si quieres saber como funciona Raito y la precisión de sus resultados pulsa",
+    "If you want to know how Dx29": "Si quieres saber como funciona Relief Ukraine y la precisión de sus resultados pulsa",
     "you have to select": "¡Estupendo! Ahora tiene que seleccionar los síntomas, para eliminar errores y ser precisos en el diagnóstico, es un paso muy importante para ayudar a tu paciente. Tienes que seleccionar entre 5 y 10 “síntomas guía”. Los síntomas guía son los que consideras que caracterizan a tu paciente y que tu ojo clínico te dice que son importantes.",
     "remembertitle": "El número mínimo de síntomas es 2",
     "remember": "Se recomienda añadir al menos 5.",
     "Do not show this message again": "No volver a mostrar este mensaje",
     "When you have selected them": "Cuando los hayas seleccionados tienes que hacer clic en el botón “Ver enfermedades propuestas”.",
     "InfoDx29":{
-      "title":"La precisión de Raito",
+      "title":"La precisión de Relief Ukraine",
       "p1": "Nuestro algoritmo de cálculo de enfermedades analiza y procesa los síntomas que nos indiques y, en base a esta información, te propone un listado de posibles diagnósticos.",
       "p3": "Para ganarnos tu confianza, lo hemos puesto a prueba generando distintos escenarios. No existen suficientes datos públicos y anónimos de pacientes, por lo que hemos realizado simulaciones del siguiente modo:",
       "p5": "Hemos creado un listado de pacientes. Para una lista de aproximadamente 10000 enfermedades, basándonos en la información de los síntomas que proporciona tanto <a href='https://www.orpha.net/consor/cgi-bin/index.php' target='_blank'>Orphanet</a> como <a href='https://www.omim.org/' target='_blank'>OMIM</a> de las mismas, conseguimos dos tipos de pacientes:<ul><li>Los ideales, cuyos síntomas están formado únicamente por una selección de los síntomas conocidos de esa enfermedad.</li><li>Los realistas. El conjunto de los síntomas de estos pacientes, a diferencia de los anteriores, contendrá síntomas no tan precisos. Esto se entiende mejor con el ejemplo de convulsiones epilépticas de inicio focal. En algunos pacientes, en lugar de incluir este síntoma, hemos incluido convulsiones epilépticas, un término que es menos preciso que el anterior según <a href='https://hpo.jax.org/' target='_blank'>HPO</a>.</li></ul>",
@@ -980,7 +980,7 @@
       "p9": "Los resultados de estas pruebas son los que mostramos a continuación. Como podrás ver, nuestro algoritmo depende muy fuertemente de la calidad de los síntomas que nos facilites. Así, cuánto más preciso seas con los síntomas de entrada, mejores resultados podremos darte.",
       "p11": "Con los pacientes ideales predecimos la enfermedad correcta entre las 10 primeras en un 91.9 % (top-10) de las veces.",
       "p12": "Por otro lado, con los pacientes realistas el porcentaje de acierto en el top 10 es de 51.1%.",
-      "p13": "Si tienes alguna duda sobre cómo funciona Raito os sobre cómo te podemos ayudar, ponte en contacto con nosotros.",
+      "p13": "Si tienes alguna duda sobre cómo funciona Relief Ukraine os sobre cómo te podemos ayudar, ponte en contacto con nosotros.",
       "Percentage of success of the disease": "Porcentaje de acierto de la enfermedad",
       "Ideal patients": "Pacientes ideales",
       "Position of the disease": "Posición de la enfermedad",
@@ -1028,7 +1028,7 @@
       "button": "Quiero registrarme, es gratis!"
     },
     "swal":{
-      "title": "Regístrate para utilizar la capacidad total de Raito",
+      "title": "Regístrate para utilizar la capacidad total de Relief Ukraine",
       "title2": "de forma totalmente gratuita",
       "subtitle": "Prepárate para recibir tus nuevos poderes",
       "p1": "Nos hemos tomado la molestia de prepararte para tu nuevo rol, por lo tanto, <ins>tendrás en tu nuevo perfil los síntomas y enfermedades que has obtenido</ins> para que tu despegue sea lo más cómodo posible.",
@@ -1043,10 +1043,10 @@
     "add the symptoms manually": "Añadir manualmente",
     "try again": "Intentarlo de nuevo",
     "aboutUs":{
-      "title": "¿Qué es Raito?",
+      "title": "¿Qué es Relief Ukraine?",
       "p2": "Si ya tienes un diagnóstico, podrás generar tu historial médico y también estar al día de los ensayos clínicos y grupos de pacientes de tu enfermedad.",
-      "p1": "Raito es un proyecto sin ánimo de lucro para ayudar a los pacientes y a los médicos a entender la enfermedad del paciente. Es un software completamente gratuito para el análisis y la gestión de sus síntomas, la creación y el intercambio de su historial médico y la ayuda para llegar a un diagnóstico.",
-      "p3": "Los datos de Raito sólo pueden ser compartidos por su propietario. La Fundación 29 nunca los compartirá con nadie. En el futuro, incluiremos una funcionalidad para que los pacientes puedan almacenar sus propios datos en su espacio de datos privado. Si quieres estar al día de los avances de este y otros proyectos, inscríbete aquí:",
+      "p1": "Relief Ukraine es un proyecto sin ánimo de lucro para ayudar a los pacientes y a los médicos a entender la enfermedad del paciente. Es un software completamente gratuito para el análisis y la gestión de sus síntomas, la creación y el intercambio de su historial médico y la ayuda para llegar a un diagnóstico.",
+      "p3": "Los datos de Relief Ukraine sólo pueden ser compartidos por su propietario. La Fundación 29 nunca los compartirá con nadie. En el futuro, incluiremos una funcionalidad para que los pacientes puedan almacenar sus propios datos en su espacio de datos privado. Si quieres estar al día de los avances de este y otros proyectos, inscríbete aquí:",
       "btn1": "Visitar la página web de Foundation 29",
       "Who are we": "Visita nuestra web",
       "titlef29": "¿Qué es Fundación 29?",
@@ -1075,7 +1075,7 @@
       },
       "timeline":{
         "title":"Vamos a ayudarte a construir una línea de tiempo de sus síntomas. Estos datos pueden mejorar la gestión de tu enfermedad y ayudar a otros pacientes como usted en su odisea diagnóstica. Hay dos pasos sencillos:",
-        "subtitlea": "Este informe muestra los datos incluidos en Raito con el objetivo de mejorar la comunicación paciente-médico. Se recomienda llevar",
+        "subtitlea": "Este informe muestra los datos incluidos en Relief Ukraine con el objetivo de mejorar la comunicación paciente-médico. Se recomienda llevar",
         "subtitleb": "el informe a la siguiente visita médica para que tanto el paciente como el médico puedan ayudar a perfeccionar los contenidos.",
         "footer1": "Somos una organización sin ánimo de lucro que diseña y crea herramientas para la gestión de los pacientes de sus propios datos,",
         "footer2": "revolucionando el diagnóstico y el manejo de las enfermedades raras. Damos el poder a los pacientes y los médicos para que utilicen",
@@ -1118,9 +1118,9 @@
         "Appendix2Title":"Síntomas sin información cronológica",
         "Symptoms":"Síntomas",
         "WaitDownload":"Por favor, espera se están descargando los datos de tu cronología.",
-        "p1":"Si quieres guardar tu cronología para poder editarla, descargarla y/o compartirla con tu médico en cualquier momento, registrate en Raito.",
+        "p1":"Si quieres guardar tu cronología para poder editarla, descargarla y/o compartirla con tu médico en cualquier momento, registrate en Relief Ukraine.",
         "p2": "Nos hemos tomado la molestia de prepararte para tu nuevo rol, por lo tanto, <ins>tendrás en tu nuevo perfil todos los datos que has introducido </ins> para que tu despegue sea lo más cómodo posible.",
-        "p3":"Además de esto, Raito te dará otros poderes, que incluyen:",
+        "p3":"Además de esto, Relief Ukraine te dará otros poderes, que incluyen:",
         "Whats":"¿Qué es esto?",
         "WorkPC":"Para utilizar esta herramienta, de forma más sencilla,  recomendamos el uso de un ordenador",
         "Duration":"Duración",
@@ -1192,7 +1192,7 @@
         "t1":"La comunidad necesita tu ayuda",
         "p1": "Los datos que tú nos puedes dar sobre tu enfermedad, al completar los distintos pasos de la cronología, son muy importantes. Porque esa información no viene directamente de las bases de datos tradicionales, que se usan para hacer los diagnósticos y contienen información imprecisa sobre las enfermedades raras.",
         "p2": "En Fundación 29 queremos cambiar la forma en la que se hace Medicina. Queremos que los datos de los pacientes se usen y que se pueda hacer más investigación con ellos.",
-        "p3": "Estamos construyendo una herramienta para agilizar el diagnóstico de enfermedades raras (Raito) y necesitamos tus datos para hacerla más precisa y así poder ayudar a más y más pacientes.",
+        "p3": "Estamos construyendo una herramienta para agilizar el diagnóstico de enfermedades raras (Relief Ukraine) y necesitamos tus datos para hacerla más precisa y así poder ayudar a más y más pacientes.",
         "p4": "Únete a nuestra revolución donándonos estos datos y dejando aquí tu dirección de correo electrónico. Además, te mantendremos informado de todos nuestros avances."
       }
     }
@@ -1210,7 +1210,7 @@
     "p2.1": "Quiero un diagnóstico",
     "p2.2": "Quiero saber más sobre mi enfermedad",
     "p3": "Añadir síntomas",
-    "t4title": "Ventajas de registrarse en Raito",
+    "t4title": "Ventajas de registrarse en Relief Ukraine",
     "t5": "Nuestro ecosistema",
     "t6": "Premios",
     "Institutions": "Instituciones",
@@ -1223,7 +1223,7 @@
     "home":{
       "keywords": "diagnóstico, diagnosticar, enfermedad rara, síndrome, enfermedad, pronóstico, síntomas, HPO, epilepsia, crisis epiléptica, status epiléctico, convulsiones, retraso en el desarrollo, temblores, palpitaciones, tónica-clónica, mioclónica, pediatría, genética, neurología, extracción de síntomas, enfermedad genética",
       "description": "Extracción y curado de síntomas HPO desde texto y documentos. IA que ayuda al diagnóstico de enfermedades raras. Totalmente gratuita para médicos y pacientes.",
-      "title": "Raito: Extrae síntomas y ayuda al diagnóstico"
+      "title": "Relief Ukraine: Extrae síntomas y ayuda al diagnóstico"
     },
     "physicians":{
       "keywords": "Comprobador de síntomas, diagnostico genético virtual, diagnosticar enfermedades raras, síntomas de enfermedades raras, enfermedades raras",
@@ -1314,7 +1314,7 @@
     "t2.3t": "Lanzamiento",
     "t2.3a": "Te proporcionamos las herramientas para compartir tu carpeta de datos médicos y potenciar tu alcance con instituciones y aplicaciones que te ayudarán a ti y a otros pacientes.",
     "t3.1": "Disponible para tu móvil y tu tablet",
-    "t3.2": "Usa Raito en teléfono o tablet es gratis y fácil.",
+    "t3.2": "Usa Relief Ukraine en teléfono o tablet es gratis y fácil.",
     "button": "Quiero unirme"
   },
   "homeraito":{
@@ -1365,7 +1365,7 @@
     "infoFeel": "La calidad de vida representa cómo afecta la enfermedad del paciente a su vida. El valor del gráfico es la media de los valores que usted proporciona cada vez que responde a las preguntas sobre la carga de la enfermedad. Las opciones de las preguntas tienen valores de 1 a 5.",
     "Your progress": "Mi progreso",
     "If you dont keep data updated it will decrease": "Si no mantienes los datos actualizados disminuirá.",
-    "noti1a": "Bienvenido a Raito, tu contenedor de datos personales. Esta es tu área de notificaciones.",
+    "noti1a": "Bienvenido a Relief Ukraine, tu contenedor de datos personales. Esta es tu área de notificaciones.",
     "noti2a": "El nivel de tu contenedor está representado en la barra de abajo. Lo rellenas introduciendo y compartiendo datos.",
     "noti3a": "¿Cómo ha sido la carga de la enfermedad últimamente?",
     "noti3b": "No has informado sobre tu carga de enfermedad últimamente. Hagámoslo.",
@@ -1428,14 +1428,14 @@
     "Write down any details": "Anote cualquier detalle",
     "State": "Estado",
     "invalidFile": "El fichero importado no es el correcto",
-    "These are the symptoms included in Raito by the user": "Estos son los síntomas incluidos en Raito por el usuario:",
-    "No symptoms have been added in Raito": "No ha añadido síntomas en Raito."
+    "These are the symptoms included in Relief Ukraine by the user": "Estos son los síntomas incluidos en Relief Ukraine por el usuario:",
+    "No symptoms have been added in Relief Ukraine": "No ha añadido síntomas en Relief Ukraine."
   },
   "mydata":{
     "title": "Mis datos",
     "desc": "Tu contenedor es tu propio espacio personal para almacenar tus datos y compartirlos para tu propia gestión e investigación de la enfermedad. Aquí puedes gestionar tu contenedor.",
     "q1": "Ubicación del contenedor",
-    "a1": "En Raito eres el único dueño de tus datos.Tus datos serán respaldados periódicamente en OneDrive, GoogleDrive o iCloud dependiendo de tu dispositivo.",
+    "a1": "En Relief Ukraine eres el único dueño de tus datos.Tus datos serán respaldados periódicamente en OneDrive, GoogleDrive o iCloud dependiendo de tu dispositivo.",
     "q2": "Organizaciones de pacientes",
     "a2.1": "Actualmente está compartiendo datos con la comunidad de la red de datos del DSEF.",
     "a2.2": "Siga este enlace para obtener más información: <a href='https://dravet.eu/' target='_blank'>https://dravet.eu/</a>",
@@ -1483,11 +1483,11 @@
     "t2": "Quién tiene acceso",
     "a2.1": "Puede compartir sus datos médicos de forma anónima con su Organización de Pacientes concediendo acceso a los mismos. También puede enviar copias anónimas a quien quiera.",
     "t3": "Dónde están tus datos",
-    "a3": "Raito sólo almacenará el nombre y la información de contacto, mientras que tus datos médicos se guardarán donde tú elijas. Puedes almacenarlos en tu dispositivo o en tu proveedor de almacenamiento en la nube. Raito te ayudará con esto. A esta carpeta la llamamos tu propio contenedor de datos.",
+    "a3": "Relief Ukraine sólo almacenará el nombre y la información de contacto, mientras que tus datos médicos se guardarán donde tú elijas. Puedes almacenarlos en tu dispositivo o en tu proveedor de almacenamiento en la nube. Relief Ukraine te ayudará con esto. A esta carpeta la llamamos tu propio contenedor de datos.",
     "t4": "Quién más utiliza tus datos",
     "a4": "Nadie más tiene acceso a tus datos. Tus datos son tuyos y están seguros.",
     "t6": "¿Qué datos se comparten con F29?",
-    "a6": "Raito recoge datos básicos de información del usuario. Para poder ofrecerte los servicios de Raito, recogemos tu nombre y tu correo electrónico. El resto de datos que incluyes en Raito se guardan en tu propio dispositivo o en tu propio servicio de almacenamiento en la nube, por lo que F29 no tiene acceso a ellos.",
+    "a6": "Relief Ukraine recoge datos básicos de información del usuario. Para poder ofrecerte los servicios de Relief Ukraine, recogemos tu nombre y tu correo electrónico. El resto de datos que incluyes en Relief Ukraine se guardan en tu propio dispositivo o en tu propio servicio de almacenamiento en la nube, por lo que F29 no tiene acceso a ellos.",
     "readPolicy": "Lea la versión completa de la política de privacidad aquí"
   },
   "documents":{
@@ -1507,7 +1507,7 @@
     "a3": "Tu contenedor de datos personales se sincroniza continuamente con el contenedor de datos agregados que almacena el DSEF. Así que se enviarán nuevos datos una vez que actualices la información de tu contenedor. Dependiendo de la situación, se puede enviar de inmediato o una vez al día.",
     "t4": "¿Con qué finalidad se tratarán tus datos anónimos y durante cuánto tiempo?",
     "a4.1": "Cuando los usuarios faciliten datos anónimos a través de la conexión establecida entre su contenedor de datos personales y el contenedor de datos de DSEF, sus datos anónimos serán tratados con las siguientes finalidades:",
-    "a4.2": "Sus datos anónimos serán agregados con los datos de otros usuarios de Raito.",
+    "a4.2": "Sus datos anónimos serán agregados con los datos de otros usuarios de Relief Ukraine.",
     "a4.3": "Los datos agregados se utilizarán para múltiples proyectos de investigación con el fin de identificar los rasgos clave de los pacientes con síndrome de Dravet y proporcionar pruebas sobre la calidad de vida de las familias con síndrome de Dravet.",
     "t5": "¿Cuál es la legitimación del tratamiento de los datos?",
     "a5": "Sus datos serán tratados en base a su inscripción expresa en el programa de investigación.",

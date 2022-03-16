@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap'
 import { Subscription } from 'rxjs/Subscription';
 import { Router, NavigationEnd, ActivatedRoute, NavigationStart, NavigationCancel } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from 'app/shared/services/lang.service';
 import Swal from 'sweetalert2';
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
   tituloEvent: string = '';
   role: string = '';
   //Set toastr container ref configuration for toastr positioning on screen
-  constructor(private http: HttpClient, public toastr: ToastrService, private router: Router, private activatedRoute: ActivatedRoute, private titleService: Title, public translate: TranslateService, angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics, private langService: LangService, private eventsService: EventsService, protected $hotjar: NgxHotjarService, private meta: Meta) {
+  constructor(private http: HttpClient, public toastr: ToastrService, private router: Router, private activatedRoute: ActivatedRoute, private titleService: Title, public translate: TranslateService, angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics, private langService: LangService, private eventsService: EventsService, protected $hotjar: NgxHotjarService) {
 
     if (sessionStorage.getItem('lang')) {
       this.translate.use(sessionStorage.getItem('lang'));
@@ -101,14 +101,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.meta.addTags([
-      { name: 'keywords', content: this.translate.instant("seo.home.keywords") },
-      { name: 'description', content: this.translate.instant("seo.home.description") },
-      { name: 'title', content: this.translate.instant("seo.home.title") },
-      { name: 'robots', content: 'index, follow' }
-    ]);
-
-
     //evento que escucha si ha habido un error de conexión
     this.eventsService.on('http-error', function (error) {
       var msg1 = 'No internet connection';
@@ -195,12 +187,6 @@ export class AppComponent implements OnInit, OnDestroy {
           this.tituloEvent = event['title'];
           var titulo = this.translate.instant(this.tituloEvent);
           this.titleService.setTitle(titulo);
-          if (event.title == 'homedx.Donate') {
-            this.meta.updateTag({ name: 'description', content: this.translate.instant("donate.descriptionSeo") });
-          } else {
-            this.changeMeta();
-          }
-
         })();
 
         //para los anchor de la misma páginano hacer scroll hasta arriba
@@ -217,7 +203,6 @@ export class AppComponent implements OnInit, OnDestroy {
         var titulo = this.translate.instant(this.tituloEvent);
         this.titleService.setTitle(titulo);
         sessionStorage.setItem('lang', lang);
-        this.changeMeta();
       })();
 
 
@@ -250,26 +235,4 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  changeMeta() {
-    var URLactual = window.location.href;
-    if (URLactual.indexOf("clinician") != -1 || this.role == "physicians") {
-      this.meta.updateTag({ name: 'keywords', content: this.translate.instant("seo.physicians.keywords") });
-      this.meta.updateTag({ name: 'description', content: this.translate.instant("seo.physicians.description") });
-      this.meta.updateTag({ name: 'title', content: this.translate.instant("seo.physicians.title") });
-    } else {
-      if (this.role == '' || this.role == undefined) {
-        this.meta.updateTag({ name: 'keywords', content: this.translate.instant("seo.home.keywords") });
-        this.meta.updateTag({ name: 'description', content: this.translate.instant("seo.home.description") });
-        this.meta.updateTag({ name: 'title', content: this.translate.instant("seo.home.title") });
-      } else if (this.role == "diagnosed") {
-        this.meta.updateTag({ name: 'keywords', content: this.translate.instant("seo.diagnosed.keywords") });
-        this.meta.updateTag({ name: 'description', content: this.translate.instant("seo.diagnosed.description") });
-        this.meta.updateTag({ name: 'title', content: this.translate.instant("seo.diagnosed.title") });
-      } else if (this.role == "undiagnosed") {
-        this.meta.updateTag({ name: 'keywords', content: this.translate.instant("seo.undiagnosed.keywords") });
-        this.meta.updateTag({ name: 'description', content: this.translate.instant("seo.undiagnosed.description") });
-        this.meta.updateTag({ name: 'title', content: this.translate.instant("seo.undiagnosed.title") });
-      }
-    }
-  }
 }

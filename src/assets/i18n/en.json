@@ -214,7 +214,7 @@
     "Show": "Show",
     "Hide": "Hide",
     "Details": "Details",
-    "Dx29 score":"Raito score",
+    "Dx29 score":"Relief Ukraine score",
     "Accept": "Accept",
     "Reject": "Reject",
     "Description": "Description",
@@ -567,7 +567,7 @@
   },
   "sharesection":{
     "Sharing menu": "Sharing menu",
-    "Invite": "Invite to use Raito ",
+    "Invite": "Invite to use Relief Ukraine ",
     "What can it be done": "What can it be done with the case?",
     "Write a message for the receptor": "Write a message for the receptor.",
     "Role": "Role"
@@ -637,8 +637,8 @@
     "step5": "Assignment of data",
     "step1-1": "In accordance with current regulations, the interested party is informed that the information provided will be processed by Fundación 29 de Febrero (hereinafter, 'F29'), whose contact information is as follows",
     "step1-2": "Registered office",
-    "step2-1": "When users provide personal data through the forms on Raito, their personal data will be processed for the following purposes",
-    "step2-2": "When users provide personal data through the user account creation form, the purpose is to manage the registration and administration of the user account registered in the application. For this, your personal data will be processed until you inform us of your wish to cancel your status as a registered user of Raito.",
+    "step2-1": "When users provide personal data through the forms on Relief Ukraine, their personal data will be processed for the following purposes",
+    "step2-2": "When users provide personal data through the user account creation form, the purpose is to manage the registration and administration of the user account registered in the application. For this, your personal data will be processed until you inform us of your wish to cancel your status as a registered user of Relief Ukraine.",
     "step2-3": "Unless you indicate your will against, the legal preservation terms of the personal data indicated above will apply, so it is your responsibility to keep them updated, since they will be used to make communications about the additions, deletions or modifications of accounts registered.",
     "step3-1": "Your data will be treated on the basis of the execution of the contract in the cases of user registration: without the processing of these data we could not carry out the aforementioned services.",
     "step4-1": "The interested party has the right to",
@@ -654,10 +654,10 @@
   },
   "dataprocessing": {
     "I agree with the": "I agree with the",
-    "data processing by DX29": "data processing by Raito",
-    "title": "DATA PROCESSING AGREEMENT - Raito",
-    "p1-1": "The service provided by Fundación 29 de Febrero through the tool Raito is focused on helping clinicians and genetists during the process of diagnosing rare diseases, reducing time and making it more precise. Using artificial intelligence algorithms, it helps specialists to incorporate patient information to identify symptoms and find connections between them, guiding them in the identification of new symptoms. Finally, Raito suggests a classified list of pathologies for the professional to consider carrying out new tests and thus confirm the final diagnosis. The algorithms used during this process are improved periodically with the data provided by the specialists.",
-    "p1-2": "The users are professional specialists, related to medicine and genetics (hereinafter, 'the user' / 'the users'), who want to use the service provided by Raito. As such, they are CONTROLLER of their patient's data.",
+    "data processing by DX29": "data processing by Relief Ukraine",
+    "title": "DATA PROCESSING AGREEMENT - Relief Ukraine",
+    "p1-1": "The service provided by Fundación 29 de Febrero through the tool Relief Ukraine is focused on helping clinicians and genetists during the process of diagnosing rare diseases, reducing time and making it more precise. Using artificial intelligence algorithms, it helps specialists to incorporate patient information to identify symptoms and find connections between them, guiding them in the identification of new symptoms. Finally, Relief Ukraine suggests a classified list of pathologies for the professional to consider carrying out new tests and thus confirm the final diagnosis. The algorithms used during this process are improved periodically with the data provided by the specialists.",
+    "p1-2": "The users are professional specialists, related to medicine and genetics (hereinafter, 'the user' / 'the users'), who want to use the service provided by Relief Ukraine. As such, they are CONTROLLER of their patient's data.",
     "p1-3": "In this way Fundación 29 will be the PROCESSOR of the data to provide the service with the purpose expressed in the first paragraph.",
     "p1-4": "For the provision of such service it is necessary that the PROCESSOR have access and perform patient’s personal data processing.",
     "p1-5": "Both parties, CONTROLLER and PROCESSOR, acknowledge complying with all the obligations derived from the community and national regulations in matters of data protection, especially those related to the right of information, consent and duty of secrecy, and the adoption of security measures technical and organizational measures that guarantee the security of personal data.",
@@ -720,7 +720,7 @@
   "homepatientdx": {
     "title": "When you donate blood, you can save a life",
     "subtitle": "When you donate your medical data, you can save many lives",
-    "titlep1.1": "Register as a patient for Raito and donate your medical data.",
+    "titlep1.1": "Register as a patient for Relief Ukraine and donate your medical data.",
     "titlep1.2": "With the information of all donors we want to progress in the knowledge of rare diseases so that other patients can finally have a diagnosis",
     "titlep2.1.1": "Every time you visit a doctor or get tested, you generate health data.",
     "titlep2.1.2": "You are the sole owner of that data and decide how it should be used.",
@@ -734,7 +734,7 @@
     "titlep3.3": "Your data will support research projects",
     "subtitlep3.3": "We will not transfer your data or market with third parties. Its sole purpose is research to improve diagnosis.",
     "titlep4.1": "How to donate your data",
-    "subtitlep4.1": "Sign up as a patient on Raito",
+    "subtitlep4.1": "Sign up as a patient on Relief Ukraine",
     "subtitlep4.2": "and follow a simple process to share your medical data (diagnosis, reports, symptoms...). You'll be able to complete it even if you don't have a diagnosis yet. ",
     "subtitlep4.3": "At the end of the process you will get a downloadable report summarizing your condition and a graphical representation of your position in the complex universe of rare diseases as well as your digital data donor card.",
     "titlep5": "Help us get more donors",
@@ -742,12 +742,12 @@
     "titlep5.2": "Share this image on your social networks.",
     "titlep5.3": "Ask your doctor to register as a professional.",
     "subtitlep5.3": "Register now",
-    "Dx29 for patients": "Raito for patients"
+    "Dx29 for patients": "Relief Ukraine for patients"
   },
   "dashboardpatient": {
     "My data": "My data",
     "BackMydata": "Back to my data",
-    "msgIntro": "Raito is a tool to change the way we do medicine. With Raito you can indicate the symptoms you have as a patient. This information is important so that we can use it to diagnose other patients as the information we have in current databases is not correct. Your data are yours, we will only use them to improve the diagnostic engines, always with anonymous information. In exchange, we will try to give you features that will help you on a daily basis, such as a map that indicates where you are compared to other patients like you or a report that helps you explain your condition. But the most important thing is that with your help you will be able to help others like you. Can you help us?",
+    "msgIntro": "Relief Ukraine is a tool to change the way we do medicine. With Relief Ukraine you can indicate the symptoms you have as a patient. This information is important so that we can use it to diagnose other patients as the information we have in current databases is not correct. Your data are yours, we will only use them to improve the diagnostic engines, always with anonymous information. In exchange, we will try to give you features that will help you on a daily basis, such as a map that indicates where you are compared to other patients like you or a report that helps you explain your condition. But the most important thing is that with your help you will be able to help others like you. Can you help us?",
     "Calculating your position on the map": "Calculating your position on the map",
     "This is you": "This is you!!",
     "textmap1": "This map shows your position (red big dot) with respect to other patients with similar conditions. Each dot in the map is an individual patient, with each color representing a disease. The color scale is limited, meaning that a given color may be used more than once. Diseases in the map should be identified primarly by position, being the color an additional helper. The dispersion of each disease is due to the variability of its symptoms. Some diseases may overlap if they are very similar.",
@@ -785,7 +785,7 @@
     "Enter at least one symptom to see the patient map": "You don't have any symptoms. Enter at least one symptom to see the patient map.",
     "Loading data": "Loading data",
     "Share": "Share",
-    "Send invite to use Dx29": "Patient - send invite to use Raito",
+    "Send invite to use Dx29": "Patient - send invite to use Relief Ukraine",
     "Share your data anonymously": "Physician",
     "Invite": "Invite",
     "Shared with": "Shared cases",
@@ -847,7 +847,7 @@
     "Invited": "Invited"
   },
   "footer":{
-    "Dx29info": "Raito is a search and reference tool provided for informational purposes and not intended to replace the clinician’s judgement or experience. It should not be used to diagnose or treat medical conditions."
+    "Dx29info": "Relief Ukraine is a search and reference tool provided for informational purposes and not intended to replace the clinician’s judgement or experience. It should not be used to diagnose or treat medical conditions."
   },
   "patdiagdashboard":{
     "Show full text": "Show all text",
@@ -859,12 +859,12 @@
     }
   },
   "InfoSystem":{
-    "titleReload": "A new version of Raito is available",
+    "titleReload": "A new version of Relief Ukraine is available",
     "bodyReload": "The page will be reloaded automatically to keep you updated",
-    "TitleNewVersion": "New version of Raito is coming",
-    "SubtitleNewVersion1": "Raito will undergo maintenance between",
+    "TitleNewVersion": "New version of Relief Ukraine is coming",
+    "SubtitleNewVersion1": "Relief Ukraine will undergo maintenance between",
     "SubtitleNewVersion2": "on the",
-    "SubtitleNewVersion3": "Please, avoid using Raito. Changes may not be saved during this period.",
+    "SubtitleNewVersion3": "Please, avoid using Relief Ukraine. Changes may not be saved during this period.",
     "Spanishtranslations": "Spanish translations are being tested",
     "Spanishtranslations2": "Spanish translations are being tested. Si ves algo raro, escribe a <a href='mailto:support@foundation29.org'>support@foundation29.org</a>"
   },
@@ -965,14 +965,14 @@
     "Email sent to": "Email sent to",
     "Sponsor": "Click here to learn all about",
     "click here": "IS HERE",
-    "If you want to know how Dx29": "If you want to know how Raito works and the accuracy of its results click",
+    "If you want to know how Dx29": "If you want to know how Relief Ukraine works and the accuracy of its results click",
     "you have to select": "Great! Now you have to select the symptoms, this allows you to eliminate errors and be accurate in your diagnosis, it is a very important step in helping your patient. You have to select between 5 and 10 “guiding symptoms”. The guiding symptoms are the ones that you consider characterize your patient and that your clinical eye tells you are important.",
     "remembertitle": "The minimum number of symptoms is 2",
     "remember": "We recommend adding at least 5.",
     "Do not show this message again": "Do not show this message again",
     "When you have selected them": "When you have selected them you have to click on the “View suggested diseases” button.",
     "InfoDx29":{
-      "title":"The accuracy of Raito",
+      "title":"The accuracy of Relief Ukraine",
       "p1": "Our disease calculation algorithm analyzes and processes the symptoms you provide and, based on this information, proposes a list of possible diagnoses.",
       "p3": "To gain your trust, we have tested it by generating different scenarios. There is not enough public and anonymous patient data, so we have performed simulations as follows:",
       "p5": "We created a list of patients. For a list of about 10000 diseases, based on the symptom information provided by both <a href='https://www.orpha.net/consor/cgi-bin/index.php' target='_blank'>Orphanet</a> and <a href='https://www.omim.org/' target='_blank'>OMIM</a> of the diseases, we have two types of patients:<ul><li>The ideal ones, whose symptoms are formed only by a selection of the known symptoms of a disease.</li><li>Realistic patients., whose symptoms, unlike the previous ones, will contain not so precise symptoms. This is best understood by the example of focal onset epileptic seizures. In some patients, instead of including this symptom, we have included epileptic seizures, a term that is less precise than the previous one according to <a href='https://hpo.jax.org/' target='_blank'>HPO</a>.</li></ul>",
@@ -980,7 +980,7 @@
       "p9": "The results of these tests are shown below. As you can see, our algorithm depends very strongly on the quality of the symptoms you provide. Thus, the more accurate you are with the input symptoms, the better results we will be able to give you.",
       "p11": "With ideal patients we predict the correct disease in the top 10 in 91.9 % (top-10) of the patients.",
       "p12": "On the other hand, with the realistic patients the hit percentage in the top 10 is 51.1%.",
-      "p13": "If you have any questions about how Raito works or how we can help you, please contact us.",
+      "p13": "If you have any questions about how Relief Ukraine works or how we can help you, please contact us.",
       "Percentage of success of the disease": "Percentage of success of the disease",
       "Ideal patients": "Ideal patients",
       "Position of the disease": "Position of the disease",
@@ -1028,7 +1028,7 @@
       "button": "I want to register, it's free!"
     },
     "swal":{
-      "title": "Register to use the full capacity of Raito",
+      "title": "Register to use the full capacity of Relief Ukraine",
       "title2": "completely free of charge",
       "subtitle": "Get ready to receive your new powers",
       "p1": "We have taken the trouble to prepare you for your new role, therefore, <ins>you will have in your new profile the symptoms and diseases that you have obtained</ins> so that your take off is as comfortable as possible.",
@@ -1043,10 +1043,10 @@
     "add the symptoms manually": "Add manually",
     "try again": "Try again",
     "aboutUs":{
-      "title": "What is Raito?",
+      "title": "What is Relief Ukraine?",
       "p2": "If you already have a diagnosis, you will be able to generate your medical history and also keep up to date with clinical trials and patient groups of your disease.",
-      "p1": "Raito is a non-profit project to help patients and physicians understand the patient disease. It is a completely free software for analysis and management of your symptoms, creation and sharing of your medical history and help to reach a diagnosis.",
-      "p3": "The data in Raito can only be shared by its owner. Foundation 29 will never share it with anyone. In the future, we will include functionality so that patients can store their own data in their own private data space. If you want to be updated on the progress of this and other projects, sign up here:",
+      "p1": "Relief Ukraine is a non-profit project to help patients and physicians understand the patient disease. It is a completely free software for analysis and management of your symptoms, creation and sharing of your medical history and help to reach a diagnosis.",
+      "p3": "The data in Relief Ukraine can only be shared by its owner. Foundation 29 will never share it with anyone. In the future, we will include functionality so that patients can store their own data in their own private data space. If you want to be updated on the progress of this and other projects, sign up here:",
       "btn1": "Visit the Foundation 29 website",
       "Who are we": "Visit our website",
       "titlef29": "What is Foundation 29?",
@@ -1075,7 +1075,7 @@
       },
       "timeline":{
         "title":"We are going to help you build a timeline of your symptoms. This data can improve your disease management and help other patients like you on their diagnostic odyssey. There are 2 easy steps:",
-        "subtitlea": "This report shows the data included in Raito with the aim of improving patient-physician communication. It is recommended to",
+        "subtitlea": "This report shows the data included in Relief Ukraine with the aim of improving patient-physician communication. It is recommended to",
         "subtitleb": "take the report to the next medical visit so that both the patient and the physician can help to further refine the contents.",
         "footer1": "We are a non-profit organisation that designs and creates tools for patients to manage their own data, revolutionising the",
         "footer2": "diagnosis and management of rare diseases. We empower patients and doctors to use their medical data or their benefit and that",
@@ -1118,9 +1118,9 @@
         "Appendix2Title":"Symptoms without timeline information",
         "Symptoms":"Symptoms",
         "WaitDownload":"Please wait, your timeline data is being downloaded.",
-        "p1": "If you want to save your timeline so you can edit it, download it and/or share it with your doctor at any time, please register in Raito.",
+        "p1": "If you want to save your timeline so you can edit it, download it and/or share it with your doctor at any time, please register in Relief Ukraine.",
         "p2": "We have taken the trouble to prepare you for your new role, so <ins>you will have all the data you have entered in your new profile</ins> to make your take-off as comfortable as possible.",
-        "p3": "In addition to this, Raito will give you a number of new powers, including:",
+        "p3": "In addition to this, Relief Ukraine will give you a number of new powers, including:",
         "Whats":"What is this?",
         "WorkPC":"To use this tool more easily, we recommend the use of a computer.",
         "Duration":"Duration",
@@ -1190,7 +1190,7 @@
         "t1":"The community needs your help",
         "p1": "The data you can give us about your disease by completing the different steps of the timeline, is very important. Because that information does not come directly from patients, but from traditional databases - which are used to make diagnoses and contains inaccurate information about rare diseases -.",
         "p2": "At Fundación 29 we want to change the way medicine is done. We want patient data to be used and for more research to be done with it.",
-        "p3": "We are building a tool to speed up the diagnosis of rare diseases (Raito) and we need your data to make it more accurate so we can help more and more patients.",
+        "p3": "We are building a tool to speed up the diagnosis of rare diseases (Relief Ukraine) and we need your data to make it more accurate so we can help more and more patients.",
         "p4": "Join our revolution by donating these data and leaving your email address here. We will also keep you informed of our progress."
       }
     }
@@ -1208,7 +1208,7 @@
     "p2.1": "I want a diagnosis",
     "p2.2": "I want to know more about my disease",
     "p3": "Add symptoms",
-    "t4title": "Advantages of registering in Raito",
+    "t4title": "Advantages of registering in Relief Ukraine",
     "t5": "Our ecosystem",
     "t6": "Awards",
     "Institutions": "Institutions",
@@ -1221,7 +1221,7 @@
     "home":{
       "keywords": "diagnosis, diagnose, rare disease, syndrome, disease, prognosis, symptoms, HPO, epilepsy, seizures, status epilepticus, developmental delay, tremors, palpitations, tonic-clonic, myoclonic, pediatrics, genetics, neurology, symptom extraction, genetic disease, genetic disease",
       "description": "Extraction and curing of HPO symptoms from text and documents. AI that helps the diagnosis of rare diseases. Totally free for doctors and patients.",
-      "title": "Raito: Extract symptoms and help diagnosis"
+      "title": "Relief Ukraine: Extract symptoms and help diagnosis"
     },
     "physicians":{
       "keywords": "medical condition, symptom checker, Symptoms of syndrome, rare disease, online diagnosis",
@@ -1312,7 +1312,7 @@
     "t2.3t": "Launch",
     "t2.3a": "Join a patient community to contribute your data anonymously and boost your reach with institutions and applications that will help you and other patients.",
     "t3.1": "Available on your mobile and tablet",
-    "t3.2": "Use Raito on your phone or tablet: it is free and easy",
+    "t3.2": "Use Relief Ukraine on your phone or tablet: it is free and easy",
     "button": "I want to join"
   },
   "homeraito":{
@@ -1363,7 +1363,7 @@
     "infoFeel": "Quality of life represents how the patient disease affects your life. The value in the graph is the average of the values you provide each time you answer the disease burden questions. The options in the questions have values from 1 to 5.",
     "Your progress": "My progress",
     "If you dont keep data updated it will decrease": "Keep your data up to date to have your container tank filled.",
-    "noti1a": "Welcome to Raito, your personal data container. This is your notifications area.",
+    "noti1a": "Welcome to Relief Ukraine, your personal data container. This is your notifications area.",
     "noti2a": "The level of your container is represented in the bar below. You fill it entering and sharing data.",
     "noti3a": "How has the disease burden been lately?",
     "noti3b": "You haven't reported about your disease burden lately. Let's do it!",
@@ -1426,14 +1426,14 @@
     "Write down any details": "Write down any details that could be important",
     "State": "Was the patient sleeping?",
     "invalidFile": "The imported file is invalid",
-    "These are the symptoms included in Raito by the user": "These are the symptoms included in Raito by the user:",
-    "No symptoms have been added in Raito": "No symptoms have been added in Raito."
+    "These are the symptoms included in Relief Ukraine by the user": "These are the symptoms included in Relief Ukraine by the user:",
+    "No symptoms have been added in Relief Ukraine": "No symptoms have been added in Relief Ukraine."
   },
   "mydata":{
     "title": "My data",
     "desc": "Your container is your own personal space to store your data and share it for your own disease management and research. Here you can manage your container.",
     "q1": "Container location",
-    "a1": "In Raito you are the only owner of your data. Your data is stored in your device and periodically backed up to your own cloud storage such as OneDrive, GoogleDrive or iCloud, depending on your preferences.",
+    "a1": "In Relief Ukraine you are the only owner of your data. Your data is stored in your device and periodically backed up to your own cloud storage such as OneDrive, GoogleDrive or iCloud, depending on your preferences.",
     "q2": "Patient organizations",
     "a2.1": "You are currently sharing data with the data network community of DSEF.",
     "a2.2": "Follow this link for more info: <a href='https://dravet.eu/' target='_blank'>https://dravet.eu/</a>",
@@ -1481,11 +1481,11 @@
     "t2": "Who has access",
     "a2.1": "You may share your medical data anonymously with your Patient Organization by granting access to it. You can also send anonymous copies to whoever you want.",
     "t3": "Where is your data",
-    "a3": "Raito will store only name and contact information, while your medical data will be stored where you choose. You can store it in your device or in your cloud storage provider. Raito will help you with this. We call this folder your own data container.",
+    "a3": "Relief Ukraine will store only name and contact information, while your medical data will be stored where you choose. You can store it in your device or in your cloud storage provider. Relief Ukraine will help you with this. We call this folder your own data container.",
     "t4": "Who else uses your data",
     "a4": "Nobody else has access to your data. Your data is yours and is safe.",
     "t6": "What data is shared with F29?",
-    "a6": "Raito collects basic user information data. In order to provide you with Raito’s services, we collect your name and email. All the other data that you include in Raito is stored in your own device or your own cloud storage service, so F29 does not have access to it.",
+    "a6": "Relief Ukraine collects basic user information data. In order to provide you with Raito’s services, we collect your name and email. All the other data that you include in Relief Ukraine is stored in your own device or your own cloud storage service, so F29 does not have access to it.",
     "readPolicy": "Read the full version of the Privacy Policy here"
   },
   "documents":{
@@ -1505,7 +1505,7 @@
     "a3": "Your personal data container is continuously synchronizing with the aggregated data container stored by DSEF. So new data will be sent once you update your container information. Depending on the situation, it can be sent right away or once a day.",
     "t4": "With what purpose will your anonymous data be treated and for how long?",
     "a4.1": "When users provide anonymous data through the connection established between their personal data container and DSEF’s data container, their anonymous data will be processed for the following purposes:",
-    "a4.2": "Your anonymous data will be aggregated with the data from other Raito users.",
+    "a4.2": "Your anonymous data will be aggregated with the data from other Relief Ukraine users.",
     "a4.3": "The aggregated data will be used for multiple research projects to identify the key traits of Dravet syndrome patients and to provide evidence about the quality of life of Dravet syndrome families.",
     "t5": "What is the legitimation of the treatment of data?",
     "a5": "Your data will be treated on the basis of your expressed enrollment into the research program.",

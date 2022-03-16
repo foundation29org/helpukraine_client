@@ -43,7 +43,7 @@ export class jsPDFService {
 
         // Cabecera inicial
         var img_logo = new Image();
-        img_logo.src = "assets/img/logo-raito.png"
+        img_logo.src = "assets/img/logo-reliefukraine.png"
         doc.addImage(img_logo, 'png', 20, 10, 29, 17);
         doc.setFont(undefined, 'normal');
         doc.setFontSize(10);
@@ -870,7 +870,7 @@ export class jsPDFService {
 
         // Cabecera inicial
         var img_logo = new Image();
-        img_logo.src = "assets/img/logo-raito.png"
+        img_logo.src = "assets/img/logo-reliefukraine.png"
         doc.addImage(img_logo, 'png', 20, 10, 20, 17);
         doc.setFont(undefined, 'normal');
         doc.setFontSize(10);
@@ -958,7 +958,7 @@ export class jsPDFService {
         if(obj.length>0){
             doc.setFontSize(9);
             doc.setTextColor(117, 120, 125)
-            doc.text(this.translate.instant("seizures.These are the symptoms included in Raito by the user"), 10, lineText += 5)
+            doc.text(this.translate.instant("seizures.These are the symptoms included in Relief Ukraine by the user"), 10, lineText += 5)
             doc.setTextColor(0, 0, 0)
             doc.setFontSize(10);
             lineText += 2;
@@ -971,7 +971,7 @@ export class jsPDFService {
                 lineText += 7;
             }
         }else{
-            lineText = this.writeText(doc, 10, lineText+= 7, this.translate.instant("seizures.No symptoms have been added in Raito"));
+            lineText = this.writeText(doc, 10, lineText+= 7, this.translate.instant("seizures.No symptoms have been added in Relief Ukraine"));
             lineText += 7;
         }
         
