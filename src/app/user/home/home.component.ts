@@ -661,6 +661,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe((res: any) => {
         this.authService.setGroup(this.basicInfoPatient.group);
         this.saving = false;
+        this.toastr.success('', this.translate.instant("generics.Data saved successfully"));
       }, (err) => {
         console.log(err);
         this.saving = false;
