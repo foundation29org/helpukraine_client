@@ -5,11 +5,44 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <!--<h2 class="text-bold-500">{{'landraito.t1' | translate }}</h2>-->
+                        <h2 class="text-bold-500">{{'landraito.t1' | translate }}</h2>
                         <p class="">{{'landraito.p1' | translate }}</p>
                         <p class="">{{'landraito.p1.1' | translate }}</p>
                         <div class="col-md-12 center-elements">
                             <a routerLink="/login" class="btn btn-dark mt-1" title="I want to join">
+                                <strong class="menu-title">{{'landraito.button' | translate }}</strong>
+                            </a>
+                        </div>
+                        <h3 class="text-bold-500 mt-5">{{'landraito.t2' | translate }}</h3>
+                        <div class="row mt-3">
+                            <div class="col-3 pr-0 pl-0">
+                                <img class="w-100" src='assets/img/home/home2.jpg'>
+                            </div>
+                            <div class="col-9">
+                                <h5 class="text-bold-500">1. {{'landraito.t2.1t' | translate }}</h5>
+                                <p>{{'landraito.t2.1a' | translate }}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-3 pr-0 pl-0">
+                                <img class="w-100" src='assets/img/home/home3.jpg'>
+                            </div>
+                            <div class="col-9">
+                                <h5 class="text-bold-500">2. {{'landraito.t2.2t' | translate }}</h5>
+                                <p>{{'landraito.t2.2a' | translate }}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-3 pr-0 pl-0">
+                                <img class="w-100" src='assets/img/home/home4.jpg'>
+                            </div>
+                            <div class="col-9">
+                                <h5 class="text-bold-500">3. {{'landraito.t2.3t' | translate }}</h5>
+                                <p>{{'landraito.t2.3a' | translate }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3 center-elements">
+                            <a routerLink="/login" class="btn btn-dark " title="I want to join">
                                 <strong class="menu-title">{{'landraito.button' | translate }}</strong>
                             </a>
                         </div>
@@ -18,15 +51,10 @@
                     <section style="padding-bottom: 50px !important;" class="col-lg-12">
                         <h3 class="text-bold-500 mt-5">{{'land.aboutUs.titlef29' | translate }}</h3>
                         <span class="">
-                            <p>{{'land.aboutUs.p1f29' | translate }}</p>
-                            <p>{{'land.aboutUs.p2f29' | translate }}</p>
-                            <p>{{'land.aboutUs.p3f29' | translate }}</p>
+                            <p>{{'land.aboutUs.p1f29' | translate }} <a (click)="openWeb();" href="javascript:void(0)" class="mt-2 mb-1"
+                                type="button"><strong>{{'land.aboutUs.Who are we' | translate }}</strong>
+                        </a></p>
                           </span>
-                          <div class="center-elements">
-                            <button (click)="openWeb();" class="mt-2 btn btn-dark mb-1"
-                                  type="button"><strong>{{'land.aboutUs.Who are we' | translate }}</strong>
-                            </button>
-                          </div>
                       </section>
                 </div>
             </div>

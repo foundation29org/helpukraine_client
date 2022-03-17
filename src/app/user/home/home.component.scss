@@ -11,6 +11,10 @@ agm-map {
   width: 100%;
 }
 
+::ng-deep .mat-radio-label-content {
+  padding-left: 4px !important;
+}
+
 /*::ng-deep .chart-legend {
   display: contents !important;
 }*/

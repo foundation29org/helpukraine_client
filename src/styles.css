@@ -23,12 +23,16 @@
   font-size: 1.2rem;
 }
 
+body{
+  font-size: 1rem !important;
+}
+
 p{
-  font-size: 11px !important;
+  font-size: 1rem !important;
 }
 
 span{
-  font-size: 11px !important;
+  font-size: 1rem !important;
 }
 
 .swal2-icon > span{
@@ -45,17 +49,17 @@ span{
 
 form label {
   color: #75787d;
-  font-size: 11px;
+  font-size: 1rem;
   text-transform: none;
   letter-spacing: 0px;
   font-weight: 500;
 }
 
 .form-control{
-  font-size: 11px;
+  font-size: 1rem;
 }
 .card{
-  font-size: 11px;
+  font-size: 1rem;
 }
 
 form .form-group {
@@ -415,10 +419,10 @@ mark{
 
 @media ( max-width: 575px ){
   body{
-    font-size: 11px !important;
+    font-size: 1rem !important;
   }
   p {
-    font-size: 11px !important;
+    font-size: 1rem !important;
   }
   h1, .h1 {
     font-size: 1.4rem;

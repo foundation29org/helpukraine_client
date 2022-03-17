@@ -1,4 +1,4 @@
-<div class="mt-4 card card-block mx-auto" *ngIf="!loadedInfoPatient" style="max-width: 30rem !important;">
+<div class="mt-4 card card-block mx-auto" *ngIf="!loadedInfoPatient" style="max-width: 40rem !important;">
     <div class="card-body">
         <div class="row">
             <div class="col-lg-12 center-elements">
@@ -9,8 +9,8 @@
         </div>
     </div>
 </div>
-<div class="mt-4 card card-block mx-auto" *ngIf="loadedInfoPatient && (basicInfoPatient.group==null || step!='0')"
-    style="max-width: 30rem !important;">
+<div class="mt-4 card card-block mx-auto" *ngIf="loadedInfoPatient && (basicInfoPatient.group==null || step!='1')"
+    style="max-width: 40rem !important;">
     <div class="card-body">
         <div class="row">
             <div class="col-lg-12 ">
@@ -18,19 +18,16 @@
                     <i class="fa fa-spinner fa-spin fa-fw"></i>
                 </div>
                 <div *ngIf="loadedInfoPatient">
-                    <div *ngIf="basicInfoPatient.group==null || step!='0'"
-                        class="justify-content-center align-items-center text-center">
-                        <div *ngIf="step=='0'">
-                            <h2 class="content-header">{{'generics.Welcome to ucr' | translate }}</h2>
-                            <div class="center-elements">
-                                <button class="mt-2 btn btn-primary" (click)="question1();">{{'registration.Get Started' |
-                                    translate }}</button>
-                            </div>
-                        </div>
+                    <div *ngIf="basicInfoPatient.group==null || step!='1'"
+                        class="justify-content-center align-items-center text-left">
                         <div *ngIf="step=='1'">
+                            <h2 class="content-header">{{'generics.Welcome to ucr' | translate }}</h2>
                             <h2 class="content-header">{{'homeraito.t2' | translate }}</h2>
+                            <p class="text-muted font-small-2">
+                                {{'homeraito.t2.1' | translate }}
+                            </p>
                             <select id="group" name="group" class="form-control" ngModel
-                                [(ngModel)]="basicInfoPatient.group">
+                                [(ngModel)]="group">
                                 <option [value]="null" disabled selected>--{{'generics.Please select' | translate }}--</option>
                                 <option *ngFor="let group of groups" [ngValue]="group._id">
                                     <span
@@ -40,8 +37,18 @@
                                     <span *ngIf="group.name == 'None'">{{'personalinfo.I dont belong to a patient group' | translate }}</span>
                                 </option>
                             </select>
+                            <h2 class="content-header">{{'homeraito.t2.3' | translate }}</h2>
+                            <p class="text-muted font-small-2">
+                                {{'homeraito.t2.4' | translate }}
+                            </p>
+                            <div class="text-left form-group">
+                                <mat-radio-group aria-label="Select an option" [(ngModel)]="userInfo.iscaregiver">
+                                    <mat-radio-button [value]=false (change)="changedCaretaker($event)">{{'war.titlleradio' | translate }}</mat-radio-button>
+                                    <mat-radio-button [value]=true class="ml-2" (change)="changedCaretaker($event)">{{'war.titletoogle' | translate }}</mat-radio-button>
+                                  </mat-radio-group>
+                            </div>
                             <div class="center-elements">
-                                <button class="mt-3 btn btn-primary" [disabled]="basicInfoPatient.group==null"
+                                <button class="mt-3 btn btn-primary" [disabled]="group==null"
                                     (click)="question2();">{{'generics.Next' | translate }}</button>
                             </div>
                         </div>
@@ -52,30 +59,23 @@
                             <p class="text-muted font-small-2">
                                 {{'homeraito.p1.1' | translate }}
                             </p>
-                            <h2 class="content-header">{{'homeraito.t3' | translate }}</h2>                            
+                            <h2 class="content-header text-center">{{'homeraito.t3' | translate }}</h2>                            
                             <div class="center-elements mt-1">
                                 <!--<button class="mr-1 btn btn-primary" style="width: 100px;" (click)="question3(false);">{{'generics.No' |
                                     translate }}</button>-->
-                                <button class="btn btn-primary" style="width: 100px;" (click)="question3(true);">{{'generics.Yes' |
-                                    translate }}</button>
-                            </div>
-                            <div class="center-elements">
-                                <button class="mt-3 mb-0 btn btn-dark"
+                                    <button class="btn btn-dark mr-1"
                                     (click)="step='1'">{{'generics.Previous' | translate }}</button>
+                                <button class="btn btn-primary ml-1" style="width: 100px;" (click)="question3(true);">{{'generics.Yes' |
+                                    translate }}</button>
                             </div>
                         </div>
                         <div *ngIf="step=='3'">
                             <div>
-                                <h2 class="content-header mt-0 mb-2">{{'generics.Basic Data' |
-                                    translate }}</h2>
+                                <h2 class="content-header mt-0 mb-2">{{'war.Patient demographics' | translate }}</h2>
                                 <form (ngSubmit)="onSubmit()" #f="ngForm">
-                                    <p class="text-left">
-                                        <ui-switch id="enabled" (change)="changedCaretaker($event)" name="caretaker" [(ngModel)]="userInfo.iscaregiver"></ui-switch> 
-                                        <span class="ml-1">{{'war.titletoogle' | translate }}</span>
-                                    </p>
-                                    <div class="text-left form-group">
+                                    <div class="form-group mb-0">
                                         <div class="">
-                                            <label>{{'menu.Basic Info' | translate }}</label>
+                                            <label>{{'war.When was the patient born' | translate }}</label>
                                             <input class="form-control d-none" id="birthDate_" name="birthDate" matInput
                                                 placeholder="{{'personalinfo.Birth Date' | translate }}" readonly
                                                 [matDatepicker]="pickerOnset" (click)="pickerOnset.open()"
@@ -92,8 +92,9 @@
                                             <!--<p *ngIf="datainfo.birthDate ==null || datainfo.birthDate ==''" class="danger">{{'generics.required' | translate }}</p>-->
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <p class="mb-0"><strong>{{'war.Indicates the approximate location' | translate }}</strong></p>
+                                    <div class="row mb-3" style="padding: 1.1rem !important;">
+                                        <label><strong>{{'war.What is their location' | translate }}</strong></label>
+                                        <p class="mb-0">{{'war.location2' | translate }}</p>
                                         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"  (mapClick)="changePickupMarkerLocation($event)">
                                             <agm-marker *ngIf="showMarker" [latitude]="basicInfoPatient.lat" [longitude]="basicInfoPatient.lng" [title]="'Pickup Location'"></agm-marker>
                                         </agm-map>
@@ -103,9 +104,9 @@
                                             <button class="btn btn-dark mr-1"
                                           (click)="step='2'">{{'generics.Previous' | translate }}</button>
                                             <div *ngIf="f.valid;then formValid else formError"></div>
-                                            <ng-template #formValid><button class="ml-1 btn btn-dark" type="submit">
+                                            <ng-template #formValid><button class="ml-1 btn btn-primary" type="submit">
                                                     {{'wizard.btn' | translate }}</button></ng-template>
-                                            <ng-template #formError><button class="ml-1 btn btn-dark" type="button"
+                                            <ng-template #formError><button class="ml-1 btn btn-primary" type="button"
                                                     (click)="submitInvalidForm()"> {{'wizard.btn' | translate
                                                     }}</button></ng-template>
                                         </span>
@@ -117,7 +118,7 @@
                             </div>
                             <!--<div class="center-elements">
                                 
-                                <button class="btn btn-primary ml-1" (click)="goStep('0')">{{'wizard.btn' | translate
+                                <button class="btn btn-primary ml-1" (click)="goStep('1')">{{'wizard.btn' | translate
                                     }}</button>
                             </div>-->
                         </div>
@@ -126,29 +127,35 @@
                             <div class="center-elements">
                                 <button class="btn btn-dark mr-1"
                                     (click)="step='0'">{{'generics.Previous' | translate }}</button>
-                                <button class="btn btn-primary ml-1" (click)="goStep('0');setPatientGroup('None');">{{'wizard.btn' | translate
+                                <button class="btn btn-primary ml-1" (click)="goStep('1');setPatientGroup('None');">{{'wizard.btn' | translate
                                     }}</button>
                             </div>
                         </div>
-                        <div *ngIf="step=='5'">
-                            <h2 class="content-header">{{'war.needsTitle' | translate }}</h2>
+                        <div *ngIf="step=='5'" class="text-left">
+                            <!--<h2 class="content-header mt-0">{{'war.needsTitle' | translate }}</h2>-->
+                            <h4 class="content-header mt-0">{{'war.DrugsNeeds' | translate }}</h4>
                             <p>{{'war.needsSubtitle' | translate }}</p>
+                            <p>{{'war.needsSubtitle2' | translate }}</p>
                             <textarea maxlength="150" name="needs"  [(ngModel)]="basicInfoPatient.needs"
 										placeholder="{{'seizures.Write down any details' | translate }}"
 										class="autoajustable form-control"></textarea>
-                            
-                            <div class="text-left form-group">
-                                <mat-checkbox class="example-margin" style="position: absolute; margin-top: 2px;" name="terms2"
-                                    id="terms2" [(ngModel)]="basicInfoPatient.needShelter">
-                                </mat-checkbox> 
-                                <span class="ml-3">
-                                    {{'war.Need shelter' | translate }}
-                                    </span>
-                            </div>
+                                        <h4 class="content-header mb-1">{{'war.Need shelter' | translate }}</h4>
+                                        <div class="text-left form-group">
+                                            <mat-radio-group aria-label="Select an option" [(ngModel)]="basicInfoPatient.needShelter">
+                                                <mat-radio-button [value]=false>{{'generics.No' | translate }}</mat-radio-button>
+                                                <mat-radio-button [value]=true class="ml-2">{{'generics.Yes' | translate }}</mat-radio-button>
+                                              </mat-radio-group>
+                                        </div>
+                                        
+                                        <h4 class="content-header">{{'war.Need other' | translate }}</h4>
+                                        <p>{{'war.Nedd other2' | translate }}</p>
+                                        <textarea maxlength="150" name="needsOther"  [(ngModel)]="basicInfoPatient.needsOther"
+                                                    placeholder="{{'seizures.Write down any details' | translate }}"
+                                                    class="autoajustable form-control mt-2"></textarea>
                             <div class="center-elements mt-2">
                                 <button class="btn btn-dark mr-1"
                                     (click)="step='3'">{{'generics.Previous' | translate }}</button>
-                                <button class="btn btn-primary ml-1" (click)="goStep('0');setNeeds();">{{'generics.Finish' | translate
+                                <button class="btn btn-primary ml-1" (click)="goStep('1');setNeeds();">{{'generics.Finish' | translate
                                     }}</button>
                             </div>
                         </div>
@@ -158,8 +165,8 @@
         </div>
     </div>
 </div>
-<div class="" *ngIf="loadedInfoPatient && basicInfoPatient.group!=null && step=='0'">
-    <div class="mx-auto" style="max-width: 30rem !important;">
+<div class="" *ngIf="loadedInfoPatient && basicInfoPatient.group!=null && step=='1'">
+    <div class="mx-auto" style="max-width: 40rem !important;">
         <div class="card">
             <div class="card-block">
                 <div class="pl-2 pr-2 pt-2">
@@ -171,15 +178,16 @@
                             <em class="fas fa-info-circle"></em>
                         </div>
                         <div class="col-7 pl-2 pr-0">
-                            <p class="">{{'generics.Status' | translate }}</p>
+                            <p class="mb-0">{{'war.My status' | translate }}</p>
+                            <p>{{'war.The status of your profile is' | translate }}</p>
                         </div>
                         <div class="col-4">
-                            <span *ngIf="basicInfoPatient.status == null || basicInfoPatient.status == 'new'" class="badge badge-secondary" style="white-space: inherit !important;">{{'war.status.opt1' | translate }}</span>
-                            <span *ngIf="basicInfoPatient.status == 'contacted'" class="badge badge-secondary">{{'war.status.opt2' | translate }}</span>
-                            <span *ngIf="basicInfoPatient.status == 'pending'" class="badge badge-secondary">{{'war.status.opt3' | translate }}</span>
-                            <span *ngIf="basicInfoPatient.status == 'ontheway'" class="badge badge-secondary">{{'war.status.opt4' | translate }}</span>
-                            <span *ngIf="basicInfoPatient.status == 'contactlost'" class="badge badge-secondary">{{'war.status.opt5' | translate }}</span>
-                            <span *ngIf="basicInfoPatient.status == 'helped'" class="badge badge-secondary">{{'war.status.opt6' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == null || basicInfoPatient.status == 'new'" class="badge badge-secondary w-100" style="white-space: inherit !important;">{{'war.status.t1' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'contacted'" class="badge badge-secondary w-100">{{'war.status.t2' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'pending'" class="badge badge-secondary w-100">{{'war.status.t3' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'ontheway'" class="badge badge-secondary w-100">{{'war.status.t4' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'contactlost'" class="badge badge-secondary w-100">{{'war.status.opt5' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'helped'" class="badge badge-secondary w-100">{{'war.status.opt6' | translate }}</span>
                         </div>
                     </div>
                     <!--One notification-->
@@ -193,7 +201,7 @@
                         <div class="col-4">
                             <a class="btn btn-white btn-sm w-100" style="word-wrap: normal;" routerLink="/pages/support">
                                 <span class="">
-                                    {{'support.support' | translate }}
+                                    {{'war.Write email' | translate }}
                                 </span>
                               </a>
                         </div>
@@ -203,16 +211,18 @@
         </div>
         <div class="card">
             <div class="card-block p-2">
-                <h2 class="content-header mt-0 mb-2">{{'generics.Basic Data' |
+                <h2 class="content-header mt-0 mb-2">{{'war.Summary' |
                     translate }}</h2>
                 <form (ngSubmit)="onSubmit()" #f="ngForm">
                     <p class="text-left">
-                        <ui-switch id="enabled" (change)="changedCaretaker($event)" name="caretaker" [(ngModel)]="userInfo.iscaregiver"></ui-switch> 
-                        <span class="ml-1">{{'war.titletoogle' | translate }}</span>
+                        <mat-radio-group aria-label="Select an option" name="iscaregiver" [(ngModel)]="userInfo.iscaregiver">
+                            <mat-radio-button [value]=false (change)="changedCaretaker($event)">{{'war.titlleradio' | translate }}</mat-radio-button>
+                            <mat-radio-button [value]=true class="ml-2" (change)="changedCaretaker($event)">{{'war.titletoogle' | translate }}</mat-radio-button>
+                          </mat-radio-group>
                     </p>
                     <div class="form-group">
                         <div class="">
-                            <label>{{'menu.Basic Info' | translate }}</label>
+                            <label>{{'war.Patient date of birth' | translate }}</label>
                             <input class="form-control d-none" id="birthDate_" name="birthDate" matInput
                                 placeholder="{{'personalinfo.Birth Date' | translate }}" readonly
                                 [matDatepicker]="pickerOnset" (click)="pickerOnset.open()"
@@ -231,6 +241,7 @@
                     </div>
                     <div class="form-group">
                         <div class="">
+                            <label>{{'land.Disease' | translate }}</label>
                             <select id="group" name="group" class="form-control" ngModel #group="ngModel"
                                 [(ngModel)]="basicInfoPatient.group" [required]="true">
                                 <option [value]="null" disabled selected>--{{'registration.Please select a
@@ -249,8 +260,9 @@
                                 | translate }}</small>
                         </div>
                     </div>
-                    <div class="row p-2">
-                        <p class="mb-0"><strong>{{'war.Indicates the approximate location' | translate }}</strong></p>
+                    <div class="row" style="padding: 1.1rem !important;">
+                        <label class="d-block">{{'war.Patient location' | translate }}</label>
+                        <p class="mb-0">{{'war.This is where the patient is currently located' | translate }}</p>
                         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"  (mapClick)="changePickupMarkerLocation($event)">
                             <agm-marker [latitude]="basicInfoPatient.lat" [longitude]="basicInfoPatient.lng" [title]="'Pickup Location'"></agm-marker>
                         </agm-map>
@@ -258,60 +270,65 @@
                 </form>
             </div>
             <div class="card-block p-2 mt-2">
-                <h2 class="content-header mt-0">{{'war.needsTitle' | translate }}</h2>
+                <!--<h2 class="content-header mt-0">{{'war.needsTitle' | translate }}</h2>-->
+                <h4 class="content-header mt-0">{{'war.DrugsNeeds' | translate }}</h4>
                 <p>{{'war.needsSubtitle' | translate }}</p>
                 <textarea maxlength="150" name="needs"  [(ngModel)]="basicInfoPatient.needs"
                             placeholder="{{'seizures.Write down any details' | translate }}"
                             class="autoajustable form-control"></textarea>
-                            <div class="text-left form-group">
-                                <mat-checkbox class="example-margin" style="position: absolute; margin-top: 2px;" name="terms2"
-                                 id="terms2" [(ngModel)]="basicInfoPatient.needShelter">
-                                </mat-checkbox> 
-                                <span class="ml-3">
-                                    {{'war.Need shelter' | translate }}
-                                  </span>
-                            </div>
-                            <div *ngIf="!callingTextAnalytics && basicInfoPatient.drugs.length>0">
-                                <table class="table text-center">
-                                    <thead>
-                                        <tr>
-                                            <th>{{'medication.Drug' | translate }}</th>
-                                            <th>{{'medication.Dose' | translate }}</th>
-                                            <th>{{'war.Links' | translate }}</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr
-                                            *ngFor="let drug of basicInfoPatient.drugs ; let i = index">
-                                            <td>{{drug.name}}</td>
-                                            <td>{{drug.dose}}</td>
-                                            <td>
-                                                <span *ngIf="drug.link!=''">
-                                                    <a class="info" data-original-title="" title=""
-                                                    href="https://www.whocc.no/atc_ddd_index/?code={{drug.link}}" target="_blank">
-                                                    www.whocc.no
-                                                    </a>
-                                                    <a class="info d-block" data-original-title="" title=""
-                                                    href="https://www.rxreasoner.com/atccodes/{{drug.link}}" target="_blank">
-                                                    www.rxreasoner.com
-                                                    </a>
-                                                </span>
-                                                <span *ngIf="drug.link==''">
-                                                    -
-                                                </span>
-                                                
-                                            </td>
-                                            <td><a class="btn btn-outline-danger mb-0" (click)="confirmDeleteDrug(i);" href="javascript:void(0)"><i class="fa fa-times"></i></a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                
-                            </div>
+                <div *ngIf="!callingTextAnalytics && basicInfoPatient.drugs.length>0">
+                    <form class="mt-2">
+                        <label>{{'war.These are the drug currently needed' | translate }}</label>
+                    </form>
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th>{{'medication.Drug' | translate }}</th>
+                                <th>{{'medication.Dose' | translate }}</th>
+                                <th>{{'war.Links' | translate }}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let drug of basicInfoPatient.drugs ; let i = index">
+                                <td>{{drug.name}}</td>
+                                <td>{{drug.dose}}</td>
+                                <td>
+                                    <span *ngIf="drug.link!=''">
+                                        <a class="info" data-original-title="" title=""
+                                        href="https://www.whocc.no/atc_ddd_index/?code={{drug.link}}" target="_blank">
+                                        www.whocc.no
+                                        </a>
+                                        <a class="info d-block" data-original-title="" title=""
+                                        href="https://www.rxreasoner.com/atccodes/{{drug.link}}" target="_blank">
+                                        www.rxreasoner.com
+                                        </a>
+                                    </span>
+                                    <span *ngIf="drug.link==''">
+                                        -
+                                    </span>
+                                    
+                                </td>
+                                <td><a class="btn btn-outline-danger mb-0" (click)="confirmDeleteDrug(i);" href="javascript:void(0)"><i class="fa fa-times"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <h4 class="content-header mb-1">{{'war.Need shelter' | translate }}</h4>
+                <mat-radio-group aria-label="Select an option" [(ngModel)]="basicInfoPatient.needShelter">
+                    <mat-radio-button [value]=false>{{'generics.No' | translate }}</mat-radio-button>
+                    <mat-radio-button [value]=true class="ml-2">{{'generics.Yes' | translate }}</mat-radio-button>
+                  </mat-radio-group>
+                <h4 class="content-header">{{'war.Need other' | translate }}</h4>
+                <textarea maxlength="150" name="needsOther"  [(ngModel)]="basicInfoPatient.needsOther"
+                            placeholder="{{'seizures.Write down any details' | translate }}"
+                            class="autoajustable form-control mt-2"></textarea>            
                 <div class="center-elements mt-2">
-                    <button *ngIf="!saving" class="mt-2 btn btn-dark" (click)="setNeeds();">{{'generics.Save changes' | translate
+                    <button *ngIf="!saving" class="mt-2 btn btn-dark" (click)="setNeeds2();">{{'generics.Save changes' | translate
                         }}</button>
-                        <button *ngIf="saving" class="mt-2 btn btn-dark" [disabled]="saving" (click)="setNeeds();">{{'generics.Please wait' | translate
+                        <button *ngIf="saving" class="mt-2 btn btn-dark" [disabled]="saving" (click)="setNeeds2();">{{'generics.Please wait' | translate
                         }} <i class="fa fa-spinner fa-spin fa-fw"></i></button>
                 </div>
             </div>
@@ -321,7 +338,7 @@
 
 
     
-    <div class="mx-auto" style="max-width: 30rem !important;">
+    <div class="mx-auto" style="max-width: 40rem !important;">
         <div>
             
         </div>

@@ -12,6 +12,7 @@ import { NgbModal, NgbModalRef, NgbModalOptions } from '@ng-bootstrap/ng-bootstr
 import { Subscription } from 'rxjs/Subscription';
 import {DateAdapter} from '@angular/material/core';
 import { SortService} from 'app/shared/services/sort.service';
+import { json2csv } from 'json-2-csv';
 
 
 @Component({
@@ -192,9 +193,10 @@ export class UsersAdminComponent implements OnDestroy{
   }
 
   createFile(res){
-    var json = JSON.stringify(res);
-      
-    var blob = new Blob([json], {type: "application/json"});
+    let json2csvCallback = function (err, csv) {
+      if (err) throw err;
+      console.log(csv);
+      var blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
     var url  = URL.createObjectURL(blob);
     var p = document.createElement('p');
     document.getElementById('content').appendChild(p);
@@ -202,14 +204,21 @@ export class UsersAdminComponent implements OnDestroy{
     var a = document.createElement('a');
     var dateNow = new Date();
     var stringDateNow = this.dateService.transformDate(dateNow);
-    a.download    = "dataRaito_"+stringDateNow+".json";
+    a.download    = "dataRaito_"+stringDateNow+".csv";
     a.href        = url;
-    a.textContent = "dataRaito_"+stringDateNow+".json";
+    a.textContent = "dataRaito_"+stringDateNow+".csv";
     a.setAttribute("id", "download")
 
     document.getElementById('content').appendChild(a);
     document.getElementById("download").click();
+  }.bind(this);
+
+  //var options ={'expandArrayObjects' :true}
+  json2csv(res, json2csvCallback);
+
   }
+
+  
 
 
   loadDrugs(){

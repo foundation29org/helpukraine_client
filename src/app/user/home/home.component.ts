@@ -113,7 +113,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   age: number = null;
   weight: string;
   groups: Array<any> = [];
-  step: string = '0';
+  step: string = '1';
   private subscription: Subscription = new Subscription();
   rangeDate: string = 'month';
   normalized: boolean = true;
@@ -180,7 +180,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   lng: number = 30.654701;
   zoom = 4;
   showMarker: boolean = false;
-  resTextAnalyticsSegments = [];
+  resTextAnalyticsSegments:any;
   newDrugs: any = [];
   callingTextAnalytics: boolean = false;
 
@@ -464,10 +464,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.basicInfoPatient.consentgroup = response;
     console.log(this.basicInfoPatient.consentgroup);
     this.step = '3';
-    this.setPatientGroup(this.basicInfoPatient.group);
+    console.log(this.basicInfoPatient.lat);
+    if(this.basicInfoPatient.lat==""){
+      this.getLocationInfo();
+    }
+    
+    //this.setPatientGroup(this.basicInfoPatient.group);
   }
 
   setNeeds() {
+    this.callTextAnalitycs();
+    this.basicInfoPatient.group = this.group;
+    this.setPatientGroup(this.basicInfoPatient.group);
+  }
+
+  setNeeds2() {
     this.callTextAnalitycs();
     this.setPatientGroup(this.basicInfoPatient.group);
   }
@@ -484,7 +495,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       }));
   }
 
-  callTextAnalitycs() {
+  /*callTextAnalitycs2() {
     this.callingTextAnalytics = true;
     var jsontestLangText = { "text": this.basicInfoPatient.needs };
     this.subscription.add(this.apif29BioService.callTextAnalytics(jsontestLangText)
@@ -523,6 +534,53 @@ export class HomeComponent implements OnInit, OnDestroy {
         console.log(err);
         this.callingTextAnalytics = false;
       }));
+  }*/
+
+  callTextAnalitycs() {
+    this.callingTextAnalytics = true;
+    var info = this.basicInfoPatient.needs.replace(/\n/g, " ");
+    var jsontestLangText = { "text": info };
+    this.subscription.add(this.apif29BioService.callTextAnalytics(jsontestLangText)
+      .subscribe((res: any) => {
+        this.newDrugs = [];
+        this.resTextAnalyticsSegments = res;
+          for (let j = 0; j < this.resTextAnalyticsSegments.entities.length; j++) {
+            var actualDrug = { name: '', dose: '', link: '' };
+            if (this.resTextAnalyticsSegments.entities[j].category == 'MedicationName') {
+              actualDrug.name = this.resTextAnalyticsSegments.entities[j].text;
+              
+              if (this.resTextAnalyticsSegments.entities[j].dataSources != null) {
+                var found = false;
+                for (let k = 0; k < this.resTextAnalyticsSegments.entities[j].dataSources.length && !found; k++) {
+                  if (this.resTextAnalyticsSegments.entities[j].dataSources[k].name == 'ATC') {
+                    actualDrug.link = this.resTextAnalyticsSegments.entities[j].dataSources[k].entityId;
+                    found = true;
+                  }
+                }
+              }
+              if (this.resTextAnalyticsSegments.entityRelations != null) {
+                var found = false;
+                for (let k = 0; k < this.resTextAnalyticsSegments.entityRelations.length && !found; k++) {
+                  if(this.resTextAnalyticsSegments.entityRelations[k].roles[0].entity.text==actualDrug.name && this.resTextAnalyticsSegments.entityRelations[k].roles[0].entity.category=='MedicationName' && this.resTextAnalyticsSegments.entityRelations[k].roles[1].entity.category=='Dosage'){
+                    actualDrug.dose = this.resTextAnalyticsSegments.entityRelations[k].roles[1].entity.text;
+                  }
+                  if(this.resTextAnalyticsSegments.entityRelations[k].roles[1].entity.text==actualDrug.name && this.resTextAnalyticsSegments.entityRelations[k].roles[0].entity.category=='Dosage' && this.resTextAnalyticsSegments.entityRelations[k].roles[1].entity.category=='MedicationName'){
+                    actualDrug.dose = this.resTextAnalyticsSegments.entityRelations[k].roles[0].entity.text;
+                  }
+                }
+
+              }
+              this.newDrugs.push(actualDrug);
+            }
+          }
+        console.log(this.newDrugs);
+        this.callingTextAnalytics = false;
+        this.saveDrugs();
+
+      }, (err) => {
+        console.log(err);
+        this.callingTextAnalytics = false;
+      }));
   }
 
   saveDrugs(){
@@ -534,6 +592,23 @@ export class HomeComponent implements OnInit, OnDestroy {
       }, (err) => {
         console.log(err.error);
       }));
+  }
+
+  getLocationInfo(){
+    this.subscription.add(this.apiExternalServices.getInfoLocation()
+        .subscribe((res: any) => {
+          console.log(res);
+            this.actualLocation = res;
+            var param = this.actualLocation.loc.split(',');
+            if(param[1]){
+              this.basicInfoPatient.lat = Number(param[0]);
+              this.basicInfoPatient.lng = Number(param[1]);
+              this.showMarker = true;
+            }
+            
+        }, (err) => {
+            console.log(err);
+        }));
   }
 
   getLiteral(literal) {
@@ -676,7 +751,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   changedCaretaker(event) {
-    this.userInfo.iscaregiver = event;
+    this.userInfo.iscaregiver = event.value;
     this.setCaretaker();
   }
 

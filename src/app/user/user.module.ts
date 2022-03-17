@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatchHeightModule } from 'app/shared/directives/match-height.directive';
 
 import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
 import { TagInputModule } from 'ngx-chips';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -37,6 +38,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
         MatchHeightModule,
         TranslateModule,
         MatSelectModule,
+        MatRadioModule,
         TagInputModule,
         ReactiveFormsModule,
         UiSwitchModule,
