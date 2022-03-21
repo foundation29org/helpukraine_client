@@ -423,7 +423,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe((res: any) => {
         console.log(res);
         this.basicInfoPatient = res.patient;
-        this.basicInfoPatient.birthDate = this.dateService.transformDate(res.patient.birthDate);
+        //this.basicInfoPatient.birthDate = this.dateService.transformDate(res.patient.birthDate);
         this.basicInfoPatientCopy = JSON.parse(JSON.stringify(res.patient));
         this.loadedInfoPatient = true;
       }, (err) => {
@@ -637,7 +637,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       params.gender = this.basicInfoPatient.gender;
 
       if (this.basicInfoPatient.birthDate != null) {
-        this.basicInfoPatient.birthDate = this.dateService.transformDate(this.basicInfoPatient.birthDate);
+        console.log(this.basicInfoPatient.birthDate);
+        //this.basicInfoPatient.birthDate = this.dateService.transformDate(this.basicInfoPatient.birthDate);
       }
       console.log(this.basicInfoPatient);
       this.subscription.add(this.http.put(environment.api + '/api/patients/' + this.authService.getCurrentPatient().sub, this.basicInfoPatient)

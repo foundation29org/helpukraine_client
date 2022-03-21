@@ -88,9 +88,9 @@ export class AuthInterceptor implements HttpInterceptor {
             if (error.error.message) {
               returnMessage = error.error;
             }
-            eventsService.broadcast('http-error', returnMessage);
+            //eventsService.broadcast('http-error', returnMessage);
           } else {
-            eventsService.broadcast('http-error-external', 'no external conexion');
+            //eventsService.broadcast('http-error-external', 'no external conexion');
 
           }
           return Observable.throw(error);
