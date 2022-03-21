@@ -90,6 +90,17 @@ export class Apif29BioService {
         })
     }
 
+    getTranslationDictionary2(lang,info){
+        var body = {lang:lang, info: info}
+          return this.http.post(environment.api+'/api/Translation/document/translate2', body)
+          .map( (res : any) => {
+              return res;
+          }, (err) => {
+              console.log(err);
+              return err;
+          })
+      }
+
     getSuccessorsOfSymptoms(listOfSymptoms){
         return this.http.post(environment.f29bio+'/api/BioEntity/phenotype/successors/',listOfSymptoms)
         .map( (res : any) => {

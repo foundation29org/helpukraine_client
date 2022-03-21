@@ -473,13 +473,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   setNeeds() {
-    this.callTextAnalitycs();
+    this.detectLang();
     this.basicInfoPatient.group = this.group;
     this.setPatientGroup(this.basicInfoPatient.group);
   }
 
   setNeeds2() {
-    this.callTextAnalitycs();
+    this.detectLang();
     this.setPatientGroup(this.basicInfoPatient.group);
   }
 
@@ -489,9 +489,27 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe((res: any) => {
         /*this.langToExtract = res[0].language;
         this.onSubmitToExtractor();*/
+        var info = [{"Text":this.basicInfoPatient.needs}]
+        this.subscription.add(this.apif29BioService.getTranslationDictionary2(res[0].language, info)
+                .subscribe((res2: any) => {
+                  var textToTA = this.basicInfoPatient.needs.replace(/\n/g, " ");
+                  console.log(res2[0].translations[0].text);
+                  if(res2[0]!=undefined){
+                    if(res2[0].translations[0]!=undefined){
+                      textToTA = res2[0].translations[0].text;
+                    }
+                  }
+                  /*res2.language_source = this.langToExtract;
+                    this.resultSegmentation = res2;*/
+                    this.callTextAnalitycs(textToTA);
+                }, (err) => {
+                    console.log(err);
+                    this.callTextAnalitycs(null);
+                }));
       }, (err) => {
         console.log(err);
         this.toastr.error('', this.translate.instant("generics.error try again"));
+        this.callTextAnalitycs(null);
       }));
   }
 
@@ -536,9 +554,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       }));
   }*/
 
-  callTextAnalitycs() {
+  callTextAnalitycs(textToTA) {
     this.callingTextAnalytics = true;
     var info = this.basicInfoPatient.needs.replace(/\n/g, " ");
+    if(textToTA!=null){
+      info = textToTA;
+    }
+    console.log(info);
     var jsontestLangText = { "text": info };
     this.subscription.add(this.apif29BioService.callTextAnalytics(jsontestLangText)
       .subscribe((res: any) => {
