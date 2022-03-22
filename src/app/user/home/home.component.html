@@ -135,9 +135,9 @@
                             <h4 class="content-header mt-0">{{'war.DrugsNeeds' | translate }}</h4>
                             <p>{{'war.needsSubtitle' | translate }}</p>
                             <p>{{'war.needsSubtitle2' | translate }}</p>
-                            <textarea maxlength="150" name="needs"  [(ngModel)]="basicInfoPatient.needs"
+                            <textarea [autosize]="true" name="needs"  [(ngModel)]="basicInfoPatient.needs"
 										placeholder="{{'seizures.Write down any details' | translate }}"
-										class="autoajustable form-control"></textarea>
+										class="form-control"></textarea>
                                         <h4 class="content-header mb-1">{{'war.Need shelter' | translate }}</h4>
                                         <div class="text-left form-group">
                                             <mat-radio-group aria-label="Select an option" [(ngModel)]="basicInfoPatient.needShelter">
@@ -148,9 +148,9 @@
                                         
                                         <h4 class="content-header">{{'war.Need other' | translate }}</h4>
                                         <p>{{'war.Nedd other2' | translate }}</p>
-                                        <textarea maxlength="150" name="needsOther"  [(ngModel)]="basicInfoPatient.needsOther"
+                                        <textarea [autosize]="true" name="needsOther"  [(ngModel)]="basicInfoPatient.needsOther"
                                                     placeholder="{{'seizures.Write down any details' | translate }}"
-                                                    class="autoajustable form-control mt-2"></textarea>
+                                                    class="form-control mt-2"></textarea>
                             <div class="center-elements mt-2">
                                 <button class="btn btn-dark mr-1"
                                     (click)="step='3'">{{'generics.Previous' | translate }}</button>
@@ -181,12 +181,12 @@
                             <p>{{'war.The status of your profile is' | translate }}</p>
                         </div>
                         <div class="col-4">
-                            <span *ngIf="basicInfoPatient.status == null || basicInfoPatient.status == 'new'" class="badge badge-secondary w-100" style="white-space: inherit !important;">{{'war.status.t1' | translate }}</span>
-                            <span *ngIf="basicInfoPatient.status == 'contacted'" class="badge badge-secondary w-100">{{'war.status.t2' | translate }}</span>
-                            <span *ngIf="basicInfoPatient.status == 'pending'" class="badge badge-secondary w-100">{{'war.status.t3' | translate }}</span>
-                            <span *ngIf="basicInfoPatient.status == 'ontheway'" class="badge badge-secondary w-100">{{'war.status.t4' | translate }}</span>
-                            <span *ngIf="basicInfoPatient.status == 'contactlost'" class="badge badge-secondary w-100">{{'war.status.opt5' | translate }}</span>
-                            <span *ngIf="basicInfoPatient.status == 'helped'" class="badge badge-secondary w-100">{{'war.status.opt6' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == null || basicInfoPatient.status == 'new'" class="badge badge-custom">{{'war.status.t1' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'contacted'" class="badge badge-custom">{{'war.status.t2' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'pending'" class="badge badge-custom">{{'war.status.t3' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'ontheway'" class="badge badge-custom">{{'war.status.t4' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'contactlost'" class="badge badge-custom">{{'war.status.opt5' | translate }}</span>
+                            <span *ngIf="basicInfoPatient.status == 'helped'" class="badge badge-custom">{{'war.status.opt6' | translate }}</span>
                         </div>
                     </div>
                     <!--One notification-->
@@ -272,10 +272,10 @@
                 <!--<h2 class="content-header mt-0">{{'war.needsTitle' | translate }}</h2>-->
                 <h4 class="content-header mt-0">{{'war.DrugsNeeds' | translate }}</h4>
                 <p>{{'war.needsSubtitle' | translate }}</p>
-                <textarea maxlength="150" name="needs"  [(ngModel)]="basicInfoPatient.needs"
+                <textarea [autosize]="true" name="needs"  [(ngModel)]="basicInfoPatient.needs"
                             placeholder="{{'seizures.Write down any details' | translate }}"
-                            class="autoajustable form-control"></textarea>
-                <div *ngIf="!callingTextAnalytics && basicInfoPatient.drugs.length>0">
+                            class="form-control"></textarea>
+                <div *ngIf="!callingTextAnalytics && basicInfoPatient.drugs.length>0" class="table-responsive">
                     <form class="mt-2">
                         <label>{{'war.These are the drug currently needed' | translate }}</label>
                     </form>
@@ -297,11 +297,11 @@
                                     <span *ngIf="drug.link!=''">
                                         <a class="info" data-original-title="" title=""
                                         href="https://www.whocc.no/atc_ddd_index/?code={{drug.link}}" target="_blank">
-                                        www.whocc.no
+                                        <span class="d-none d-sm-inline mr-1">www.whocc.no</span><em class="fa fa-external-link"></em>
                                         </a>
                                         <a class="info d-block" data-original-title="" title=""
                                         href="https://www.rxreasoner.com/atccodes/{{drug.link}}" target="_blank">
-                                        www.rxreasoner.com
+                                        <span class="d-none d-sm-inline mr-1">www.rxreasoner.com</span> <em class="fa fa-external-link"></em>
                                         </a>
                                     </span>
                                     <span *ngIf="drug.link==''">
@@ -321,9 +321,9 @@
                     <mat-radio-button [value]=true class="ml-2">{{'generics.Yes' | translate }}</mat-radio-button>
                   </mat-radio-group>
                 <h4 class="content-header">{{'war.Need other' | translate }}</h4>
-                <textarea maxlength="150" name="needsOther"  [(ngModel)]="basicInfoPatient.needsOther"
+                <textarea [autosize]="true" name="needsOther" [(ngModel)]="basicInfoPatient.needsOther"
                             placeholder="{{'seizures.Write down any details' | translate }}"
-                            class="autoajustable form-control mt-2"></textarea>            
+                            class="form-control mt-2"></textarea>            
                 <div class="center-elements mt-2">
                     <button *ngIf="!saving" class="mt-2 btn btn-dark" (click)="setNeeds2();">{{'generics.Save changes' | translate
                         }}</button>

@@ -37,7 +37,7 @@
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <label for="description">{{'support.Message' | translate }}</label>
-                                          <textarea name="description" id="textarea1" (ngModelChange)="resizeTextArea()" class="autoajustable form-control" [(ngModel)]="supportInfo.description" name="description" required ngModel required #description="ngModel"></textarea>
+                                          <textarea name="description" [autosize]="true" class="form-control" [(ngModel)]="supportInfo.description" name="description" required ngModel required #description="ngModel"></textarea>
                                           <small class="form-text text-muted danger" *ngIf="!description.valid && (description.dirty || description.touched)">{{'generics.required' | translate }}</small>
                                         </div>
                                       </div>

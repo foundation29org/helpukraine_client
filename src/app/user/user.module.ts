@@ -23,6 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import {AutosizeModule} from 'ngx-autosize';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
         AgmCoreModule,
         NgxChartsModule,
         MatCheckboxModule,
-        NgxSliderModule
+        NgxSliderModule,
+        AutosizeModule
     ],
     declarations: [
         HomeComponent

@@ -76,6 +76,7 @@
     "ng-apexcharts": "^1.5.12",
     "ng-chartist": "^4.1.0",
     "ng2-smart-table": "^1.6.0",
+    "ngx-autosize": "^1.8.7",
     "ngx-chips": "^2.1.0",
     "ngx-custom-validators": "^8.0.0",
     "ngx-hotjar": "^9.0.2",

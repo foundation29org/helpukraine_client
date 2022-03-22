@@ -17,6 +17,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SupportComponent } from './support/support.component';
+import {AutosizeModule} from 'ngx-autosize';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import { SupportComponent } from './support/support.component';
         MatNativeDateModule,
         UiSwitchModule,
         AgmCoreModule,
-        NgxDatatableModule
+        NgxDatatableModule,
+        AutosizeModule
     ],
     exports: [TranslateModule],
     declarations: [

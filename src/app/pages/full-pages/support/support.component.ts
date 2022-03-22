@@ -154,21 +154,4 @@ export class SupportComponent implements OnDestroy{
     }
   }
 
-  resizeTextArea(){
-
-    setTimeout(() =>
-    {
-      $('.autoajustable').each(function () {
-        document.getElementById("textarea1").setAttribute( "style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden; width: 100%;");
-
-     }).on('input', function () {
-         this.style.height = 'auto';
-         this.style.height = (this.scrollHeight) + 'px';
-     });
-
-    },
-    100);
-  }
-
-
 }

@@ -241,7 +241,7 @@ export class UsersAdminComponent implements OnDestroy{
     this.user = user;
     let ngbModalOptions: NgbModalOptions = {
       keyboard: false,
-      windowClass: 'ModalClass-lg'// xl, lg, sm
+      windowClass: 'ModalClass-xl'// xl, lg, sm
     };
     this.modalReference = this.modalService.open(InfoPatient, ngbModalOptions);
   }

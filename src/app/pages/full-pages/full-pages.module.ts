@@ -5,6 +5,7 @@ import { CustomFormsModule } from 'ngx-custom-validators';
 import { FullPagesRoutingModule } from "./full-pages-routing.module";
 import { TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {AutosizeModule} from 'ngx-autosize';
 
 import { UserProfilePageComponent } from "./user-profile/user-profile-page.component";
 import { SupportComponent } from './support/support.component';
@@ -20,7 +21,8 @@ import { SupportComponent } from './support/support.component';
         FormsModule,
         NgbModule,
         TranslateModule,
-        CustomFormsModule
+        CustomFormsModule,
+        AutosizeModule
     ],
     declarations: [
         UserProfilePageComponent,
