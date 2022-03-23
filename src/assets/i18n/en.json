@@ -1588,7 +1588,9 @@
     "Patient date of birth": "Patient date of birth",
     "Patient location": "Patient location",
     "This is where the patient is currently located": "This is where the patient is currently located:",
-    "These are the drug currently needed": "These are the drug currently needed"
+    "These are the drug currently needed": "These are the drug currently needed",
+    "Translate": "Translate",
+    "Write the name of your disease": "Write the name of your disease"
   }
 }
 

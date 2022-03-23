@@ -22,7 +22,11 @@
 					<tr *ngFor="let msg of msgList ; let i = index">
             <td>{{msg.email}}</td>
 						<td>{{msg.subject}}</td>
-            <td>{{msg.description}}</td>
+            <td><span [innerHTML]="msg.description | safe: 'html'" style="white-space: pre-line; display: block;"></span>
+              <span class="" *ngIf="lang!='uk'">
+                <a href="javascript:;" (click)="goToLink(msg)" class="btn btn-dark mb-0 mt-2"><em class="fa fa fa-language mr-1"></em>{{'war.Translate' | translate }}</a>
+              </span>
+            </td>
             <td>
               <div *ngIf="msg.files.length>0">
                 <p *ngFor="let file of msg.files ; let i = index">

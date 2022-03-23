@@ -21,12 +21,12 @@
                     <div *ngIf="basicInfoPatient.group==null || step!='1'"
                         class="justify-content-center align-items-center text-left">
                         <div *ngIf="step=='1'">
-                            <h2 class="content-header">{{'generics.Welcome to ucr' | translate }}</h2>
-                            <h2 class="content-header">{{'homeraito.t2' | translate }}</h2>
-                            <p class="text-muted font-small-2">
+                            <h2 class="content-header mb-3" style="font-weight: 600;">{{'generics.Welcome to ucr' | translate }}</h2>
+                            <p class="mb-0 text-bold-500">{{'homeraito.t2' | translate }}</p>
+                            <p class="text-muted mb-1">
                                 {{'homeraito.t2.1' | translate }}
                             </p>
-                            <select id="group" name="group" class="form-control" ngModel
+                            <select id="group" name="group" class="form-control mb-3" ngModel
                                 [(ngModel)]="group">
                                 <option [value]="null" disabled selected>--{{'generics.Please select' | translate }}--</option>
                                 <option *ngFor="let group of groups" [ngValue]="group._id">
@@ -37,19 +37,17 @@
                                     <span *ngIf="group.name == 'None'">{{'personalinfo.I dont belong to a patient group' | translate }}</span>
                                 </option>
                             </select>
-                            <h2 class="content-header">{{'homeraito.t2.3' | translate }}</h2>
-                            <p class="text-muted font-small-2">
-                                {{'homeraito.t2.4' | translate }}
-                            </p>
-                            <div class="text-left form-group">
-                                <mat-radio-group aria-label="Select an option" [(ngModel)]="userInfo.iscaregiver">
-                                    <mat-radio-button [value]=false (change)="changedCaretaker($event)">{{'war.titlleradio' | translate }}</mat-radio-button>
-                                    <mat-radio-button [value]=true class="ml-2" (change)="changedCaretaker($event)">{{'war.titletoogle' | translate }}</mat-radio-button>
-                                  </mat-radio-group>
+                            <div *ngIf="group">
+                                <div *ngIf="group == '622f83174c824c0dec16c78b'" class="mb-3">
+                                    <input type="text" class="form-control" name="othergroup" id="othergroup"
+                                    placeholder="{{'war.Write the name of your disease' | translate }}" ngModel required
+                                    #othergroup="ngModel" [(ngModel)]="basicInfoPatient.othergroup">
+                                </div>
+                                
                             </div>
-                            <div class="form-group mb-0">
+                            <div class="form-group mb-3">
                                 <div class="">
-                                    <h2 class="content-header mb-2">{{'war.When was the patient born' | translate }}</h2>
+                                    <p class="mb-1 text-bold-500">{{'war.When was the patient born' | translate }}</p>
                                     <input class="form-control d-none" id="birthDate_" name="birthDate" matInput
                                         placeholder="{{'personalinfo.Birth Date' | translate }}" readonly
                                         [matDatepicker]="pickerOnset" (click)="pickerOnset.open()"
@@ -65,6 +63,16 @@
                                         #pickerOnset></mat-datepicker>
                                     <!--<p *ngIf="datainfo.birthDate ==null || datainfo.birthDate ==''" class="danger">{{'generics.required' | translate }}</p>-->
                                 </div>
+                            </div>
+                            <p class="mb-0 text-bold-500">{{'homeraito.t2.3' | translate }}</p>
+                            <p class="text-muted mb-1">
+                                {{'homeraito.t2.4' | translate }}
+                            </p>
+                            <div class="text-left form-group mb-2">
+                                <mat-radio-group aria-label="Select an option" [(ngModel)]="userInfo.iscaregiver">
+                                    <mat-radio-button [value]=false (change)="changedCaretaker($event)">{{'war.titlleradio' | translate }}</mat-radio-button>
+                                    <mat-radio-button [value]=true class="ml-2" (change)="changedCaretaker($event)">{{'war.titletoogle' | translate }}</mat-radio-button>
+                                  </mat-radio-group>
                             </div>
                             <div class="center-elements">
                                 <button class="mt-3 btn btn-primary" [disabled]="group==null"
@@ -172,13 +180,12 @@
                     <h4 class="text-bold-500">{{'topnavbar.Notifications' | translate }}</h4>
                 </div>
                 <div class="pl-2 pr-2 pb-2" style="line-height: 1.2em;">
-                    <div class="row font-small-3 mb-1">
+                    <div class="row font-small-3 mb-2">
                         <div class="col-1 pr-0">
                             <em class="fas fa-info-circle"></em>
                         </div>
                         <div class="col-7 pl-2 pr-0">
-                            <p class="mb-0">{{'war.My status' | translate }}</p>
-                            <p>{{'war.The status of your profile is' | translate }}</p>
+                            <p class="">{{'war.The status of your profile is' | translate }}</p>
                         </div>
                         <div class="col-4">
                             <span *ngIf="basicInfoPatient.status == null || basicInfoPatient.status == 'new'" class="badge badge-custom">{{'war.status.t1' | translate }}</span>
@@ -221,6 +228,31 @@
                     </p>
                     <div class="form-group">
                         <div class="">
+                            <label>{{'land.Disease' | translate }}</label>
+                            <select id="group" name="group" class="form-control" ngModel #group="ngModel"
+                                [(ngModel)]="basicInfoPatient.group" [required]="true">
+                                <option [value]="null" disabled selected>--{{'generics.Please select' | translate }}--</option>
+                                <option *ngFor="let group of groups" [ngValue]="group._id">
+                                    <span
+                                        *ngIf="group.name != 'Undiagnosed'  && group.name != 'None'">{{group.name}}</span>
+                                    <span *ngIf="group.name == 'Undiagnosed'">{{'personalinfo.I dont have a
+                                        diagnosis' | translate }}</span>
+                                    <span *ngIf="group.name == 'None'">{{'personalinfo.I dont belong to a
+                                        patient group' | translate }}</span>
+                                </option>
+                            </select>
+                            <div *ngIf="basicInfoPatient.group == '622f83174c824c0dec16c78b'" class="mb-3 mt-2">
+                                <input type="text" class="form-control" name="othergroup" id="othergroup"
+                                placeholder="{{'war.Write the name of your disease' | translate }}" ngModel required
+                                #othergroup="ngModel" [(ngModel)]="basicInfoPatient.othergroup">
+                            </div>
+                            <small class="form-text text-muted danger"
+                                *ngIf="!group.valid && (group.dirty || group.touched)">{{'generics.required'
+                                | translate }}</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="">
                             <label>{{'war.Patient date of birth' | translate }}</label>
                             <input class="form-control d-none" id="birthDate_" name="birthDate" matInput
                                 placeholder="{{'personalinfo.Birth Date' | translate }}" readonly
@@ -236,27 +268,6 @@
                                 (daySelected)="closeDatePickerStart($event, pickerOnset)" touchUi="true"
                                 #pickerOnset></mat-datepicker>
                             <!--<p *ngIf="datainfo.birthDate ==null || datainfo.birthDate ==''" class="danger">{{'generics.required' | translate }}</p>-->
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="">
-                            <label>{{'land.Disease' | translate }}</label>
-                            <select id="group" name="group" class="form-control" ngModel #group="ngModel"
-                                [(ngModel)]="basicInfoPatient.group" [required]="true">
-                                <option [value]="null" disabled selected>--{{'registration.Please select a
-                                    group' | translate }}--</option>
-                                <option *ngFor="let group of groups" [ngValue]="group._id">
-                                    <span
-                                        *ngIf="group.name != 'Undiagnosed'  && group.name != 'None'">{{group.name}}</span>
-                                    <span *ngIf="group.name == 'Undiagnosed'">{{'personalinfo.I dont have a
-                                        diagnosis' | translate }}</span>
-                                    <span *ngIf="group.name == 'None'">{{'personalinfo.I dont belong to a
-                                        patient group' | translate }}</span>
-                                </option>
-                            </select>
-                            <small class="form-text text-muted danger"
-                                *ngIf="!group.valid && (group.dirty || group.touched)">{{'generics.required'
-                                | translate }}</small>
                         </div>
                     </div>
                     <div class="row" style="padding: 1.1rem !important;">

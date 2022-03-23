@@ -35,10 +35,12 @@ export class SupportComponent implements OnDestroy{
   msgList: any = [];
   timeformat="";
   groupId: any;
+  lang: any;
 
   constructor(private http: HttpClient, private translate : TranslateService, private authService: AuthService, private authGuard: AuthGuard, private blob: BlobStorageSupportService, public toastr: ToastrService, private sortService: SortService, private adapter: DateAdapter<any>, private apiDx29ServerService: ApiDx29ServerService) {
 
     this.initVars();
+    this.lang = this.authService.getLang()
 
   }
 
@@ -102,6 +104,12 @@ export class SupportComponent implements OnDestroy{
        }));
 
     }
+  }
+
+  goToLink(msg){
+    var description = msg.description.replace(/\n/g, "%0A")
+    var url = 'https://translate.google.com/?hl=en&sl=uk&tl='+this.lang+'&text=Subject:%0A'+msg.subject+'%0A%0AMessage:%0A'+description+'&op=translate'
+      window.open(url, "_blank");
   }
 
   fieldStatusChanged(msg){

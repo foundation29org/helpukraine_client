@@ -72,7 +72,15 @@
 							</span>
 						</ng-template>
 					</ngx-datatable-column>
-					<ngx-datatable-column name="{{'war.is the caretaker' | translate }}"
+					<ngx-datatable-column *ngIf="groupId == '622f83174c824c0dec16c78b'" name="{{'land.Disease' | translate }}" prop="othergroup" [flexGrow]="3"
+						[sortable]="true">
+						<ng-template let-value="value" ngx-datatable-cell-template let-row="row">
+							<span>
+								{{value}}
+							</span>
+						</ng-template>
+					</ngx-datatable-column>
+					<ngx-datatable-column *ngIf="groupId != '622f83174c824c0dec16c78b'" name="{{'war.is the caretaker' | translate }}"
 						prop="iscaregiver" [flexGrow]="3" [sortable]="true">
 						<ng-template let-value="value" ngx-datatable-cell-template>
 							<span>
@@ -193,14 +201,19 @@
 							{{'menu.Basic Info' | translate }}
 						</h4>
 						<div class="row">
-							<div class="col-md-12">
+							<div class="col-md-12" *ngIf="groupId == '622f83174c824c0dec16c78b'">
+								<p class="mb-0">
+									<strong>{{'land.Disease' | translate }}:</strong> <span class="ml-1" *ngIf="user.othergroup">{{user.othergroup}}</span> <span class="ml-1" *ngIf="!user.othergroup">-</span>
+								</p>
+							</div>
+							<div class="col-md-12" >
 								<p class="mb-0">
 									<strong>{{'war.Need shelter' | translate }}:</strong> <span *ngIf="user.needShelter" class="ml-1">{{'generics.Yes' | translate }}</span><span *ngIf="!user.needShelter" class="ml-1">{{'generics.No' | translate }}</span>
 								</p>
 							</div>
 							<div class="col-md-12">
 								<p class="mb-0">
-									<strong>{{'personalinfo.Birth Date' | translate }}:</strong> {{user.birthDate | date: 'dd MMM y': '' : translate.currentLang}}
+									<strong>{{'personalinfo.Birth Date' | translate }}:</strong> <span *ngIf="user.birthDate" class="ml-1">{{user.birthDate | date: 'dd MMM y': '' : translate.currentLang}}</span> <span *ngIf="!user.birthDate" class="ml-1">--/--/----</span> 
 								</p>
 							</div>
 
@@ -237,7 +250,11 @@
 						</h4>
 						<div class="row">
 							<div class="col-md-12">
-								<p>{{user.needs}}</p>
+								<p *ngIf="user.needs!=''" [innerHTML]="user.needs | safe: 'html'" style="white-space: pre-line; display: block;"></p>
+								<span class="" *ngIf="lang!='uk' && user.needs!=''">
+									<a href="javascript:;" (click)="goToLink(user.needs)" class="btn btn-dark mb-0 mb-2"><em class="fa fa fa-language mr-1"></em>{{'war.Translate' | translate }}</a>
+								  </span>
+								  <p *ngIf="user.needs==''">-</p>
 							</div>
 
 							<div *ngIf="!callingTextAnalytics && user.drugs.length>0" class="col-md-12 table-responsive">
@@ -279,7 +296,10 @@
 						</h4>
 						<div class="row">
 							<div class="col-md-12">
-								<p *ngIf="user.needsOther!=''">{{user.needsOther}}</p>
+								<p *ngIf="user.needsOther!=''" [innerHTML]="user.needsOther | safe: 'html'" style="white-space: pre-line; display: block;"></p>
+								<span class="" *ngIf="lang!='uk' && user.needsOther!=''">
+									<a href="javascript:;" (click)="goToLink(user.needsOther)" class="btn btn-dark mb-0 mb-2"><em class="fa fa fa-language mr-1"></em>{{'war.Translate' | translate }}</a>
+								  </span>
 								<p *ngIf="user.needsOther==''">{{'generics.No' | translate }}</p>
 							</div>
 						</div>

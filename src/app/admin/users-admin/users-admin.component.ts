@@ -48,6 +48,7 @@ export class UsersAdminComponent implements OnDestroy{
   constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private authGuard: AuthGuard, public toastr: ToastrService, private modalService: NgbModal, private dateService: DateService,private adapter: DateAdapter<any>, private sortService: SortService){
 
     this.adapter.setLocale(this.authService.getLang());
+    this.lang = this.authService.getLang()
     switch(this.authService.getLang()){
       case 'en':
         this.timeformat="M/d/yy";
@@ -244,6 +245,12 @@ export class UsersAdminComponent implements OnDestroy{
       windowClass: 'ModalClass-xl'// xl, lg, sm
     };
     this.modalReference = this.modalService.open(InfoPatient, ngbModalOptions);
+  }
+
+  goToLink(msg){
+    var description = msg.replace(/\n/g, "%0A")
+    var url = 'https://translate.google.com/?hl=en&sl=uk&tl='+this.lang+'&text='+description+'&op=translate'
+      window.open(url, "_blank");
   }
 
 }

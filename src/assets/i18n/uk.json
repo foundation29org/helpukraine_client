@@ -1590,6 +1590,8 @@
         "Patient date of birth": "Дата народження пацієнта",
         "Patient location": "Місце знаходження пацієнта",
         "This is where the patient is currently located": "Ліки пацієнта:",
-        "These are the drug currently needed": "Ліки, які зараз необхідні"
+        "These are the drug currently needed": "Ліки, які зараз необхідні",
+        "Translate": "Перекладіть",
+        "Write the name of your disease": "Напишіть назву свого захворювання"
     }
 }

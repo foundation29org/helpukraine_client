@@ -56,6 +56,14 @@ agm-map {
   width: 0;
 }
 
+.card{
+  font-weight: lighter;
+}
+
+::ng-deep .mat-radio-label-content {
+  font-weight: lighter !important;
+}
+
 .badge-custom{
   width: 100% !important;
   white-space: inherit !important;

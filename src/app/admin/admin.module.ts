@@ -18,6 +18,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SupportComponent } from './support/support.component';
 import {AutosizeModule} from 'ngx-autosize';
+import { SafePipe } from '../shared/services/safe.pipe';
 
 @NgModule({
     imports: [
@@ -39,7 +40,8 @@ import {AutosizeModule} from 'ngx-autosize';
     exports: [TranslateModule],
     declarations: [
         UsersAdminComponent,
-        SupportComponent
+        SupportComponent,
+        SafePipe
     ],
     providers: [],
 })

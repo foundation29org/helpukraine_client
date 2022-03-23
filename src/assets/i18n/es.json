@@ -1590,6 +1590,8 @@
     "Patient date of birth": "Fecha de nacimiento de la paciente",
     "Patient location": "Ubicación del paciente",
     "This is where the patient is currently located": "Aquí es donde se encuentra el paciente actualmente:",
-    "These are the drug currently needed": "Estos son los medicamentos que se necesitan actualmente"
+    "These are the drug currently needed": "Estos son los medicamentos que se necesitan actualmente",
+    "Translate": "Traducir",
+    "Write the name of your disease": "Escribe el nombre de tu enfermedad"
   }
 }
