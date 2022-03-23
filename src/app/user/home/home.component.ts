@@ -451,24 +451,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadGroups();
   }
 
-  question2() {
-    console.log(this.basicInfoPatient.group);
-    if (this.basicInfoPatient.group == '61bb40e8d6e0cb14f08881c2' || this.basicInfoPatient.group == '61bb390ed6e0cb14f08881c1') {
+  question3() {
+    /*if (this.basicInfoPatient.group == '61bb40e8d6e0cb14f08881c2' || this.basicInfoPatient.group == '61bb390ed6e0cb14f08881c1') {
       this.step = '4';
     } else {
-      this.step = '2';
-    }
-  }
-
-  question3(response) {
-    this.basicInfoPatient.consentgroup = response;
-    console.log(this.basicInfoPatient.consentgroup);
+      this.step = '3';
+    }*/
     this.step = '3';
     console.log(this.basicInfoPatient.lat);
     if(this.basicInfoPatient.lat==""){
       this.getLocationInfo();
     }
-    
+  }
+
+  question2(response) {
+    this.basicInfoPatient.consentgroup = response;
+    console.log(this.basicInfoPatient.consentgroup);
+    this.step = '2';
     //this.setPatientGroup(this.basicInfoPatient.group);
   }
 

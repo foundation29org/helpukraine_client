@@ -1442,7 +1442,7 @@
     "a2.5": "If you want to stop your participation, revoke access here",
     "a2.6": "You haven't joined the DSEF data network community, please join below.",
     "a2.7": "Grant access in here",
-    "In RAITO you decide for your data": "In RAITO you decide for your data",
+    "In RAITO you decide for your data": "In Relief Ukraine you decide for your data",
     "Who has access to your data": "Who has access to your data",
     "What data is shared": "What data is shared",
     "When and for how long it is shared": "When and for how long it is shared",
@@ -1476,7 +1476,7 @@
     "title": "This is how we manage data",
     "subtitle": "You need to read the complete text of the Privacy Policy for legal purposes, but we really don't like this requirement so we made a summary for you.",
     "t1": "Which data is shared",
-    "a1": "RAITO will only know your name, last name and email. Your patient group may receive anonymous medical information to support research in your disease. You can finally participate directly with your knowledge!",
+    "a1": "Relief Ukraine will only know your name, last name and email. Your patient group may receive anonymous medical information to support research in your disease. You can finally participate directly with your knowledge!",
     "t2": "Who has access",
     "a2.1": "You may share your medical data anonymously with your Patient Organization by granting access to it. You can also send anonymous copies to whoever you want.",
     "t3": "Where is your data",
@@ -1484,7 +1484,7 @@
     "t4": "Who else uses your data",
     "a4": "Nobody else has access to your data. Your data is yours and is safe.",
     "t6": "What data is shared with F29?",
-    "a6": "Relief Ukraine collects basic user information data. In order to provide you with Raito’s services, we collect your name and email. All the other data that you include in Relief Ukraine is stored in your own device or your own cloud storage service, so F29 does not have access to it.",
+    "a6": "Relief Ukraine collects basic user information data. In order to provide you with Relief Ukraine’s services, we collect your name and email. All the other data that you include in Relief Ukraine is stored in your own device or your own cloud storage service, so F29 does not have access to it.",
     "readPolicy": "Read the full version of the Privacy Policy here"
   },
   "documents":{
