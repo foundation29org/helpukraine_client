@@ -454,6 +454,10 @@ mark{
     padding-right: 0px !important;
     padding-left: 0px !important;
   }
+
+  .headerDosageStrength{
+    width: 15%;
+  }
 }
 
 @media ( max-height: 550px ){

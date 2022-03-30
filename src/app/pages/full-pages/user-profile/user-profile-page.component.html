@@ -20,7 +20,7 @@
 				<a class="list-group-item no-border" (click)="SetActive($event, 'panelPassword')">
 						{{tittlePassword}}
 				</a>
-				<a *ngIf="role!='Admin'" class="list-group-item no-border" (click)="SetActive($event, 'PanelPermissions')">
+				<a *ngIf="role=='User'" class="list-group-item no-border" (click)="SetActive($event, 'PanelPermissions')">
 						{{tittlePermissions}}
 				</a>
 			</div>
@@ -112,26 +112,6 @@
 																<option *ngFor="let lang of langs" [ngValue]="lang.code"> {{lang.name}}</option>
 															</select>
 															<p *ngIf="user.lang != userCopy.lang" class="text-danger">{{'profile.Save the changes' | translate }}</p>
-														</div>
-													</div>
-												</div>
-												<div class="row" *ngIf="role!='Admin'">
-													<div class="col-md-6">
-														<div class="form-group">
-															<label for="massunit">{{'profile.Mass unit' | translate }}</label>
-															<select id="massunit" name="massunit" class="form-control"  [(ngModel)]="user.massunit">
-																<option value="kg">{{'profile.Kilogram' | translate }}</option>
-																<option value="lb">{{'profile.Pound' | translate }}</option>
-															</select>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="form-group">
-															<label for="lengthunit">{{'profile.Length unit' | translate }}</label>
-															<select id="lengthunit" name="lengthunit" class="form-control"  [(ngModel)]="user.lengthunit">
-																<option value="cm">{{'profile.Centimetre' | translate }}</option>
-																<option value="ft">{{'profile.Foot' | translate }}</option>
-															</select>
 														</div>
 													</div>
 												</div>

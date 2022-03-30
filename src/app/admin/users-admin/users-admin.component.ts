@@ -43,7 +43,7 @@ export class UsersAdminComponent implements OnDestroy{
   // Google map lat-long
   lat: number = 50.431134;
   lng: number = 30.654701;
-  zoom = 4;
+  zoom = 3;
 
   constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private authGuard: AuthGuard, public toastr: ToastrService, private modalService: NgbModal, private dateService: DateService,private adapter: DateAdapter<any>, private sortService: SortService){
 
@@ -90,7 +90,7 @@ export class UsersAdminComponent implements OnDestroy{
       .subscribe( (resGroup : any) => {
         this.groupId = resGroup._id;
         this.getUsers();
-        this.loadDrugs();
+        //this.loadDrugs();
       }, (err) => {
         console.log(err);
     }));
@@ -101,17 +101,38 @@ export class UsersAdminComponent implements OnDestroy{
     console.log(this.authService.getGroup());
     this.subscription.add( this.http.get(environment.api+'/api/admin/users/'+this.groupId)
     .subscribe( (res : any) => {
-      this.loadingUsers = false;
       for(var j=0;j<res.length;j++){
         res[j].userName = this.capitalizeFirstLetter(res[j].userName);
-        //res[j].phone = res[j].countryPhoneCode +' '+res[j].phone;
-        //res[j].iconUrl = 'https://i.pinimg.com/564x/5e/98/5e/5e985e71d0f954f7c602794318eb323d.jpg'
+        res[j].icon = 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000'
+        res[j].role = 'User';
       }
-
       res.sort(this.sortService.GetSortOrder("userName"));
       this.users = res;
       this.usersCopy = JSON.parse(JSON.stringify(res));
+      this.getRequests();
+      
+    }, (err) => {
+      console.log(err);
+      this.loadingUsers = false;
+    }));
+  }
 
+  getRequests(){
+    this.loadingUsers = true;
+    console.log(this.authService.getGroup());
+    this.subscription.add( this.http.get(environment.api+'/api/admin/requestclin/'+this.groupId)
+    .subscribe( (res : any) => {
+      
+      for(var j=0;j<res.length;j++){
+        res[j].userName = this.capitalizeFirstLetter(res[j].userName);
+        res[j].icon = 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4'
+        res[j].role = 'Clinical';
+        this.users.push(res[j]);
+      }
+      res.sort(this.sortService.GetSortOrder("userName"));
+      this.usersCopy = JSON.parse(JSON.stringify(this.users));
+      console.log(this.users);
+      this.loadingUsers = false;
       
     }, (err) => {
       console.log(err);
@@ -138,14 +159,40 @@ export class UsersAdminComponent implements OnDestroy{
 
   fieldStatusChanged(row){
     console.log(row);
-    var data = {status: row.status};
-    this.subscription.add( this.http.put(environment.api+'/api/patient/status/'+row.patientId, data)
-    .subscribe( (res : any) => {
-      console.log(res);
-      //this.getUsers();
-     }, (err) => {
-       console.log(err);
-     }));
+    var status = row.status;
+    if(row.status=='new'){
+      status = this.translate.instant("war.status.opt1");
+    }else if(row.status=='contacted'){
+      status = this.translate.instant("war.status.opt2");
+    }else if(row.status=='pending'){
+      status = this.translate.instant("war.status.opt3");
+    }else if(row.status=='ontheway'){
+      status = this.translate.instant("war.status.opt4");
+    }else if(row.status=='contactlost'){
+      status = this.translate.instant("war.status.opt5");
+    }else if(row.status=='helped'){
+      status = this.translate.instant("war.status.opt6");
+    }
+
+    var data = {status: row.status, email: row.email, lang: row.lang, group: this.authService.getGroup(), statusInfo: status};
+    if(row.role=='User'){
+      this.subscription.add( this.http.put(environment.api+'/api/patient/status/'+row.patientId, data)
+      .subscribe( (res : any) => {
+        console.log(res);
+        //this.getUsers();
+       }, (err) => {
+         console.log(err);
+       }));
+    }else{
+      this.subscription.add( this.http.put(environment.api+'/api/requestclin/status/'+row.patientId, data)
+      .subscribe( (res : any) => {
+        console.log(res);
+        //this.getUsers();
+       }, (err) => {
+         console.log(err);
+       }));
+    }
+    
     //this.user = user;
   }
 
@@ -240,6 +287,12 @@ export class UsersAdminComponent implements OnDestroy{
   viewInfoPatient(user,InfoPatient){
     console.log(user);
     this.user = user;
+    if(user.lat!=''){
+      this.lat = Number(user.lat)
+      this.lng = Number(user.lng)
+      this.zoom = 5;
+    }
+    
     let ngbModalOptions: NgbModalOptions = {
       keyboard: false,
       windowClass: 'ModalClass-xl'// xl, lg, sm
@@ -251,6 +304,13 @@ export class UsersAdminComponent implements OnDestroy{
     var description = msg.replace(/\n/g, "%0A")
     var url = 'https://translate.google.com/?hl=en&sl=uk&tl='+this.lang+'&text='+description+'&op=translate'
       window.open(url, "_blank");
+  }
+
+  setPositionMap(row){
+    this.lat = Number(row.lat)
+    this.lng = Number(row.lng)
+    this.zoom = 6;
+    window.scrollTo(0, 0)
   }
 
 }

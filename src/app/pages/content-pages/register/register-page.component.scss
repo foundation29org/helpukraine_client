@@ -6,6 +6,23 @@
     padding: 1.5rem 1.5rem 1.5rem;
 }
 
+.btn.active{
+    color: #ffffff !important;
+    background-color: #33658a !important;
+    border-color: #264f6e !important;
+}
+
+.btn-white:focus, .btn-white.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem #264f6e !important;
+}
+
+.btn-white:hover {
+  color: #ffffff !important;
+  background-color: #264f6e !important;
+  border-color: rgb(24, 23, 23) !important;
+}
+
 ::ng-deep ngb-typeahead-window.dropdown-menu {
   max-height: 300px;
   overflow-y: auto;

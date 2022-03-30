@@ -7,7 +7,6 @@ import { NewPasswordPageComponent } from "./new-password/new-password-page.compo
 import { LoginPageComponent } from "./login/login-page.component";
 import { RegisterPageComponent } from "./register/register-page.component";
 import { PrivacyPolicyPageComponent } from "./privacy-policy/privacy-policy.component";
-import { PermissionsPageComponent } from "./permissions/permissions-page.component";
 
 const routes: Routes = [
   {
@@ -53,13 +52,6 @@ const routes: Routes = [
         component: PrivacyPolicyPageComponent,
         data: {
           title: 'registration.Privacy Policy'
-        }
-      },
-      {
-        path: 'permissions',
-        component: PermissionsPageComponent,
-        data: {
-          title: 'Permissions'
         }
       }
 

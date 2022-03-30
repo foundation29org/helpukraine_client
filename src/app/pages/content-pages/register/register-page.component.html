@@ -56,7 +56,7 @@
                           <small class="form-text text-muted danger" *ngIf="password2.errors?.equalTo">{{'generics.Passwordnomatch' | translate }}</small>
                         </div>
                         <div class="row">
-                          <div class="col-sm-6">
+                          <div class="col-sm-12">
                             <div class="input-group mb-0">
                               <span class="input-group-text">
                                 <i class="icon-globe-alt"></i>
@@ -79,7 +79,7 @@
                                   *ngIf="!countryselectedPhoneCode.valid && (countryselectedPhoneCode.dirty || countryselectedPhoneCode.touched)">{{'registration.Please select a code' | translate }}</small></p>
                             </div>
                           </div>
-                          <div class="col-sm-6">
+                          <div class="col-sm-12">
                             <div class="input-group mb-0">
                               <span class="input-group-text">
                                 <i class="ft-smartphone"></i>
@@ -95,22 +95,37 @@
                             </div>
                           </div>
                         </div>
-                        <p *ngIf="!openedTerms" class="font-small-2">
+                        <div class="form-group">
+                          <div class="mb-0 center-elements">
+                              <!--<select id="role" name="role" class="form-control" ngModel [(ngModel)]="role">
+                                <option value="User" selected>{{'registration.Im a patient' | translate }}</option>
+                                <option value="Clinical">{{'registration.Im a clinician' | translate }}</option>
+                              </select>-->
+                              <div class="btn-group btn-group-toggle" ngbRadioGroup name="role" [(ngModel)]="role" style="width: 100%;">
+                                <label ngbButtonLabel class="btn-white">
+                                    <input ngbButton type="radio" value="User"> {{'registration.Im a patient' | translate }}
+                                </label>
+                                <label ngbButtonLabel class="btn-white">
+                                    <input ngbButton type="radio" value="Clinical"> {{'registration.Im a clinician' | translate }}
+                                </label>
+                            </div>
+                          </div>
+                        </div>
+                        <!--<p *ngIf="!openedTerms" class="font-small-2">
                           {{'registration.IMPORTANT NOTE' | translate }}
-                        </p>
+                        </p>-->
                           <div class="form-group col-sm-offset-1">
-                            <mat-checkbox (click)="openTerms()" [attr.title]="!openedTerms ? 'You must read and understand the privacy policy in order to activate this field.' : 'This field is required'"
+                            <mat-checkbox (click)="!openedTerms ? openTerms() : setOpenTerms()" [attr.title]="!openedTerms ? 'You must read and understand the privacy policy in order to activate this field.' : 'This field is required'"
                                 class="example-margin"
                                 [disabled]="!openedTerms" name="terms" ngModel required #terms="ngModel" id="terms">
-
+                                <label class="d-inline" style="margin-bottom: auto !important;">
+                                  <a (click)="openTerms()">
+                                    <small style="white-space: normal;"> {{'registration.I have read and understood the' | translate }}
+                                    </small>
+                                  </a>
+                                </label>
                             </mat-checkbox>
-                            <label style="margin-bottom: auto !important;">
-                              <a (click)="openTerms()" class="ml-1 btn-flat">
-                                <small style="margin-top: 1em;white-space: normal;text-transform: none;letter-spacing: 0px;"> {{'registration.I have read and understood the' | translate }}
-                                </small>
-                                <i class="ft-external-link"></i>
-                              </a>
-                            </label>
+                            
                             <small class="form-text text-muted danger" *ngIf="!terms.valid && (terms.dirty || terms.touched) && openedTerms">{{'generics.required' | translate }}</small>
                             <small class="form-text text-muted danger" *ngIf="!terms.valid && (terms.dirty || terms.touched) && !openedTerms">{{'registration.It is mandatory to read the privacy policy before continuing' | translate }}</small>
 

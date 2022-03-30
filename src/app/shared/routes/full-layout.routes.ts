@@ -10,6 +10,12 @@ export const Full_ROUTES: Routes = [
     data: { expectedRole: ['User'] }
   },
   {
+    path: 'clinical',
+    loadChildren: () => import('../../clinician/clinician.module').then(m => m.ClinicianModule),
+    canActivate: [RoleGuard],
+    data: { expectedRole: ['Clinical'] }
+  },
+  {
     path: 'admin',
     loadChildren: () => import('../../admin/admin.module').then(m => m.AdminModule),
     canActivate: [RoleGuard],

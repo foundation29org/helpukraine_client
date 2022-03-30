@@ -10,20 +10,22 @@
       <ol>
         <li><a class="info" (click)="goTo('step1')">{{'prereg.t1' | translate }}</a></li>
         <li><a class="info" (click)="goTo('step2')">{{'prereg.t2' | translate }}</a></li>
-        <li><a class="info" (click)="goTo('step3')">{{'prereg.t3' | translate }}</a></li>
-        <li><a class="info" (click)="goTo('step4')">{{'prereg.t4' | translate }}</a></li>
+        <li><a class="info" (click)="goTo('step3')">{{'prereg.t4' | translate }}</a></li>
+        <li><a class="info" (click)="goTo('step4')">{{'prereg.t3' | translate }}</a></li>
         <li><a class="info" (click)="goTo('step5')">{{'policy.step1' | translate }}</a></li>
         <li><a class="info" (click)="goTo('step6')">{{'prereg.t6' | translate }}</a></li>
         <li><a class="info" (click)="goTo('step7')">{{'policy.step2' | translate }}</a></li>
         <li><a class="info" (click)="goTo('step8')">{{'policy.step3' | translate }}</a></li>
         <li><a class="info" (click)="goTo('step9')">{{'policy.step4' | translate }}</a></li>
-        <li><a class="info" (click)="goTo('step10')">{{'policy.step5' | translate }}</a></li>
       </ol>
       <a id="step1"></a>
       <div>
         <h6 class="pt-2 dark text-bold-600">1. {{'prereg.t1' | translate }}</h6>
         <p>
           {{'prereg.a1' | translate }}
+        </p>
+        <p>
+          {{'prereg.a2' | translate }}
         </p>
       </div>
       <a id="step2"></a>
@@ -35,16 +37,16 @@
       </div>
       <a id="step3"></a>
       <div>
-        <h6 class="pt-2 dark text-bold-600">3. {{'prereg.t3' | translate }}</h6>
+        <h6 class="pt-2 dark text-bold-600">3. {{'prereg.t4' | translate }}</h6>
         <p>
-          {{'prereg.a3' | translate }}
+          {{'prereg.a4' | translate }}
         </p>
       </div>
       <a id="step4"></a>
       <div>
-        <h6 class="pt-2 dark text-bold-600">4. {{'prereg.t4' | translate }}</h6>
+        <h6 class="pt-2 dark text-bold-600">4. {{'prereg.t3' | translate }}</h6>
         <p>
-          {{'prereg.a4' | translate }}
+          {{'prereg.a3' | translate }}
         </p>
       </div>
       <a id="step5"></a>
@@ -87,6 +89,12 @@
         <p>
           {{'policy.step3-1' | translate }}
         </p>
+        <p>
+          {{'policy.step3-2' | translate }}
+        </p>
+        <p>
+          {{'policy.step3-3' | translate }}
+        </p>
       </div>
       <a id="step9"></a>
        <div>
@@ -112,17 +120,7 @@
   
           <p>{{'policy.step4-7' | translate }}</p>
        </div>
-       <a id="step10"></a>
-       <div>
-         <h6 class="pt-2 dark text-bold-600">10. {{'policy.step5' | translate }}</h6>
-         <p>
-           {{'policy.step5-1' | translate }}
-         </p>
-       </div>
       <hr>
-      <p>
-        {{'policy.other1' | translate }}
-      </p>
       <p>
         {{'policy.other2' | translate }}
       </p>

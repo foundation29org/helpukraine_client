@@ -50,7 +50,7 @@ export class AuthService {
         this.setRedirectUrl('/superadmin/dashboard-superadmin')
       }else if(tokenPayload.role == 'Clinical'){
         // is role Clinical
-        this.setRedirectUrl('/clinical/dashboard/home')
+        this.setRedirectUrl('/clinical/home')
       }else if(tokenPayload.role == 'Admin'){
         // Admin
         this.setGroup(tokenPayload.group);
@@ -89,7 +89,7 @@ export class AuthService {
       this.setRedirectUrl('/superadmin/dashboard-superadmin')
     }else if(tokenPayload.role == 'Clinical'){
       // is role clinic
-      this.setRedirectUrl('/clinical/dashboard/home')
+      this.setRedirectUrl('/clinical/home')
     }else if(tokenPayload.role == 'Admin'){
       // Admin
       this.setGroup(tokenPayload.group);

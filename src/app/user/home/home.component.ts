@@ -17,6 +17,7 @@ import { Apif29BioService } from 'app/shared/services/api-f29bio.service';
 import { Apif29NcrService } from 'app/shared/services/api-f29ncr.service';
 import { DateService } from 'app/shared/services/date.service';
 import { SearchFilterPipe } from 'app/shared/services/search-filter.service';
+import { NgbModal, NgbModalRef, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs/Subscription';
 import Swal from 'sweetalert2';
 import * as chartsData from 'app/shared/configs/general-charts.config';
@@ -171,7 +172,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   countries: any = [];
   actualLocation: any = {};
-  @ViewChild('f') personalInfoForm: NgForm;
   sending: boolean = false;
   saving: boolean = false;
 
@@ -182,9 +182,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   showMarker: boolean = false;
   resTextAnalyticsSegments:any;
   newDrugs: any = [];
+  newDrug: any = {};
   callingTextAnalytics: boolean = false;
+  modalReference: NgbModalRef;
+  editingDrugIndex: number = -1;
+  checks: any = {};
+  groupName = '';
 
-  constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private patientService: PatientService, public searchFilterPipe: SearchFilterPipe, public toastr: ToastrService, private dateService: DateService, private apiDx29ServerService: ApiDx29ServerService, private sortService: SortService, private adapter: DateAdapter<any>, private searchService: SearchService, private router: Router, private apiExternalServices: ApiExternalServices, private apif29BioService: Apif29BioService) {
+  constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private patientService: PatientService, public searchFilterPipe: SearchFilterPipe, public toastr: ToastrService, private dateService: DateService, private apiDx29ServerService: ApiDx29ServerService, private sortService: SortService, private adapter: DateAdapter<any>, private searchService: SearchService, private router: Router, private apiExternalServices: ApiExternalServices, private apif29BioService: Apif29BioService, private modalService: NgbModal) {
     this.adapter.setLocale(this.authService.getLang());
     this.lang = this.authService.getLang();
     switch (this.authService.getLang()) {
@@ -213,6 +218,15 @@ export class HomeComponent implements OnInit, OnDestroy {
       }, (err) => {
         console.log(err);
       }));
+  }
+
+  getGroupName(){
+    //find the group name from the group id
+    for(let i = 0; i < this.groups.length; i++){
+      if(this.basicInfoPatient.group == this.groups[i]._id){
+        this.groupName = this.groups[i].name;
+      }
+    }
   }
 
   ngOnDestroy() {
@@ -278,11 +292,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         break;
 
     }
-
-    this.loadTranslationsElements();
     this.loadGroups();
     this.getInfoPatient();
     this.getConsentGroup();
+    this.getChecks();
   }
 
 
@@ -338,46 +351,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  loadTranslationsElements() {
-    if (this.authService.getGroup() != null) {
-      this.loadingDataGroup = true;
-      this.subscription.add(this.http.get(environment.api + '/api/group/medications/' + this.authService.getGroup())
-        .subscribe((res: any) => {
-          if (res.medications.data.length == 0) {
-            //no tiene datos sobre el grupo
-          } else {
-            this.dataGroup = res.medications.data;
-            this.drugsLang = [];
-            if (this.dataGroup.drugs.length > 0) {
-              for (var i = 0; i < this.dataGroup.drugs.length; i++) {
-                var found = false;
-                for (var j = 0; j < this.dataGroup.drugs[i].translations.length && !found; j++) {
-                  if (this.dataGroup.drugs[i].translations[j].code == this.authService.getLang()) {
-                    if (this.dataGroup.drugs[i].drugsSideEffects != undefined) {
-                      this.drugsLang.push({ name: this.dataGroup.drugs[i].name, translation: this.dataGroup.drugs[i].translations[j].name, drugsSideEffects: this.dataGroup.drugs[i].drugsSideEffects });
-                    } else {
-                      this.drugsLang.push({ name: this.dataGroup.drugs[i].name, translation: this.dataGroup.drugs[i].translations[j].name });
-                    }
-                    found = true;
-                  }
-                }
-              }
-              this.drugsLang.sort(this.sortService.GetSortOrder("translation"));
-            }
-          }
-          this.loadingDataGroup = false;
-          this.loadData();
-        }, (err) => {
-          console.log(err);
-          this.loadingDataGroup = false;
-          this.loadData();
-        }));
-    } else {
-      this.loadingDataGroup = false;
-      this.loadData();
-    }
-  }
-
   initEnvironment() {
     //this.userId = this.authService.getIdUser();
     if (this.authService.getCurrentPatient() == null) {
@@ -426,6 +399,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         //this.basicInfoPatient.birthDate = this.dateService.transformDate(res.patient.birthDate);
         this.basicInfoPatientCopy = JSON.parse(JSON.stringify(res.patient));
         this.loadedInfoPatient = true;
+        if (this.authService.getGroup() != null) {
+          this.getGroupName();
+        }
       }, (err) => {
         console.log(err);
         this.loadedInfoPatient = true;
@@ -461,6 +437,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     console.log(this.basicInfoPatient.lat);
     if(this.basicInfoPatient.lat==""){
       this.getLocationInfo();
+    }else{
+      this.lat = parseFloat(this.basicInfoPatient.lat)
+      this.lng = parseFloat(this.basicInfoPatient.lng)
     }
   }
 
@@ -468,148 +447,28 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.basicInfoPatient.consentgroup = response;
     console.log(this.basicInfoPatient.consentgroup);
     this.step = '2';
-    //this.setPatientGroup(this.basicInfoPatient.group);
   }
 
   setNeeds() {
-    this.detectLang();
+    console.log(this.newDrugs);
+    console.log(this.basicInfoPatient.drugs);
+    this.saving = true;
     this.basicInfoPatient.group = this.group;
     this.setPatientGroup(this.basicInfoPatient.group);
+    this.goStep('1');
   }
 
   setNeeds2() {
-    this.detectLang();
+    console.log(this.newDrugs);
+    console.log(this.basicInfoPatient.drugs);
+    this.saving = true;
+    this.basicInfoPatient.drugs = this.newDrugs;
     this.setPatientGroup(this.basicInfoPatient.group);
+    this.goStep('1');
   }
 
-  detectLang() {
-    var testLangText = this.basicInfoPatient.needs.substr(0, 4000)
-    this.subscription.add(this.apiDx29ServerService.getDetectLanguage(testLangText)
-      .subscribe((res: any) => {
-        /*this.langToExtract = res[0].language;
-        this.onSubmitToExtractor();*/
-        if(res[0].language!='en'){
-          var info = [{"Text":this.basicInfoPatient.needs}]
-          this.subscription.add(this.apif29BioService.getTranslationDictionary2(res[0].language, info)
-                  .subscribe((res2: any) => {
-                    var textToTA = this.basicInfoPatient.needs.replace(/\n/g, " ");
-                    console.log(res2[0].translations[0].text);
-                    if(res2[0]!=undefined){
-                      if(res2[0].translations[0]!=undefined){
-                        textToTA = res2[0].translations[0].text;
-                      }
-                    }
-                    /*res2.language_source = this.langToExtract;
-                      this.resultSegmentation = res2;*/
-                      this.callTextAnalitycs(textToTA);
-                  }, (err) => {
-                      console.log(err);
-                      this.callTextAnalitycs(null);
-                  }));
-        }else{
-          this.callTextAnalitycs(null);
-        }
-        
-      }, (err) => {
-        console.log(err);
-        this.toastr.error('', this.translate.instant("generics.error try again"));
-        this.callTextAnalitycs(null);
-      }));
-  }
-
-  /*callTextAnalitycs2() {
-    this.callingTextAnalytics = true;
-    var jsontestLangText = { "text": this.basicInfoPatient.needs };
-    this.subscription.add(this.apif29BioService.callTextAnalytics(jsontestLangText)
-      .subscribe((res: any) => {
-        console.log(res);
-        this.newDrugs = [];
-        this.resTextAnalyticsSegments = res[1].segments;
-        for (let i = 0; i < this.resTextAnalyticsSegments.length; i++) {
-          for (let j = 0; j < this.resTextAnalyticsSegments[i].annotations.length; j++) {
-            var actualDrug = { name: '', dose: '', link: '' };
-            if (this.resTextAnalyticsSegments[i].annotations[j].category == 'MedicationName') {
-              actualDrug.name = this.resTextAnalyticsSegments[i].annotations[j].text;
-              if (this.resTextAnalyticsSegments[i].annotations[j + 2] != undefined) {
-                if (this.resTextAnalyticsSegments[i].annotations[j + 2].category == 'Dosage') {
-                  actualDrug.dose = this.resTextAnalyticsSegments[i].annotations[j + 2].text;
-                }
-              }
-              if (this.resTextAnalyticsSegments[i].annotations[j].links != null) {
-                var found = false;
-                for (let k = 0; k < this.resTextAnalyticsSegments[i].annotations[j].links.length && !found; k++) {
-                  if (this.resTextAnalyticsSegments[i].annotations[j].links[k].dataSource == 'ATC') {
-                    actualDrug.link = this.resTextAnalyticsSegments[i].annotations[j].links[k].id;
-                    found = true;
-                  }
-                }
-              }
-              this.newDrugs.push(actualDrug);
-            }
-          }
-        }
-        console.log(this.newDrugs);
-        this.callingTextAnalytics = false;
-        this.saveDrugs();
-
-      }, (err) => {
-        console.log(err);
-        this.callingTextAnalytics = false;
-      }));
-  }*/
-
-  callTextAnalitycs(textToTA) {
-    this.callingTextAnalytics = true;
-    var info = this.basicInfoPatient.needs.replace(/\n/g, " ");
-    if(textToTA!=null){
-      info = textToTA;
-    }
-    console.log(info);
-    var jsontestLangText = { "text": info };
-    this.subscription.add(this.apif29BioService.callTextAnalytics(jsontestLangText)
-      .subscribe((res: any) => {
-        this.newDrugs = [];
-        this.resTextAnalyticsSegments = res;
-          for (let j = 0; j < this.resTextAnalyticsSegments.entities.length; j++) {
-            var actualDrug = { name: '', dose: '', link: '' };
-            if (this.resTextAnalyticsSegments.entities[j].category == 'MedicationName') {
-              actualDrug.name = this.resTextAnalyticsSegments.entities[j].text;
-              
-              if (this.resTextAnalyticsSegments.entities[j].dataSources != null) {
-                var found = false;
-                for (let k = 0; k < this.resTextAnalyticsSegments.entities[j].dataSources.length && !found; k++) {
-                  if (this.resTextAnalyticsSegments.entities[j].dataSources[k].name == 'ATC') {
-                    actualDrug.link = this.resTextAnalyticsSegments.entities[j].dataSources[k].entityId;
-                    found = true;
-                  }
-                }
-              }
-              if (this.resTextAnalyticsSegments.entityRelations != null) {
-                var found = false;
-                for (let k = 0; k < this.resTextAnalyticsSegments.entityRelations.length && !found; k++) {
-                  if(this.resTextAnalyticsSegments.entityRelations[k].roles[0].entity.text==actualDrug.name && this.resTextAnalyticsSegments.entityRelations[k].roles[0].entity.category=='MedicationName' && this.resTextAnalyticsSegments.entityRelations[k].roles[1].entity.category=='Dosage'){
-                    actualDrug.dose = this.resTextAnalyticsSegments.entityRelations[k].roles[1].entity.text;
-                  }
-                  if(this.resTextAnalyticsSegments.entityRelations[k].roles[1].entity.text==actualDrug.name && this.resTextAnalyticsSegments.entityRelations[k].roles[0].entity.category=='Dosage' && this.resTextAnalyticsSegments.entityRelations[k].roles[1].entity.category=='MedicationName'){
-                    actualDrug.dose = this.resTextAnalyticsSegments.entityRelations[k].roles[0].entity.text;
-                  }
-                }
-
-              }
-              this.newDrugs.push(actualDrug);
-            }
-          }
-        console.log(this.newDrugs);
-        this.callingTextAnalytics = false;
-        this.saveDrugs();
-
-      }, (err) => {
-        console.log(err);
-        this.callingTextAnalytics = false;
-      }));
-  }
-
-  saveDrugs(){
+  saveDrugs2(){
+    this.newDrugs = this.basicInfoPatient.drugs
       var paramssend = { drugs: this.newDrugs };
       this.subscription.add( this.http.put(environment.api+'/api/patient/drugs/'+this.authService.getCurrentPatient().sub, paramssend)
       .subscribe( (res : any) => {
@@ -618,6 +477,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       }, (err) => {
         console.log(err.error);
       }));
+  }
+
+  saveDrugs(){
+    this.basicInfoPatient.drugs = this.newDrugs;
+    this.setPatientGroup(this.basicInfoPatient.group);
+    //this.goStep('1');
   }
 
   getLocationInfo(){
@@ -629,6 +494,8 @@ export class HomeComponent implements OnInit, OnDestroy {
             if(param[1]){
               this.basicInfoPatient.lat = Number(param[0]);
               this.basicInfoPatient.lng = Number(param[1]);
+              this.lat = parseFloat(this.basicInfoPatient.lat)
+              this.lng = parseFloat(this.basicInfoPatient.lng)
               this.showMarker = true;
             }
             
@@ -641,27 +508,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     return this.translate.instant(literal);
   }
 
-
-  submitInvalidForm() {
-    if (!this.personalInfoForm) { return; }
-    const base = this.personalInfoForm;
-    for (const field in base.form.controls) {
-      if (!base.form.controls[field].valid) {
-        base.form.controls[field].markAsTouched()
-      }
-    }
-  }
-
   onSubmit() {
-    console.log('eop');
-    if (this.personalInfoForm.value.role == 'User' && (this.personalInfoForm.value.subrole == 'null' || this.personalInfoForm.value.subrole == null)) {
-      Swal.fire(this.translate.instant("generics.Warning"), this.translate.instant("registration.select the type of patient1"), "warning");
-    } else {
-      this.sending = true;
-      var params = this.personalInfoForm.value;
-      params.permissions = {};
-      params.gender = this.basicInfoPatient.gender;
-
+    this.sending = true;
       if (this.basicInfoPatient.birthDate != null) {
         console.log(this.basicInfoPatient.birthDate);
         //this.basicInfoPatient.birthDate = this.dateService.transformDate(this.basicInfoPatient.birthDate);
@@ -676,7 +524,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           Swal.fire(this.translate.instant("generics.Warning"), this.translate.instant("generics.error try again"), "warning");
           this.sending = false;
         }));
-    }
 
 
   }
@@ -687,6 +534,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscription.add(this.http.put(environment.api + '/api/patients/' + this.authService.getCurrentPatient().sub, this.basicInfoPatient)
       .subscribe((res: any) => {
         this.authService.setGroup(this.basicInfoPatient.group);
+        this.getGroupName();
         this.saving = false;
         this.toastr.success('', this.translate.instant("generics.Data saved successfully"));
       }, (err) => {
@@ -697,12 +545,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   goStep(index) {
     this.step = index;
-  }
-
-  loadData() {
-    //cargar los datos del usuario
-    this.loadedFeels = false;
-    //this.getDrugs();
   }
 
 
@@ -814,6 +656,188 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.saveDrugs();
       }
     });
+  }
+
+  addDrug(InfoDrug){
+    this.editingDrugIndex = -1;
+    this.newDrug = {name: '', dose: '', link: '', strength: ''};
+    let ngbModalOptions: NgbModalOptions = {
+      keyboard: false,
+      backdrop : 'static',
+      windowClass: 'ModalClass-sm'// xl, lg, sm
+    };
+    this.modalReference = this.modalService.open(InfoDrug, ngbModalOptions);
+  }
+
+  editDrug(index, InfoDrug){
+    console.log(index);
+    this.editingDrugIndex = index;
+    this.newDrug = this.basicInfoPatient.drugs[index];
+    let ngbModalOptions: NgbModalOptions = {
+      keyboard: false,
+      backdrop : 'static',
+      windowClass: 'ModalClass-sm'// xl, lg, sm
+    };
+    this.modalReference = this.modalService.open(InfoDrug, ngbModalOptions);
+  }
+
+  saveNewDrug(){
+    this.detectLang2(this.newDrug);
+  }
+
+  closePanel(){
+    //this.users = JSON.parse(JSON.stringify(this.usersCopy));
+    this.modalReference.close();
+  }
+
+  detectLang2(drug) {
+    var testLangText = drug.name.substr(0, 4000)
+    if(testLangText.length>0){
+      this.subscription.add(this.apiDx29ServerService.getDetectLanguage(testLangText)
+      .subscribe((res: any) => {
+        if(res[0].language!='en'){
+          var info = [{"Text":drug.name}]
+          this.subscription.add(this.apif29BioService.getTranslationDictionary2(res[0].language, info)
+                  .subscribe((res2: any) => {
+                    var textToTA = drug.name.replace(/\n/g, " ");
+                    console.log(res2[0].translations[0].text);
+                    if(res2[0]!=undefined){
+                      if(res2[0].translations[0]!=undefined){
+                        textToTA = res2[0].translations[0].text;
+                      }
+                    }
+                    drug.name=textToTA;
+                      this.callTextAnalitycs2(drug);
+                  }, (err) => {
+                      console.log(err);
+                      this.callTextAnalitycs2(drug);
+                  }));
+        }else{
+          this.callTextAnalitycs2(drug);
+        }
+        
+      }, (err) => {
+        console.log(err);
+        this.toastr.error('', this.translate.instant("generics.error try again"));
+        this.callTextAnalitycs2(drug);
+      }));
+    }else{
+      this.callingTextAnalytics = false;
+      if(this.editingDrugIndex>-1){
+        this.basicInfoPatient.drugs[this.editingDrugIndex] = drug;
+      }else{
+        this.basicInfoPatient.drugs.push(drug);
+      }
+      this.saveDrugs2();
+      this.closePanel();
+    }
+    
+  }
+
+  callTextAnalitycs2(drug) {
+    this.callingTextAnalytics = true;
+    var info = drug.name.replace(/\n/g, " ");
+    console.log(info);
+    var jsontestLangText = { "text": info };
+    this.subscription.add(this.apif29BioService.callTextAnalytics(jsontestLangText)
+      .subscribe((res: any) => {
+        this.resTextAnalyticsSegments = res;
+        var foundDrug = false;
+          for (let j = 0; j < this.resTextAnalyticsSegments.entities.length; j++) {
+            var actualDrug = { name: '', dose: '', link: '', strength: '' };
+            if (this.resTextAnalyticsSegments.entities[j].category == 'MedicationName') {
+              actualDrug.name = this.resTextAnalyticsSegments.entities[j].text;
+              
+              if (this.resTextAnalyticsSegments.entities[j].dataSources != null) {
+                var found = false;
+                for (let k = 0; k < this.resTextAnalyticsSegments.entities[j].dataSources.length && !found; k++) {
+                  if (this.resTextAnalyticsSegments.entities[j].dataSources[k].name == 'ATC') {
+                    actualDrug.link = this.resTextAnalyticsSegments.entities[j].dataSources[k].entityId;
+                    found = true;
+                  }
+                }
+              }
+              if (this.resTextAnalyticsSegments.entityRelations != null) {
+                var found = false;
+                for (let k = 0; k < this.resTextAnalyticsSegments.entityRelations.length && !found; k++) {
+                  if(this.resTextAnalyticsSegments.entityRelations[k].roles[0].entity.text==actualDrug.name && this.resTextAnalyticsSegments.entityRelations[k].roles[0].entity.category=='MedicationName' && this.resTextAnalyticsSegments.entityRelations[k].roles[1].entity.category=='Dosage'){
+                    actualDrug.dose = this.resTextAnalyticsSegments.entityRelations[k].roles[1].entity.text;
+                  }
+                  if(this.resTextAnalyticsSegments.entityRelations[k].roles[1].entity.text==actualDrug.name && this.resTextAnalyticsSegments.entityRelations[k].roles[0].entity.category=='Dosage' && this.resTextAnalyticsSegments.entityRelations[k].roles[1].entity.category=='MedicationName'){
+                    actualDrug.dose = this.resTextAnalyticsSegments.entityRelations[k].roles[0].entity.text;
+                  }
+                }
+
+              }
+              drug.name= actualDrug.name;
+              drug.link= actualDrug.link;
+              if(this.editingDrugIndex>-1){
+                this.basicInfoPatient.drugs[this.editingDrugIndex] = drug;
+              }else{
+                this.basicInfoPatient.drugs.push(drug);
+              }
+              foundDrug = true;
+              this.saveDrugs2();
+            }
+          }
+          if(!foundDrug){
+            if(this.editingDrugIndex>-1){
+              this.basicInfoPatient.drugs[this.editingDrugIndex] = drug;
+              this.basicInfoPatient.drugs[this.editingDrugIndex].link = "";
+            }else{
+              drug.link = "";
+              this.basicInfoPatient.drugs.push(drug);
+            }
+            this.saveDrugs2();
+          }
+        this.callingTextAnalytics = false;
+        this.closePanel();
+
+      }, (err) => {
+        console.log(err);
+        this.callingTextAnalytics = false;
+        this.closePanel();
+      }));
+  }
+
+  getChecks(){
+    this.subscription.add( this.http.get(environment.api+'/api/patient/checks/'+this.authService.getCurrentPatient().sub)
+    .subscribe( (res : any) => {
+      console.log(res);
+      this.checks = res.checks;
+      this.tasksLoaded = true;
+     }, (err) => {
+       console.log(err.error);
+       this.tasksLoaded = true;
+     }));
+  }
+
+  setChecks(){
+    var paramssend = { checks: this.checks };
+    this.subscription.add( this.http.put(environment.api+'/api/patient/checks/'+this.authService.getCurrentPatient().sub, paramssend)
+    .subscribe( (res : any) => {
+      
+     }, (err) => {
+       console.log(err.error);
+     }));
+  }
+
+  setCheck1(bool){
+    this.checks.check1 = bool;
+    this.setChecks();
+  }
+
+  setCheck2(bool){
+    this.checks.check2 = bool;
+    this.setChecks();
+  }
+
+  openModal(SampleDrug){
+    let ngbModalOptions: NgbModalOptions = {
+      keyboard: false,
+      windowClass: 'ModalClass-sm'// xl, lg, sm
+    };
+    this.modalReference = this.modalService.open(SampleDrug, ngbModalOptions);
   }
 
 }

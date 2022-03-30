@@ -46,7 +46,7 @@ export class RegisterPageComponent implements OnDestroy, OnInit {
   termso: boolean = false;
   openedTerms: boolean = false;
   isApp: boolean = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1 && location.hostname != "localhost" && location.hostname != "127.0.0.1";
-  role: string = 'Clinical';
+  role: string = 'User';
   subrole: string = 'null';
 
   emailpar1: string = null;
@@ -164,6 +164,10 @@ export class RegisterPageComponent implements OnDestroy, OnInit {
     modalRef.componentInstance.subrole = this.subrole;
   }
 
+  setOpenTerms(){
+    this.openedTerms = true;
+  }
+
   openDataProcessingAgreement() {
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
@@ -185,9 +189,6 @@ export class RegisterPageComponent implements OnDestroy, OnInit {
 
   //  On submit click, reset field value
   onSubmit() {
-    if (this.registerForm.value.role == 'User' && (this.registerForm.value.subrole == 'null' || this.registerForm.value.subrole == null)) {
-      Swal.fire(this.translate.instant("generics.Warning"), this.translate.instant("registration.select the type of patient1"), "warning");
-    } else {
       this.sending = true;
       this.isVerifyemail = false;
       this.isEmailBusy = false;
@@ -200,7 +201,7 @@ export class RegisterPageComponent implements OnDestroy, OnInit {
 
       var params = this.registerForm.value;
       params.permissions = {};
-      params.role = "User";
+      //params.role = "User";
       if (params.role == 'Clinical') {
         params.subrole = null
       }
@@ -226,7 +227,7 @@ export class RegisterPageComponent implements OnDestroy, OnInit {
           this.registerForm.reset();
           this.sending = false;
         }));
-    }
+    
 
 
   }
