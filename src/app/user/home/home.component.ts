@@ -242,7 +242,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   getConsentGroup() {
     this.subscription.add(this.http.get(environment.api + '/api/patient/consentgroup/' + this.authService.getCurrentPatient().sub)
       .subscribe((res: any) => {
-        console.log(res);
         this.consentgroup = res.consentgroup;
       }, (err) => {
         console.log(err.error);
@@ -394,9 +393,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadedInfoPatient = false;
     this.subscription.add(this.http.get(environment.api + '/api/patients/' + this.authService.getCurrentPatient().sub)
       .subscribe((res: any) => {
-        console.log(res);
         this.basicInfoPatient = res.patient;
-        //this.basicInfoPatient.birthDate = this.dateService.transformDate(res.patient.birthDate);
         this.basicInfoPatientCopy = JSON.parse(JSON.stringify(res.patient));
         this.loadedInfoPatient = true;
         if (this.authService.getGroup() != null) {
@@ -428,13 +425,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   question3() {
-    /*if (this.basicInfoPatient.group == '61bb40e8d6e0cb14f08881c2' || this.basicInfoPatient.group == '61bb390ed6e0cb14f08881c1') {
-      this.step = '4';
-    } else {
-      this.step = '3';
-    }*/
     this.step = '3';
-    console.log(this.basicInfoPatient.lat);
     if(this.basicInfoPatient.lat==""){
       this.getLocationInfo();
     }else{
@@ -445,13 +436,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   question2(response) {
     this.basicInfoPatient.consentgroup = response;
-    console.log(this.basicInfoPatient.consentgroup);
     this.step = '2';
   }
 
   setNeeds() {
-    console.log(this.newDrugs);
-    console.log(this.basicInfoPatient.drugs);
     this.saving = true;
     this.basicInfoPatient.group = this.group;
     this.setPatientGroup(this.basicInfoPatient.group);
@@ -459,8 +447,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   setNeeds2() {
-    console.log(this.newDrugs);
-    console.log(this.basicInfoPatient.drugs);
     this.saving = true;
     this.basicInfoPatient.drugs = this.newDrugs;
     this.setPatientGroup(this.basicInfoPatient.group);
@@ -473,7 +459,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.subscription.add( this.http.put(environment.api+'/api/patient/drugs/'+this.authService.getCurrentPatient().sub, paramssend)
       .subscribe( (res : any) => {
         this.basicInfoPatient.drugs = this.newDrugs;
-        console.log(res);
       }, (err) => {
         console.log(err.error);
       }));
@@ -488,7 +473,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   getLocationInfo(){
     this.subscription.add(this.apiExternalServices.getInfoLocation()
         .subscribe((res: any) => {
-          console.log(res);
             this.actualLocation = res;
             var param = this.actualLocation.loc.split(',');
             if(param[1]){
@@ -510,11 +494,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.sending = true;
-      if (this.basicInfoPatient.birthDate != null) {
-        console.log(this.basicInfoPatient.birthDate);
-        //this.basicInfoPatient.birthDate = this.dateService.transformDate(this.basicInfoPatient.birthDate);
-      }
-      console.log(this.basicInfoPatient);
       this.subscription.add(this.http.put(environment.api + '/api/patients/' + this.authService.getCurrentPatient().sub, this.basicInfoPatient)
         .subscribe((res: any) => {
           this.sending = false;
@@ -547,73 +526,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.step = index;
   }
 
-
-  getDrugs() {
-    this.lineChartDrugs = [];
-    this.lineChartDrugsCopy = [];
-    this.maxValue = 0;
-    this.medications = [];
-    var info = { rangeDate: this.rangeDate }
-    this.subscription.add(this.http.post(environment.api + '/api/medications/dates/' + this.authService.getCurrentPatient().sub, info)
-      .subscribe((res: any) => {
-
-        this.medications = res;
-        console.log(res);
-        if (this.medications.length > 0) {
-          res.sort(this.sortService.DateSortInver("date"));
-          this.searchTranslationDrugs();
-          this.groupMedications();
-        } else {
-          this.showNotiDrugs = false;
-        }
-        this.loadedDrugs = true;
-      }, (err) => {
-        console.log(err);
-        this.loadedDrugs = true;
-      }));
-
-  }
-
-
-  searchTranslationDrugs() {
-    for (var i = 0; i < this.medications.length; i++) {
-      var foundTranslation = false;
-      for (var j = 0; j < this.drugsLang.length && !foundTranslation; j++) {
-        if (this.drugsLang[j].name == this.medications[i].drug) {
-          for (var k = 0; k < this.drugsLang[j].translation.length && !foundTranslation; k++) {
-            this.medications[i].drugTranslate = this.drugsLang[j].translation;
-            foundTranslation = true;
-          }
-        }
-      }
-    }
-  }
-
-  groupMedications() {
-    this.actualMedications = [];
-    for (var i = 0; i < this.medications.length; i++) {
-      if (!this.medications[i].endDate) {
-        this.actualMedications.push(this.medications[i]);
-      } else {
-        var medicationFound = false;
-        if (this.actualMedications.length > 0) {
-          for (var j = 0; j < this.actualMedications.length && !medicationFound; j++) {
-            if (this.medications[i].drug == this.actualMedications[j].drug) {
-              medicationFound = true;
-            }
-          }
-        }
-
-      }
-    }
-  }
-
-
-
-  onSelect(event) {
-    //your code here
-  }
-
   changePickupMarkerLocation($event: { coords: any }) {
     this.basicInfoPatient.lat = $event.coords.lat;
     this.basicInfoPatient.lng = $event.coords.lng;
@@ -629,8 +541,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     var data = {iscaregiver: this.userInfo.iscaregiver};
     this.subscription.add( this.http.put(environment.api+'/api/users/changeiscaregiver/'+this.authService.getIdUser(), data)
     .subscribe( (res : any) => {
-      console.log(res);
-      //this.getUsers();
      }, (err) => {
        console.log(err);
      }));
@@ -670,7 +580,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   editDrug(index, InfoDrug){
-    console.log(index);
     this.editingDrugIndex = index;
     this.newDrug = this.basicInfoPatient.drugs[index];
     let ngbModalOptions: NgbModalOptions = {
@@ -700,7 +609,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.subscription.add(this.apif29BioService.getTranslationDictionary2(res[0].language, info)
                   .subscribe((res2: any) => {
                     var textToTA = drug.name.replace(/\n/g, " ");
-                    console.log(res2[0].translations[0].text);
                     if(res2[0]!=undefined){
                       if(res2[0].translations[0]!=undefined){
                         textToTA = res2[0].translations[0].text;
@@ -737,7 +645,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   callTextAnalitycs2(drug) {
     this.callingTextAnalytics = true;
     var info = drug.name.replace(/\n/g, " ");
-    console.log(info);
     var jsontestLangText = { "text": info };
     this.subscription.add(this.apif29BioService.callTextAnalytics(jsontestLangText)
       .subscribe((res: any) => {
@@ -803,7 +710,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   getChecks(){
     this.subscription.add( this.http.get(environment.api+'/api/patient/checks/'+this.authService.getCurrentPatient().sub)
     .subscribe( (res : any) => {
-      console.log(res);
       this.checks = res.checks;
       this.tasksLoaded = true;
      }, (err) => {

@@ -149,7 +149,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadedRequest = false;
     this.subscription.add(this.requestCliService.getRequests()
       .subscribe((res: any) => {
-        console.log(res);
         this.requests = res;
         if(this.requests.length == 0){
           this.newRequest()
@@ -180,7 +179,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   getConsentGroup() {
     this.subscription.add(this.http.get(environment.api + '/api/patient/consentgroup/' + this.authService.getCurrentPatient().sub)
       .subscribe((res: any) => {
-        console.log(res);
         this.consentgroup = res.consentgroup;
       }, (err) => {
         console.log(err.error);
@@ -241,7 +239,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   getLocationInfo() {
     this.subscription.add(this.apiExternalServices.getInfoLocation()
       .subscribe((res: any) => {
-        console.log(res);
         this.actualLocation = res;
         var param = this.actualLocation.loc.split(',');
         if (param[1]) {
@@ -302,23 +299,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.actualRequest.lat = $event.coords.lat;
     this.actualRequest.lng = $event.coords.lng;
     this.showMarker = true;
-  }
-
-  changedCaretaker(event) {
-    this.userInfo.iscaregiver = event.value;
-    this.setCaretaker();
-  }
-
-  setCaretaker() {
-    var data = { iscaregiver: this.userInfo.iscaregiver };
-    this.subscription.add(this.http.put(environment.api + '/api/users/changeiscaregiver/' + this.authService.getIdUser(), data)
-      .subscribe((res: any) => {
-        console.log(res);
-        //this.getUsers();
-      }, (err) => {
-        console.log(err);
-      }));
-    //this.user = user;
   }
 
   confirmDeleteDrug(index, isWizard) {
@@ -387,14 +367,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   setRequest(){
     this.saving = true;
-    console.log(this.actualRequest);
     this.updateRequest(this.actualRequest,0);
   }
 
   updateRequest(request, index){
     this.requestIndex = index;
     this.saving = true;
-    console.log(request);
     this.changeRequest(request)
   }
 
@@ -406,7 +384,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.subscription.add(this.requestCliService.updateRequest(info._id, info)
       .subscribe((res: any) => {
         this.saving = false;
-        console.log(res);
+        this.toastr.success('', this.translate.instant("generics.Data saved successfully"));
         this.setUserPosition(info.lat, info.lng)
         this.getRequestCli();
       }, (err) => {
@@ -417,7 +395,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.subscription.add(this.requestCliService.saveRequest(info)
       .subscribe((res: any) => {
         this.saving = false;
-        console.log(res);
         this.setUserPosition(info.lat, info.lng)
         this.getRequestCli();
       }, (err) => {
@@ -435,7 +412,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.userInfo.lng = parseFloat(lng)
     this.subscription.add(this.requestCliService.setPosition(this.userInfo.lat, this.userInfo.lng)
       .subscribe((res: any) => {
-        console.log(res);
       }, (err) => {
         console.log(err);
       }));
@@ -465,7 +441,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   deleteRequest(_id){
     this.subscription.add(this.requestCliService.deleteRequest(_id)
       .subscribe((res: any) => {
-        console.log(res);
         this.getRequestCli();
       }, (err) => {
         console.log(err);
@@ -487,7 +462,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   editDrug(index, InfoDrug, isWizard){
     this.isWizard = isWizard;
-    console.log(index);
     this.editingDrugIndex = index;
     if(isWizard){
       this.newDrug = this.actualRequest.drugs[index];
@@ -522,7 +496,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.subscription.add(this.apif29BioService.getTranslationDictionary2(res[0].language, info)
                   .subscribe((res2: any) => {
                     var textToTA = drug.name.replace(/\n/g, " ");
-                    console.log(res2[0].translations[0].text);
                     if(res2[0]!=undefined){
                       if(res2[0].translations[0]!=undefined){
                         textToTA = res2[0].translations[0].text;
@@ -572,7 +545,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   callTextAnalitycs2(drug) {
     this.callingTextAnalytics = true;
     var info = drug.name.replace(/\n/g, " ");
-    console.log(info);
     var jsontestLangText = { "text": info };
     this.subscription.add(this.apif29BioService.callTextAnalytics(jsontestLangText)
       .subscribe((res: any) => {
@@ -665,7 +637,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   getChecks(){
     this.subscription.add( this.http.get(environment.api+'/api/requestclin/checks/'+this.requests[0]._id)
     .subscribe( (res : any) => {
-      console.log(res);
       this.checks = res.checks;
       this.tasksLoaded = true;
      }, (err) => {

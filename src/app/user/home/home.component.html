@@ -29,11 +29,7 @@
                                 {{'homeraito.p1.1' | translate }}
                             </p>                          
                             <div class="center-elements mt-1">
-                                <!--<button class="mr-1 btn btn-primary" style="width: 100px;" (click)="question2(false);">{{'generics.No' |
-                                    translate }}</button>
-                                    <button class="btn btn-dark mr-1"
-                                    (click)="step='1'">{{'generics.Previous' | translate }}</button>-->
-                                <button class="btn btn-primary ml-1" style="width: 100px;" (click)="question2(true);">{{'generics.Next' |
+                                <button class="btn btn-primary" style="width: 100px;" (click)="question2(true);">{{'generics.Next' |
                                     translate }}</button>
                             </div>
                         </div>
@@ -79,7 +75,6 @@
                                     <mat-datepicker startView="multi-year"
                                         (daySelected)="closeDatePickerStart($event, pickerOnset)" touchUi="true"
                                         #pickerOnset></mat-datepicker>
-                                    <!--<p *ngIf="datainfo.birthDate ==null || datainfo.birthDate ==''" class="danger">{{'generics.required' | translate }}</p>-->
                                 </div>
                             </div>
                             <p class="mb-0 text-bold-500">{{'homeraito.t2.3' | translate }}</p>
@@ -116,11 +111,6 @@
                                             <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
                                         </span>
                                     </div>
-                            <!--<div class="center-elements">
-                                
-                                <button class="btn btn-primary ml-1" (click)="goStep('1')">{{'wizard.btn' | translate
-                                    }}</button>
-                            </div>-->
                         </div>
                         <div *ngIf="step=='4'">
                             <p>{{'homeraito.t1.1' | translate }}</p>
@@ -345,7 +335,6 @@
                                 <mat-datepicker startView="multi-year"
                                     (daySelected)="closeDatePickerStart($event, pickerOnset)" touchUi="true"
                                     #pickerOnset></mat-datepicker>
-                                <!--<p *ngIf="datainfo.birthDate ==null || datainfo.birthDate ==''" class="danger">{{'generics.required' | translate }}</p>-->
                             </div>
                         </div>
                         <div>

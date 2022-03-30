@@ -15,7 +15,6 @@
 				<div class="card-content">
 					<div class="">
 						<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-							<!--[label]="m.userName" [iconUrl]="m.iconUrl"-->
 							<agm-marker *ngFor="let m of users; let i = index" [latitude]="m.lat" [longitude]="m.lng" [iconUrl]="m.icon">
 
 								<agm-info-window>

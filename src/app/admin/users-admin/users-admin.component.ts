@@ -64,9 +64,7 @@ export class UsersAdminComponent implements OnDestroy{
           break;
 
     }
-    this.currentGroup = this.authService.getGroup()
-    console.log(this.currentGroup);
-    
+    this.currentGroup = this.authService.getGroup()    
     this.loadGroupId();
   }
 
@@ -90,7 +88,6 @@ export class UsersAdminComponent implements OnDestroy{
       .subscribe( (resGroup : any) => {
         this.groupId = resGroup._id;
         this.getUsers();
-        //this.loadDrugs();
       }, (err) => {
         console.log(err);
     }));
@@ -98,7 +95,6 @@ export class UsersAdminComponent implements OnDestroy{
 
   getUsers(){
     this.loadingUsers = true;
-    console.log(this.authService.getGroup());
     this.subscription.add( this.http.get(environment.api+'/api/admin/users/'+this.groupId)
     .subscribe( (res : any) => {
       for(var j=0;j<res.length;j++){
@@ -119,7 +115,6 @@ export class UsersAdminComponent implements OnDestroy{
 
   getRequests(){
     this.loadingUsers = true;
-    console.log(this.authService.getGroup());
     this.subscription.add( this.http.get(environment.api+'/api/admin/requestclin/'+this.groupId)
     .subscribe( (res : any) => {
       
@@ -131,7 +126,6 @@ export class UsersAdminComponent implements OnDestroy{
       }
       res.sort(this.sortService.GetSortOrder("userName"));
       this.usersCopy = JSON.parse(JSON.stringify(this.users));
-      console.log(this.users);
       this.loadingUsers = false;
       
     }, (err) => {
@@ -158,7 +152,6 @@ export class UsersAdminComponent implements OnDestroy{
   }
 
   fieldStatusChanged(row){
-    console.log(row);
     var status = row.status;
     if(row.status=='new'){
       status = this.translate.instant("war.status.opt1");
@@ -178,16 +171,14 @@ export class UsersAdminComponent implements OnDestroy{
     if(row.role=='User'){
       this.subscription.add( this.http.put(environment.api+'/api/patient/status/'+row.patientId, data)
       .subscribe( (res : any) => {
-        console.log(res);
-        //this.getUsers();
+        this.toastr.success('', this.translate.instant("generics.Data saved successfully"));
        }, (err) => {
          console.log(err);
        }));
     }else{
       this.subscription.add( this.http.put(environment.api+'/api/requestclin/status/'+row.patientId, data)
       .subscribe( (res : any) => {
-        console.log(res);
-        //this.getUsers();
+        this.toastr.success('', this.translate.instant("generics.Data saved successfully"));
        }, (err) => {
          console.log(err);
        }));
@@ -198,13 +189,22 @@ export class UsersAdminComponent implements OnDestroy{
 
   saveNotes(){
     var data = {notes: this.user.notes};
-    this.subscription.add( this.http.put(environment.api+'/api/patients/changenotes/'+this.user.patientId, data)
-    .subscribe( (res : any) => {
-      console.log(res);
-      //this.getUsers();
-     }, (err) => {
-       console.log(err);
-     }));
+    if(this.user.role=='User'){
+      this.subscription.add( this.http.put(environment.api+'/api/patients/changenotes/'+this.user.patientId, data)
+      .subscribe( (res : any) => {
+        this.toastr.success('', this.translate.instant("generics.Data saved successfully"));
+       }, (err) => {
+         console.log(err);
+       }));
+    }else{
+      this.subscription.add( this.http.put(environment.api+'/api/requestclin/changenotes/'+this.user.patientId, data)
+      .subscribe( (res : any) => {
+        this.toastr.success('', this.translate.instant("generics.Data saved successfully"));
+       }, (err) => {
+         console.log(err);
+       }));
+    }
+    
     //this.user = user;
   }
 
@@ -227,23 +227,15 @@ export class UsersAdminComponent implements OnDestroy{
 
   onSubmitExportData(){
     var tempRes = JSON.parse(JSON.stringify(this.users));
-    tempRes = this.addedMetadata(tempRes);
-    this.createFile(this.users);
-  }
-
-  addedMetadata(res){
-      res.metadata = {};
-      res.metadata.unitsOfMeasure = {};
-      res.metadata.unitsOfMeasure['Weight'] = 'Kg';
-      res.metadata.unitsOfMeasure['Height'] = 'cm';
-      res.metadata.unitsOfMeasure['Drugs dose'] = 'mg';
-    return res;
+    for(var j=0;j<tempRes.length;j++){
+      delete tempRes[j].icon;
+    }
+    this.createFile(tempRes);
   }
 
   createFile(res){
     let json2csvCallback = function (err, csv) {
       if (err) throw err;
-      console.log(csv);
       var blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
     var url  = URL.createObjectURL(blob);
     var p = document.createElement('p');
@@ -266,26 +258,7 @@ export class UsersAdminComponent implements OnDestroy{
 
   }
 
-  
-
-
-  loadDrugs(){
-    this.subscription.add( this.http.get(environment.api+'/api/group/medications/'+this.groupId)
-    .subscribe( (res : any) => {
-      if(res.medications.data.length == 0){
-        //no tiene medications
-      }else{
-        for (var i = 0; i < res.medications.data.drugs.length; i++) {
-          //this.annotations.drugs.push({_id: res.medications.data.drugs[i]._id, name:res.medications.data.drugs[i].name, annotations:res.medications.data.drugs[i].annotations})
-        }
-      }
-     }, (err) => {
-       console.log(err);
-     }));
-  }
-
   viewInfoPatient(user,InfoPatient){
-    console.log(user);
     this.user = user;
     if(user.lat!=''){
       this.lat = Number(user.lat)
