@@ -41,7 +41,6 @@ export class SupportComponent implements OnDestroy{
     this.initVars();
 
     this.subscription.add(this.blob.change.subscribe(params => {
-      console.log(params);
        this.uploadingFile = !(params.uploaded);
        this.supportInfo.files.push(params.filename);
        //Swal.fire('Done', '', "success");
@@ -64,7 +63,6 @@ export class SupportComponent implements OnDestroy{
   getAzureBlobSasToken(){
     this.subscription.add( this.apiDx29ServerService.getAzureBlobSasToken(this.accessToken.containerName)
     .subscribe( (res : any) => {
-      console.log(res);
       this.accessToken.sasToken = '?'+res;
       this.blob.init(this.accessToken);
     }, (err) => {
@@ -96,13 +94,10 @@ export class SupportComponent implements OnDestroy{
     if((event.target.files[0].size /1024/1024) + this.totalSize > 4000){
       Swal.fire('Space limit exceeded. Delete some file or hire more space.', '', "warning");
     }else{
-      console.log(event.target.files[0]);
-
       var filename = event.target.files[0].name;
       var extension = filename.substr(filename.lastIndexOf('.'));
       filename = filename.split(extension)[0];
       filename = filename + '-support' + '-' + Date.now()+extension;
-      console.log(filename);
       this.uploadingFile = true;
       this.uploadProgress = this.blob
         .uploadToBlobStorage(this.accessToken, event.target.files[0], filename);
@@ -124,7 +119,31 @@ export class SupportComponent implements OnDestroy{
     if(this.authGuard.testtoken()){
       this.sending = true;
       this.supportInfo.groupId = this.authService.getGroup();
-      this.subscription.add( this.http.post(environment.api+'/api/support/', this.supportInfo)
+      if(this.supportInfo.groupId == null){
+        if( this.authService.getRole()=='User'){
+          this.supportInfo.groupId = '622f83174c824c0dec16c78b';
+          this.confirmSendEmail();
+        }else{
+          this.getGroupClinic();
+        }
+      }else{
+        this.confirmSendEmail();
+      }
+    }
+  }
+
+  getGroupClinic(){
+    this.subscription.add( this.http.get(environment.api+'/api/requestclin/group/'+this.authService.getIdUser())
+    .subscribe( (res : any) => {
+      this.supportInfo.groupId = res.groupId;
+      this.confirmSendEmail();
+    }, (err) => {
+      console.log(err);
+    }));
+  }
+
+  confirmSendEmail(){
+    this.subscription.add( this.http.post(environment.api+'/api/support/', this.supportInfo)
       .subscribe( (res : any) => {
         //this.supportInfo = res.diagnosis;
         this.toastr.success('', this.translate.instant("generics.Data saved successfully"));
@@ -136,8 +155,6 @@ export class SupportComponent implements OnDestroy{
          console.log(err);
          this.toastr.error('', this.translate.instant("generics.error try again"));
        }));
-
-    }
   }
 
   loadMsg(){
