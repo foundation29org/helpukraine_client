@@ -41,36 +41,6 @@ export class ApiDx29ServerService {
       })
   }
 
-    calculate(info, lang) {
-      return this.http.post(environment.api + '/api/gateway/Diagnosis/calculate/'+lang, info)
-        .map((res: any) => {
-          return res;
-        }, (err) => {
-          console.log(err);
-          return err;
-        })
-    }
-
-    searchDiseases(info) {
-      return this.http.post(environment.api + '/api/gateway/search/disease/', info)
-        .map((res: any) => {
-          return res;
-        }, (err) => {
-          console.log(err);
-          return err;
-        })
-    }
-
-    searchSymptoms(info) {
-      return this.http.post(environment.api + '/api/gateway/search/symptoms/', info)
-        .map((res: any) => {
-          return res;
-        }, (err) => {
-          console.log(err);
-          return err;
-        })
-    }
-
     createblobOpenDx29(symptoms) {
       return this.http.post(environment.api + '/api/blobOpenDx29', symptoms)
         .map((res: any) => {
@@ -100,36 +70,6 @@ export class ApiDx29ServerService {
           return err;
         })
     }
-    
-    searchwiki(info) {
-      return this.http.post(environment.api + '/api/wiki', info)
-        .map((res: any) => {
-          return res;
-        }, (err) => {
-          console.log(err);
-          return err;
-        })
-    }
-
-    searchwikiSearch(info) {
-      return this.http.post(environment.api + '/api/wikiSearch', info)
-        .map((res: any) => {
-          return res;
-        }, (err) => {
-          console.log(err);
-          return err;
-        })
-    }
-
-    getPatientGroups(idDisease) {
-      return this.http.get(environment.api + '/api/patientgroups/'+idDisease)
-        .map((res: any) => {
-          return res;
-        }, (err) => {
-          console.log(err);
-          return err;
-        })
-    }
 
     getblob(patientId, blobName){
       var jsonText = { "patientId": patientId, "blobName": blobName };
@@ -151,16 +91,5 @@ export class ApiDx29ServerService {
         return err;
        });
     }
-
-    callOpenAi(textf){
-      console.log(textf);
-      return this.http.post(environment.api+'/api/callopenai', textf)
-      .map( (res : any) => {
-          return res;
-      }, (err) => {
-          console.log(err);
-          return err;
-      })
-  }
 
 }

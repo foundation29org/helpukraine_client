@@ -14,7 +14,6 @@ import { SortService } from 'app/shared/services/sort.service';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/toPromise';
 import { Apif29BioService } from 'app/shared/services/api-f29bio.service';
-import { Apif29NcrService } from 'app/shared/services/api-f29ncr.service';
 import { DateService } from 'app/shared/services/date.service';
 import { SearchFilterPipe } from 'app/shared/services/search-filter.service';
 import { NgbModal, NgbModalRef, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
@@ -27,7 +26,7 @@ import { DateAdapter } from '@angular/material/core';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [PatientService, Apif29BioService, ApiDx29ServerService, Apif29NcrService, ApiExternalServices]
+  providers: [PatientService, Apif29BioService, ApiDx29ServerService, ApiExternalServices]
 })
 
 export class HomeComponent implements OnInit, OnDestroy {

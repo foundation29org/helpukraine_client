@@ -46,8 +46,6 @@ export class LoginPageComponent implements OnDestroy, OnInit{
     finishTime: Date = null;
     isApp: boolean = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1 && location.hostname != "localhost" && location.hostname != "127.0.0.1";
 
-    urlV2: string = environment.urlDxv2;
-
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, public authService: AuthService, private authGuard: AuthGuard,  public translate: TranslateService, private patientService: PatientService, private inj: Injector, public toastr: ToastrService) {
       //var param = router.parseUrl(router.url).queryParams["email","key"];
       var param = router.parseUrl(router.url).queryParams;

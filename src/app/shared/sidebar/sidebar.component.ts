@@ -38,10 +38,6 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   redirectUrl: string = '';
   isHomePage: boolean = false;
   private subscription: Subscription = new Subscription();
-  permGPT3: boolean = false;
-  searchGpt3: string = '';
-  callingGpt3: boolean = false;
-  showGTP: boolean = false;
 
   constructor(
     private elementRef: ElementRef,
@@ -98,7 +94,6 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
         var tempUrl= (event.url).toString().split('?');
         var actualUrl = tempUrl[0];
         var tempUrl1 = (actualUrl).toString();
-        this.showGTP = false;
         if(tempUrl1.indexOf('/home')!=-1){
           this.isHomePage = true;
         }else{
@@ -119,7 +114,6 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
         else if(this.authService.getRole() != undefined){
           //cargar menú del usuario
           this.menuItems = ROUTESHAVEDIAGNOSIS.filter(menuItem => menuItem);
-          this.showGTP = true;
 
         }else if(this.authService.getRole() == undefined){
           this.menuItems = ROUTESHOMEDX.filter(menuItem => menuItem);
@@ -131,7 +125,6 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.config = this.configService.templateConf;
-    this.showGTP = false;
     if(this.authService.getRole() == 'SuperAdmin'){
       //cargar menú del Admin
       this.menuItems = ROUTESSUPERADMIN.filter(menuItem => menuItem);
@@ -147,7 +140,6 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     else if(this.authService.getRole() != undefined){
       //cargar menú del usuario
       this.menuItems = ROUTESHAVEDIAGNOSIS.filter(menuItem => menuItem);
-      this.showGTP = true;
     }else if(this.authService.getRole() == undefined){
       this.menuItems = ROUTESHOMEDX.filter(menuItem => menuItem);
     }
@@ -157,7 +149,6 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     else {
       this.logoUrl = 'assets/img/logo.png';
     }
-    //this.getGtp3Perm();
   }
 
   ngAfterViewInit() {
@@ -200,87 +191,6 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   ngxWizardFunction(path: string) {
     if (path.indexOf("forms/ngx") !== -1)
       this.router.navigate(["forms/ngx/wizard"], { skipLocationChange: false });
-  }
-
-  getGtp3Perm() {
-    this.subscription.add(this.http.get(environment.api + '/api/gpt3/' + this.authService.getIdUser())
-      .subscribe((res: any) => {
-        this.permGPT3 = res.gptPermission;
-      }, (err) => {
-        console.log(err);
-      }));
-
-  }
-
-  setGtp3Perm() {
-    var value = { gptPermission: this.permGPT3 };
-    this.subscription.add( this.http.post(environment.api+'/api/gpt3/'+this.authService.getIdUser(), value)
-      .subscribe((res: any) => {
-        if(this.permGPT3){
-          this.searchOpenAi();
-        }
-      }, (err) => {
-        console.log(err);
-      }));
-
-  }
-
-  setGtp3NumCalls() {
-    this.subscription.add( this.http.get(environment.api+'/api/gpt3/numcalls/'+this.authService.getIdUser())
-      .subscribe((res: any) => {
-      }, (err) => {
-        console.log(err);
-      }));
-
-  }
-
-  searchOpenAi() {
-    if(this.searchGpt3.length<3){
-      Swal.fire(this.translate.instant("generics.Warning"), this.translate.instant("homeraito.Type a question in the text box"), "warning");
-    }else{
-      if (!this.permGPT3) {
-        Swal.fire({
-          title: 'Disclaimer',
-          html: this.translate.instant("homeraito.MsgDisclaimer"),
-          input: 'text',
-          confirmButtonText: this.translate.instant("homeraito.I agree"),
-          cancelButtonText: this.translate.instant("generics.Cancel"),
-          showCancelButton: true,
-          reverseButtons: true
-        }).then(function (email) {
-          if (email.value) {
-            console.log('acepta');
-            this.permGPT3 = true;
-          } else {
-            console.log('rechaza');
-            this.permGPT3 = false;
-          }
-          this.setGtp3Perm();
-        }.bind(this))
-      } else {
-        var value = { value: this.searchGpt3 };
-        this.callingGpt3 = true;
-        this.subscription.add(this.apiDx29ServerService.callOpenAi(value)
-          .subscribe((res: any) => {
-            this.callingGpt3 = false;
-            Swal.fire({
-              title: this.searchGpt3,
-              html: res.choices[0].text,
-              willClose: () => {
-                this.searchGpt3 = '';
-              }
-            }).then((result) => {
-              this.searchGpt3 = '';
-            })
-            this.setGtp3NumCalls();
-          }, (err) => {
-            console.log(err);
-            this.callingGpt3 = false;
-          }));
-      }
-    }
-    
-
   }
 
 }

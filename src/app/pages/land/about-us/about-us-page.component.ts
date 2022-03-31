@@ -59,12 +59,6 @@ export class AboutUsPageComponent implements OnDestroy {
         this.subscription.unsubscribe();
     }
 
-    registerToDx29(){
-        this.lauchEvent("Registration");
-        this.lauchEvent("Registration Home - Event");
-        window.location.href = environment.urlDxv2 + "/Identity/Account/Register";
-    }
-
     openWeb(){
         var lang = sessionStorage.getItem('lang');
         if(lang=='es'){

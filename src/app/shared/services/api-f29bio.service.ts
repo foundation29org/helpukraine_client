@@ -12,16 +12,6 @@ export class Apif29BioService {
 
     constructor(private http: HttpClient) {}
 
-    getSymptomsOfDisease(lang,listIds,depth){
-        return this.http.post(environment.urlDxv2+'/api/v1/F29Bio/disease/phenotypes/'+lang, listIds)
-            .map( (res : any) => {
-                return res;
-            }, (err) => {
-                console.log(err);
-                return err;
-            })
-
-    }
     getInfoSymptomsJSON(listIds,json){
         return new Observable((observer)=>{
             var listFound=[];
@@ -35,42 +25,9 @@ export class Apif29BioService {
         })
 
     }
-
-    getInfoOfSymptoms(lang,listIds){
-        //var startTime = new Date().getTime();
-        return this.http.post(environment.urlDxv2+'/api/v1/F29Bio/phenotypes/'+lang, listIds)
-        .map( (res : any) => {
-            return res;
-        }, (err) => {
-            console.log(err);
-            return err;
-        })
-    }
-
-    getInfoOfDiseasesLang(listOfDiseases, lang){
-        return this.http.post(environment.urlDxv2+'/api/v1/F29Bio/diseases/'+lang, listOfDiseases)
-        .map( (res : any) => {
-            return res;
-        }, (err) => {
-            console.log(err);
-            return err;
-        })
-    }
-
     
     callTextAnalytics(textf){
         return this.http.post(environment.api+'/api/callTextAnalytics', textf)
-        .map( (res : any) => {
-            return res;
-        }, (err) => {
-            console.log(err);
-            return err;
-        })
-    }
-
-
-    getSegmentation(lang,textf){
-        return this.http.post(environment.f29bio+'/api/Translation/document/segmentation?lan='+lang, textf)
         .map( (res : any) => {
             return res;
         }, (err) => {
@@ -100,25 +57,5 @@ export class Apif29BioService {
               return err;
           })
       }
-
-    getSuccessorsOfSymptoms(listOfSymptoms){
-        return this.http.post(environment.f29bio+'/api/BioEntity/phenotype/successors/',listOfSymptoms)
-        .map( (res : any) => {
-            return res;
-        }, (err) => {
-            console.log(err);
-            return err;
-        })
-    }
-
-    getLeavesOfSymptoms(listOfSymptoms){
-        return this.http.post(environment.f29bio+'/api/BioEntity/phenotype/leaves/',listOfSymptoms)
-        .map( (res : any) => {
-            return res;
-        }, (err) => {
-            console.log(err);
-            return err;
-        })
-    }
 
 }
