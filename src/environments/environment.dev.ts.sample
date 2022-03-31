@@ -2,7 +2,7 @@
     export const environment = {
     production: true,
     api: undefined,  //Server URL: 'http://<direction>:<port>'
-    blobAccessToken:{sasToken: null,blobAccountUrl: 'https://blobraito.blob.core.windows.net/'},
+    blobAccessToken:{sasToken: null,blobAccountUrl: 'https://blobuk.blob.core.windows.net/'},
     ncrService:undefined, // NCR service URL
     f29bio:undefined, // f29Bio sevice URL 
     f29api: undefined, // f29api service URL

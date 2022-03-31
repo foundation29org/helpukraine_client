@@ -65,15 +65,6 @@ export class AuthInterceptor implements HttpInterceptor {
       authReq = req.clone({ headers });
     }
 
-    /*if(req.url.indexOf('https://blobraito.blob.core.windows.net')!==-1){
-      isExternalReq = true;
-      const headers = new HttpHeaders({
-        'Access-Control-Allow-Origin':'*',
-      });
-      authReq = req.clone({ headers});//'Content-Type',  'application/json'
-      //authReq = authReq.clone({ headers: req.headers.set('Content-Type',  'application/json' )});
-    }*/
-
     // Pass on the cloned request instead of the original request.
     return next.handle(authReq)
       .catch((error, caught) => {

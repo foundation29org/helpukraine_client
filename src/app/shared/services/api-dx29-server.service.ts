@@ -30,16 +30,6 @@ export class ApiDx29ServerService {
             return err;
         })
     }
-    getTranslationDictionary(text){
-      var jsonText = [{ "text": text }];
-        return this.http.post(environment.api+'/api/getTranslationDictionary', jsonText)
-        .map( (res : any) => {
-            return res;
-        }, (err) => {
-            console.log(err);
-            return err;
-        })
-    }
 
     getAzureBlobSasToken(containerName){
       return this.http.get(environment.api+'/api/getAzureBlobSasTokenWithContainer/'+containerName)
