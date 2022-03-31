@@ -447,7 +447,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   setNeeds2() {
     this.saving = true;
-    this.basicInfoPatient.drugs = this.newDrugs;
+    //this.basicInfoPatient.drugs = this.newDrugs;
     this.setPatientGroup(this.basicInfoPatient.group);
     this.goStep('1');
   }
