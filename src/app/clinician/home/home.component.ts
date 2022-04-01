@@ -156,8 +156,14 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.showPanelEdit = false;
           this.requests.sort(this.sortService.DateSort("creationDate"));
           for (let i = 0; i < this.requests.length; i++) {
-            this.requests[i].lat = parseFloat(this.requests[i].lat)
-            this.requests[i].lng = parseFloat(this.requests[i].lng)
+            if(this.requests[i].lat!=''){
+              this.requests[i].lat = parseFloat(this.requests[i].lat)
+              this.requests[i].lng = parseFloat(this.requests[i].lng)
+              this.showMarker = true;
+            }else{
+              this.showMarker = false;
+            }
+            
   
           }
           this.getChecks();
@@ -215,12 +221,30 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe((res: any) => {
         this.userInfo = res;
         if (this.userInfo.lat == "") {
-          this.getLocationInfo();
+          //this.getLocationInfo();
         }
       }, (err) => {
         console.log(err);
       }));
 
+  }
+
+  deletelocation0(){
+    this.actualRequest.lat = ''
+    this.actualRequest.lng = ''
+    this.showMarker = false;
+    if(this.requests.length>0){
+      this.requests[0].lat = ''
+      this.requests[0].lng = ''
+    }
+  }
+
+  deletelocation1(){
+    this.requests[0].lat = ''
+    this.requests[0].lng = ''
+    this.showMarker = false;
+    this.actualRequest.lat = ''
+    this.actualRequest.lng = ''
   }
 
   question0() {
@@ -289,6 +313,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   changePickupMarkerLocation($event: { coords: any }, index) {
+    console.log(this.requests);
+    console.log(index);
     this.requests[index].lat = $event.coords.lat;
     this.requests[index].lng = $event.coords.lng;
     this.showMarker = true;
@@ -376,6 +402,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   changeRequest(info){
+    console.log(info);
     if(this.modalReference != undefined){
       this.modalReference.close()
     }
@@ -383,6 +410,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.subscription.add(this.requestCliService.updateRequest(info._id, info)
       .subscribe((res: any) => {
         this.saving = false;
+        this.step = '1';
         this.toastr.success('', this.translate.instant("generics.Data saved successfully"));
         this.setUserPosition(info.lat, info.lng)
         this.getRequestCli();
@@ -394,6 +422,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.subscription.add(this.requestCliService.saveRequest(info)
       .subscribe((res: any) => {
         this.saving = false;
+        this.step = '1';
         this.setUserPosition(info.lat, info.lng)
         this.getRequestCli();
       }, (err) => {
@@ -405,15 +434,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   setUserPosition(lat, lng){
-    this.lat = parseFloat(lat)
-    this.lng = parseFloat(lng)
-    this.userInfo.lat = parseFloat(lat)
-    this.userInfo.lng = parseFloat(lng)
-    this.subscription.add(this.requestCliService.setPosition(this.userInfo.lat, this.userInfo.lng)
-      .subscribe((res: any) => {
-      }, (err) => {
-        console.log(err);
-      }));
+    if(lat!=''){
+      this.showMarker = true;
+      this.lat = parseFloat(lat)
+      this.lng = parseFloat(lng)
+      this.userInfo.lat = parseFloat(lat)
+      this.userInfo.lng = parseFloat(lng)
+      this.subscription.add(this.requestCliService.setPosition(this.userInfo.lat, this.userInfo.lng)
+        .subscribe((res: any) => {
+        }, (err) => {
+          console.log(err);
+        }));
+    }else{
+      this.showMarker = false;
+    }
+    
   }
 
   confirmDeleteRequest(index) {

@@ -122,9 +122,13 @@
                     <div>
                         <h4 class="content-header d-block row col-12 mb-0">{{'physicians.Location' | translate }}</h4>
                         <p class="mb-0">{{'war.This is where the patient is currently located' | translate }}</p>
-                        <agm-map [latitude]="requests[0].lat" [longitude]="requests[0].lng" [zoom]="zoom"  (mapClick)="changePickupMarkerLocation($event, i)">
-                            <agm-marker [latitude]="requests[0].lat" [longitude]="requests[0].lng" [title]="'Pickup Location'"></agm-marker>
+                        <agm-map *ngIf="requests[0].lat==''" [latitude]="lat" [longitude]="lng" [zoom]="zoom"  (mapClick)="changePickupMarkerLocation($event, 0)">
+                            <agm-marker *ngIf="showMarker && requests[0].lat!=''" [latitude]="requests[0].lat" [longitude]="requests[0].lng" [title]="'Pickup Location'"></agm-marker>
                         </agm-map>
+                        <agm-map *ngIf="requests[0].lat!=''" [latitude]="requests[0].lat" [longitude]="requests[0].lng" [zoom]="zoom"  (mapClick)="changePickupMarkerLocation($event, 0)">
+                            <agm-marker *ngIf="showMarker && requests[0].lat!=''" [latitude]="requests[0].lat" [longitude]="requests[0].lng" [title]="'Pickup Location'"></agm-marker>
+                        </agm-map>
+                        <a *ngIf="showMarker && requests[0].lat!=''" class="btn btn-info" (click)="deletelocation1()">{{'war.nosharelocation' | translate }}</a>
                     </div>
             </div>
             <div class="card-block mt-3">
@@ -257,8 +261,9 @@
                                     <p class="text-bold-500 mt-0 mb-0">{{'physicians.Location' | translate }}</p>
                                     <p class="mb-2">{{'war.location2' | translate }}</p>
                                     <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"  (mapClick)="changePickupMarkerLocation2($event)">
-                                        <agm-marker [latitude]="actualRequest.lat" [longitude]="actualRequest.lng" [title]="'Pickup Location'"></agm-marker>
+                                        <agm-marker *ngIf="showMarker && actualRequest.lat!=''" [latitude]="actualRequest.lat" [longitude]="actualRequest.lng" [title]="'Pickup Location'"></agm-marker>
                                     </agm-map>
+                                    <a *ngIf="showMarker && actualRequest.lat!=''" class="btn btn-info" (click)="deletelocation0()">{{'war.nosharelocation' | translate }}</a>
                                     <div class="center-elements mt-3">
                                         <button class="btn btn-primary mr-1 mb-0"
                                           (click)="step='2'">{{'generics.Previous' | translate }}</button>

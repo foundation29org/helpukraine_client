@@ -6,6 +6,7 @@ import { FullPagesRoutingModule } from "./full-pages-routing.module";
 import { TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AutosizeModule} from 'ngx-autosize';
+import { UiSwitchModule } from 'ngx-ui-switch';
 
 import { UserProfilePageComponent } from "./user-profile/user-profile-page.component";
 import { SupportComponent } from './support/support.component';
@@ -22,7 +23,8 @@ import { SupportComponent } from './support/support.component';
         NgbModule,
         TranslateModule,
         CustomFormsModule,
-        AutosizeModule
+        AutosizeModule,
+        UiSwitchModule
     ],
     declarations: [
         UserProfilePageComponent,

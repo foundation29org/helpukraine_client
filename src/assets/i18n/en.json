@@ -1605,7 +1605,8 @@
     "Number of boxes": "Number of boxes per month",
     "Boxes": "Boxes per month",
     "Dosage strength": "Dosage strength",
-    "Generic name": "Generic name"
+    "Generic name": "Generic name",
+    "nosharelocation": "I don't want to say my approximate location"
   },
   "physicians":{
     "I am a physician who treats patients with": "What kind of patients do you treat?",
@@ -1632,7 +1633,9 @@
     "t1": "Locations",
     "subtitle1": "This is the approximate location of your users. Click on the pins to view detailed information.",
     "t2": "Detailed list",
-    "subtitle2": "This list allows let's you get details on each case. Clicking on the pin will locate them on the map. The column titles are actionable to sort the table."
+    "subtitle2": "This list allows let's you get details on each case. Clicking on the pin will locate them on the map. The column titles are actionable to sort the table.",
+    "noti1": "Notify me by email when a new user signs up",
+    "noti2": "Notify me by email when a user changes their request"
   }
 }
 

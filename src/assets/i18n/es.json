@@ -1607,7 +1607,8 @@
     "Number of boxes": "Número de cajas por mes",
     "Boxes": "Cajas por mes",
     "Dosage strength": "Potencia de la dosis",
-    "Generic name": "Nombre genérico"
+    "Generic name": "Nombre genérico",
+    "nosharelocation": "No quiero decir mi ubicación aproximada"
   },
   "physicians":{
     "I am a physician who treats patients with": "¿Qué tipo de pacientes tratas?",
@@ -1634,6 +1635,8 @@
     "t1": "Ubicaciones",
     "subtitle1": "Esta es la ubicación aproximada de tus usuarios. Haz clic en los pines para ver información detallada.",
     "t2": "Lista detallada",
-    "subtitle2": "Esta lista le permite obtener detalles sobre cada caso. Al hacer clic en el marcador, los ubicará en el mapa. Los títulos de las columnas son accionables para ordenar la tabla."
+    "subtitle2": "Esta lista le permite obtener detalles sobre cada caso. Al hacer clic en el marcador, los ubicará en el mapa. Los títulos de las columnas son accionables para ordenar la tabla.",
+    "noti1": "Avísame por correo electrónico cuando un nuevo usuario se registre",
+    "noti2": "Notificarme por correo electrónico cuando un usuario cambie su solicitud" 
   }
 }

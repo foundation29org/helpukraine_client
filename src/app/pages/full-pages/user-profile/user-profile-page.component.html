@@ -23,6 +23,9 @@
 				<a *ngIf="role=='User'" class="list-group-item no-border" (click)="SetActive($event, 'PanelPermissions')">
 						{{tittlePermissions}}
 				</a>
+				<a *ngIf="role=='Admin'" class="list-group-item no-border" (click)="SetActive($event, 'PanelNotifications')">
+					{{tittleNotifications}}
+				</a>
 			</div>
 		</div>
 		<div class="col-md-9">
@@ -32,6 +35,7 @@
 						<i [ngClass]="{'ft-user success': activeTittleMenu=='General'}"></i>
 						<i [ngClass]="{'ft-lock danger': activeTittleMenu=='Password'}"></i>
 						<i [ngClass]="{'fas fa-archive danger': activeTittleMenu=='Permissions'}"></i>
+						<i [ngClass]="{'fas fa-bell danger': activeTittleMenu=='Notifications'}"></i>
 						{{ msgActiveTittleMenu }}
 					</h4>
 				</div>
@@ -199,6 +203,38 @@
 													<div class="form-group">
 														<button class="btn btn-primary" type="button"
 																(click)="confirmDelete()">{{'generics.Delete data' | translate }}</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div *ngIf="activeTittleMenu == 'Notifications'">
+					<div class="row" *ngIf="!loading">
+						<div class="col-md-12">
+							<div class="card" style="margin-top:0px;">
+								<div class="card-body">
+									<div>
+										<div class="form-body">
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<Label>{{'adminRole.noti1' | translate }}</Label>
+														<ui-switch class="d-block" id="isNew"
+														name="isNew" [(ngModel)]="notificationsAdmin.notifications.isNew"></ui-switch>
+													</div>
+													<div class="form-group">
+														<Label>{{'adminRole.noti2' | translate }}</Label>
+														<ui-switch class="d-block" id="changeData"
+														name="changeData" [(ngModel)]="notificationsAdmin.notifications.changeData"></ui-switch>
+													</div>
+													<div class="form-group mt-3">
+														<button class="d-block btn btn-primary" type="button"
+																(click)="setNotificationsAdmin()">{{'generics.Save' | translate }}</button>
 													</div>
 												</div>
 											</div>

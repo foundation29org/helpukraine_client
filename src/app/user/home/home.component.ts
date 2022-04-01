@@ -398,11 +398,23 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.authService.getGroup() != null) {
           this.getGroupName();
         }
+        if(this.basicInfoPatient.lat!=''){
+          this.lat = parseFloat(this.basicInfoPatient.lat)
+          this.lng = parseFloat(this.basicInfoPatient.lng)
+          this.showMarker = true;
+        }
+        
       }, (err) => {
         console.log(err);
         this.loadedInfoPatient = true;
         this.toastr.error('', this.translate.instant("generics.error try again"));
       }));
+  }
+
+  deletelocation(){
+    this.basicInfoPatient.lat = ''
+    this.basicInfoPatient.lng = ''
+    this.showMarker = false;
   }
 
   ageFromDateOfBirthday(dateOfBirth: any) {
@@ -430,6 +442,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }else{
       this.lat = parseFloat(this.basicInfoPatient.lat)
       this.lng = parseFloat(this.basicInfoPatient.lng)
+      this.showMarker = true;
     }
   }
 
@@ -514,6 +527,13 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.authService.setGroup(this.basicInfoPatient.group);
         this.getGroupName();
         this.saving = false;
+        if(this.basicInfoPatient.lat==""){
+          //this.getLocationInfo();
+        }else{
+          this.lat = parseFloat(this.basicInfoPatient.lat)
+          this.lng = parseFloat(this.basicInfoPatient.lng)
+          this.showMarker = true;
+        }
         this.toastr.success('', this.translate.instant("generics.Data saved successfully"));
       }, (err) => {
         console.log(err);
