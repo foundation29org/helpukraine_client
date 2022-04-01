@@ -1608,7 +1608,8 @@
     "Boxes": "Cajas por mes",
     "Dosage strength": "Potencia de la dosis",
     "Generic name": "Nombre genérico",
-    "nosharelocation": "No quiero decir mi ubicación aproximada"
+    "nosharelocation": "No quiero decir mi ubicación aproximada",
+    "optionalLocation": "No se ha añadido la ubicación aproximada. Haga clic en el mapa para seleccionarlo. <strong>Esto es opcional.</strong>"
   },
   "physicians":{
     "I am a physician who treats patients with": "¿Qué tipo de pacientes tratas?",

@@ -97,10 +97,11 @@
                         <div *ngIf="step=='3'">
                                         <p class="text-bold-500 mt-0 mb-0">{{'war.What is their location' | translate }}</p>
                                         <p class="mb-2">{{'war.location2' | translate }}</p>
+                                        <p *ngIf="basicInfoPatient.lat==''" class="mb-2" [innerHTML]="'war.optionalLocation' | translate "></p>
                                         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"  (mapClick)="changePickupMarkerLocation($event)">
                                             <agm-marker *ngIf="showMarker && basicInfoPatient.lat!=''" [latitude]="basicInfoPatient.lat" [longitude]="basicInfoPatient.lng" [title]="'Pickup Location'"></agm-marker>
                                         </agm-map>
-                                        <a *ngIf="showMarker && basicInfoPatient.lat!=''" class="btn btn-info" (click)="deletelocation()">{{'war.nosharelocation' | translate }}</a>
+                                        <a *ngIf="showMarker && basicInfoPatient.lat!=''" class="mt-2 btn btn-primary" (click)="deletelocation()">{{'war.nosharelocation' | translate }}</a>
                                     <div class="center-elements mt-3">
                                         <span *ngIf="!sending">
                                             <button class="btn btn-dark mr-1 mb-0"
@@ -340,11 +341,12 @@
                         </div>
                         <div>
                             <h4 class="content-header d-block row col-12 mb-0">{{'physicians.Location' | translate }}</h4>
-                            <p class="mb-0">{{'war.This is where the patient is currently located' | translate }}</p>
+                            <p *ngIf="basicInfoPatient.lat!=''" class="mb-0">{{'war.This is where the patient is currently located' | translate }}</p>
+                            <p *ngIf="basicInfoPatient.lat==''" class="mb-0" [innerHTML]="'war.optionalLocation' | translate "></p>
                             <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"  (mapClick)="changePickupMarkerLocation($event)">
                                 <agm-marker *ngIf="showMarker && basicInfoPatient.lat!=''" [latitude]="basicInfoPatient.lat" [longitude]="basicInfoPatient.lng" [title]="'Pickup Location'"></agm-marker>
                             </agm-map>
-                            <a *ngIf="showMarker && basicInfoPatient.lat!=''" class="btn btn-info" (click)="deletelocation()">{{'war.nosharelocation' | translate }}</a>
+                            <a *ngIf="showMarker && basicInfoPatient.lat!=''" class="mt-2 btn btn-primary" (click)="deletelocation()">{{'war.nosharelocation' | translate }}</a>
                         </div>
                     </form>
                     <div class="mt-3">

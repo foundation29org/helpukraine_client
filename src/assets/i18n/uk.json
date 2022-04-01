@@ -1608,7 +1608,8 @@
         "Boxes": "Коробки на місяць",
         "Dosage strength": "Сила дозування",
         "Generic name": "Загальна назва",
-        "nosharelocation": "Я не хочу називати своє приблизне місцезнаходження"
+        "nosharelocation": "Я не хочу називати своє приблизне місцезнаходження",
+        "optionalLocation": "Приблизне місцезнаходження не додано. Натисніть на карту, щоб вибрати її. <strong>Це необов’язково.</strong>"
     },
     "physicians":{
       "I am a physician who treats patients with": "Яких пацієнтів ви лікуєте?",

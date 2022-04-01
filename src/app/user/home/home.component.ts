@@ -438,7 +438,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   question3() {
     this.step = '3';
     if(this.basicInfoPatient.lat==""){
-      this.getLocationInfo();
+      //this.getLocationInfo();
     }else{
       this.lat = parseFloat(this.basicInfoPatient.lat)
       this.lng = parseFloat(this.basicInfoPatient.lng)

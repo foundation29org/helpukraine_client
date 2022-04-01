@@ -376,8 +376,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   initRequest(){
     this.actualRequest={
-      lat: parseFloat(this.userInfo.lat),
-      lng: parseFloat(this.userInfo.lng),
+      lat: '',
+      lng: '',
       notes: '',
       needs: '',
       needsOther: '',
