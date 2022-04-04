@@ -114,12 +114,12 @@
                         <!--<p *ngIf="!openedTerms" class="font-small-2">
                           {{'registration.IMPORTANT NOTE' | translate }}
                         </p>-->
-                          <div class="form-group col-sm-offset-1">
+                          <div class="form-group col-sm-offset-1" *ngIf="role=='User'">
                             <mat-checkbox (click)="!openedTerms ? openTerms() : setOpenTerms()" [attr.title]="!openedTerms ? 'You must read and understand the privacy policy in order to activate this field.' : 'This field is required'"
                                 class="example-margin"
                                 [disabled]="!openedTerms" name="terms" ngModel required #terms="ngModel" id="terms">
                                 <label class="d-inline" style="margin-bottom: auto !important;">
-                                  <a (click)="openTerms()">
+                                  <a (click)="openTerms()" class="info">
                                     <small style="white-space: normal;"> {{'registration.I have read and understood the' | translate }}
                                     </small>
                                   </a>
@@ -128,12 +128,19 @@
                             
                             <small class="form-text text-muted danger" *ngIf="!terms.valid && (terms.dirty || terms.touched) && openedTerms">{{'generics.required' | translate }}</small>
                             <small class="form-text text-muted danger" *ngIf="!terms.valid && (terms.dirty || terms.touched) && !openedTerms">{{'registration.It is mandatory to read the privacy policy before continuing' | translate }}</small>
-
+                          </div>
+                          <div class="form-group col-sm-offset-1" *ngIf="role=='Clinical'">
+                            <label class="d-inline" style="margin-bottom: auto !important;">
+                              <a (click)="openTerms()" class="info">
+                                <small style="white-space: normal;"> {{'registration.policyClinicians' | translate }}
+                                </small>
+                              </a>
+                            </label>
                           </div>
                           <div class="form-group text-center">
                               <button (click)="goToLogin()" type="button" class="btn btn-grey btn-outline-grey">{{'generics.Cancel' | translate }}</button>
                               <span *ngIf="!sending">
-                                <div *ngIf="f.valid && openedTerms;then formValid else formError"></div>
+                                <div *ngIf="f.valid && ((openedTerms && role=='User') || role=='Clinical');then formValid else formError"></div>
                                 <ng-template #formValid><button class="ml-2 btn btn-dark" type="submit"> {{'registration.Get Started' | translate }}</button></ng-template>
                                 <ng-template #formError><button class="ml-2 btn btn-dark" type="button" (click)="submitInvalidForm()"> {{'registration.Get Started' | translate }}</button></ng-template>
                               </span>

@@ -40,6 +40,7 @@ export class UsersAdminComponent implements OnDestroy{
   currentGroup: any;
   countries: any;
   groupId: any;
+  groupEmail: any;
   // Google map lat-long
   lat: number = 50.431134;
   lng: number = 30.654701;
@@ -86,6 +87,7 @@ export class UsersAdminComponent implements OnDestroy{
   loadGroupId(){
     this.subscription.add( this.http.get(environment.api+'/api/group/'+this.authService.getGroup())
       .subscribe( (resGroup : any) => {
+        this.groupEmail = resGroup.email;
         this.groupId = resGroup._id;
         this.getUsers();
       }, (err) => {
@@ -166,8 +168,7 @@ export class UsersAdminComponent implements OnDestroy{
     }else if(row.status=='helped'){
       status = this.translate.instant("war.status.opt6");
     }
-
-    var data = {status: row.status, email: row.email, lang: row.lang, group: this.authService.getGroup(), statusInfo: status};
+    var data = {status: row.status, email: row.email, groupEmail: row.groupEmail, userName: row.userName,lang: row.lang, group: this.authService.getGroup(), statusInfo: status};
     if(row.role=='User'){
       this.subscription.add( this.http.put(environment.api+'/api/patient/status/'+row.patientId, data)
       .subscribe( (res : any) => {

@@ -8,50 +8,17 @@
     <div class="modal-body">
       <h5>{{'policy.CONTENT' | translate }}</h5>
       <ol>
-        <li><a class="info" (click)="goTo('step1')">{{'prereg.t1' | translate }}</a></li>
-        <li><a class="info" (click)="goTo('step2')">{{'prereg.t2' | translate }}</a></li>
-        <li><a class="info" (click)="goTo('step3')">{{'prereg.t4' | translate }}</a></li>
-        <li><a class="info" (click)="goTo('step4')">{{'prereg.t3' | translate }}</a></li>
-        <li><a class="info" (click)="goTo('step5')">{{'policy.step1' | translate }}</a></li>
+        <li><a class="info" (click)="goTo('step1')">{{'policy.step1' | translate }}</a></li>
+        <li><a class="info" (click)="goTo('step2')">{{'prereg.t1' | translate }}</a></li>
+        <li><a class="info" (click)="goTo('step3')">{{'policy.step2' | translate }}</a></li>
+        <li><a class="info" (click)="goTo('step4')">{{'prereg.t2' | translate }}</a></li>
+        <li><a class="info" (click)="goTo('step5')">{{'prereg.t3' | translate }}</a></li>
         <li><a class="info" (click)="goTo('step6')">{{'prereg.t6' | translate }}</a></li>
-        <li><a class="info" (click)="goTo('step7')">{{'policy.step2' | translate }}</a></li>
-        <li><a class="info" (click)="goTo('step8')">{{'policy.step3' | translate }}</a></li>
-        <li><a class="info" (click)="goTo('step9')">{{'policy.step4' | translate }}</a></li>
+        <li><a class="info" (click)="goTo('step7')">{{'policy.step4' | translate }}</a></li>
       </ol>
       <a id="step1"></a>
       <div>
-        <h6 class="pt-2 dark text-bold-600">1. {{'prereg.t1' | translate }}</h6>
-        <p>
-          {{'prereg.a1' | translate }}
-        </p>
-        <p>
-          {{'prereg.a2' | translate }}
-        </p>
-      </div>
-      <a id="step2"></a>
-      <div>
-        <h6 class="pt-2 dark text-bold-600">2. {{'prereg.t2' | translate }}</h6>
-        <p>
-          {{'prereg.a2.1' | translate }}
-        </p>
-      </div>
-      <a id="step3"></a>
-      <div>
-        <h6 class="pt-2 dark text-bold-600">3. {{'prereg.t4' | translate }}</h6>
-        <p>
-          {{'prereg.a4' | translate }}
-        </p>
-      </div>
-      <a id="step4"></a>
-      <div>
-        <h6 class="pt-2 dark text-bold-600">4. {{'prereg.t3' | translate }}</h6>
-        <p>
-          {{'prereg.a3' | translate }}
-        </p>
-      </div>
-      <a id="step5"></a>
-      <div>
-        <h6 class="pt-2 dark text-bold-600">5. {{'policy.step1' | translate }}</h6>
+        <h6 class="pt-2 dark text-bold-600">1. {{'policy.step1' | translate }}</h6>
         <p>
           {{'policy.step1-1' | translate }}:
         </p>
@@ -61,44 +28,81 @@
           <li>{{'generics.Email' | translate }}: support@foundation29.org</li>
         </ul>
       </div>
+      <a id="step2"></a>
+      <div>
+        <h6 class="pt-2 dark text-bold-600">2. {{'prereg.t1' | translate }}</h6>
+        <p>
+          {{'prereg.a0' | translate }}
+        </p>
+        <ul>
+          <li>
+            {{'prereg.a1' | translate }}
+          </li>
+          <li>
+            {{'prereg.a2' | translate }}
+          </li>
+        </ul>
+      </div>
+      <a id="step3"></a>
+      <div>
+        <h6 class="pt-2 dark text-bold-600">3. {{'policy.step2' | translate }}</h6>
+        <p>
+          {{'policy.step2-1' | translate }}:
+        </p>
+        <ul>
+          <li>{{'policy.step2-2' | translate }}
+            <ul>
+              <li>{{'policy.step2-2.1' | translate }}</li>
+              <li>{{'policy.step2-2.2' | translate }}</li>
+              <li>{{'policy.step2-2.3' | translate }}</li>
+            </ul>
+          </li>
+          <li>{{'policy.step2-3' | translate }}
+            <ul>
+              <li>{{'policy.step2-3.1' | translate }}</li>
+              <li>{{'policy.step2-3.2' | translate }}</li>
+              <li>{{'policy.step2-3.3' | translate }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <a id="step4"></a>
+      <div>
+        <h6 class="pt-2 dark text-bold-600">4. {{'prereg.t2' | translate }}</h6>
+        <p>
+          {{'prereg.a2.1' | translate }}
+        </p>
+        <p>
+          {{'prereg.a2.2' | translate }}
+        </p>
+      </div>
+      <a id="step5"></a>
+      <div>
+        <h6 class="pt-2 dark text-bold-600">5. {{'prereg.t3' | translate }}</h6>
+        <p>
+          {{'prereg.a3' | translate }}
+        </p>
+        <p>
+          {{'prereg.a3.1' | translate }}
+        </p>
+        <p>
+          {{'prereg.a3.2' | translate }}
+        </p>
+      </div>
+      
       <a id="step6"></a>
       <div>
         <h6 class="pt-2 dark text-bold-600">6. {{'prereg.t6' | translate }}</h6>
         <p>
           {{'prereg.a6' | translate }}
         </p>
+        <p>
+          {{'prereg.a6.1' | translate }}
+        </p>
       </div>
       <a id="step7"></a>
-      <div>
-        <h6 class="pt-2 dark text-bold-600">7. {{'policy.step2' | translate }}</h6>
-        <p>
-          {{'policy.step2-1' | translate }}:
-        </p>
-        <ul>
-          <li>
-            {{'policy.step2-2' | translate }}
-          </li>
-          <li>
-            {{'policy.step2-3' | translate }}
-          </li>
-        </ul>
-      </div>
-      <a id="step8"></a>
-      <div>
-        <h6 class="pt-2 dark text-bold-600">8. {{'policy.step3' | translate }}</h6>
-        <p>
-          {{'policy.step3-1' | translate }}
-        </p>
-        <p>
-          {{'policy.step3-2' | translate }}
-        </p>
-        <p>
-          {{'policy.step3-3' | translate }}
-        </p>
-      </div>
-      <a id="step9"></a>
        <div>
-         <h6 class="pt-2 dark text-bold-600">9. {{'policy.step4' | translate }}</h6>
+         <h6 class="pt-2 dark text-bold-600">7. {{'policy.step4' | translate }}</h6>
          {{'policy.step4-1' | translate }}:
          <ul>
             <li>
@@ -115,6 +119,9 @@
             </li>
             <li>
               {{'policy.step4-6' | translate }}
+            </li>
+            <li>
+              {{'policy.step4-6.1' | translate }}
             </li>
           </ul>
   
