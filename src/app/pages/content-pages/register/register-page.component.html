@@ -10,6 +10,18 @@
                     <h2 class="text-center content-header mb-3">{{'registration.Registration' | translate }}</h2>
                       <form   (ngSubmit)="onSubmit()" #f="ngForm">
                         <div class="form-group">
+                          <div class="mb-0 center-elements">
+                              <div class="btn-group btn-group-toggle" ngbRadioGroup name="role" [(ngModel)]="role" style="width: 100%;">
+                                <label ngbButtonLabel class="btn-white">
+                                    <input ngbButton type="radio" value="User"> {{'registration.Im a patient' | translate }}
+                                </label>
+                                <label ngbButtonLabel class="btn-white">
+                                    <input ngbButton type="radio" value="Clinical"> {{'registration.Im a clinician' | translate }}
+                                </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
                           <div class="">
                               <input type="text" class="form-control" name="userName" id="userName" placeholder="{{'generics.Name' | translate }}" ngModel required #userName="ngModel">
                           </div>
@@ -95,22 +107,6 @@
                             </div>
                           </div>
                         </div>
-                        <div class="form-group">
-                          <div class="mb-0 center-elements">
-                              <!--<select id="role" name="role" class="form-control" ngModel [(ngModel)]="role">
-                                <option value="User" selected>{{'registration.Im a patient' | translate }}</option>
-                                <option value="Clinical">{{'registration.Im a clinician' | translate }}</option>
-                              </select>-->
-                              <div class="btn-group btn-group-toggle" ngbRadioGroup name="role" [(ngModel)]="role" style="width: 100%;">
-                                <label ngbButtonLabel class="btn-white">
-                                    <input ngbButton type="radio" value="User"> {{'registration.Im a patient' | translate }}
-                                </label>
-                                <label ngbButtonLabel class="btn-white">
-                                    <input ngbButton type="radio" value="Clinical"> {{'registration.Im a clinician' | translate }}
-                                </label>
-                            </div>
-                          </div>
-                        </div>
                         <!--<p *ngIf="!openedTerms" class="font-small-2">
                           {{'registration.IMPORTANT NOTE' | translate }}
                         </p>-->
@@ -129,7 +125,7 @@
                             <small class="form-text text-muted danger" *ngIf="!terms.valid && (terms.dirty || terms.touched) && openedTerms">{{'generics.required' | translate }}</small>
                             <small class="form-text text-muted danger" *ngIf="!terms.valid && (terms.dirty || terms.touched) && !openedTerms">{{'registration.It is mandatory to read the privacy policy before continuing' | translate }}</small>
                           </div>
-                          <div class="form-group col-sm-offset-1" *ngIf="role=='Clinical'">
+                          <div class="form-group text-center" *ngIf="role=='Clinical'">
                             <label class="d-inline" style="margin-bottom: auto !important;">
                               <a (click)="openTerms()" class="info">
                                 <small style="white-space: normal;"> {{'registration.policyClinicians' | translate }}
