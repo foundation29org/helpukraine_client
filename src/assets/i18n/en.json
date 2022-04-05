@@ -1594,6 +1594,7 @@
     "No users": "No users",
     "Need shelter": "Do you need shelter?",
     "Need other": "Do you need anything else?",
+    "mandatoryfields": "Add at least one drug or write something in the text box to finish.",
     "Nedd other2": "If there is anything else we could help with, like medical equipment, please let us know.",
     "Links": "Links",
     "Link": "Link",
@@ -1623,7 +1624,7 @@
   },
   "physicians":{
     "I am a physician who treats patients with": "What kind of patients do you treat?",
-    "othertreat": "If you can't your specialization, write it down so we can try to expand the list. This is an initial list that will grow as more associations join. Contact us if you have a suggestion.",
+    "othertreat": "If you can’t your specialization, write it down so we can try to expand the list. This is an initial list that will grow as more associations join. Contact us if you have a suggestion.",
     "Does not appear on the list": "Does not appear on the list",
     "Write what kind of patients you treat": "Write what kind of patients you treat",
     "Location": "Location",

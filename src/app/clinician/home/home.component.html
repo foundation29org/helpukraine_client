@@ -335,6 +335,7 @@
                                                     placeholder="{{'seizures.Write down any details' | translate }}"
                                                     class="form-control mt-2"></textarea>
                             <div class="center-elements mt-3">
+                                <span class="danger d-block mb-2" *ngIf="!saving && actualRequest.drugs.length==0 && actualRequest.needsOther == ''">{{'war.mandatoryfields' | translate }}</span>
                                 <button *ngIf="!saving" class="btn btn-primary mr-1 mb-0"
                                     (click)="step='3'">{{'generics.Previous' | translate }}</button>
                                 <button *ngIf="saving" [disabled]="saving" class="btn btn-dark ml-1 mb-0" (click)="setRequest();">{{'generics.Please wait' | translate}} <i class="fa fa-spinner fa-spin fa-fw"></i></button>

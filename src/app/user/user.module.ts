@@ -45,7 +45,10 @@ import {AutosizeModule} from 'ngx-autosize';
         UiSwitchModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        AgmCoreModule,
+        AgmCoreModule.forRoot({
+            apiKey: "AIzaSyAcbDF_C9btRGAUWSePhOR4UxsVbtK3cJA",
+            language: sessionStorage && sessionStorage.getItem('lang') || 'en'
+          }),
         NgxChartsModule,
         MatCheckboxModule,
         NgxSliderModule,

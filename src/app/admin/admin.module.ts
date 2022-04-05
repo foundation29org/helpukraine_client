@@ -33,7 +33,10 @@ import { SafePipe } from '../shared/services/safe.pipe';
         MatDatepickerModule,
         MatNativeDateModule,
         UiSwitchModule,
-        AgmCoreModule,
+        AgmCoreModule.forRoot({
+            apiKey: "AIzaSyAcbDF_C9btRGAUWSePhOR4UxsVbtK3cJA",
+            language: sessionStorage && sessionStorage.getItem('lang') || 'en'
+          }),
         NgxDatatableModule,
         AutosizeModule
     ],

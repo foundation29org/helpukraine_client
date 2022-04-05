@@ -83,7 +83,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         }
       }),
       AgmCoreModule.forRoot({
-        apiKey: "AIzaSyAcbDF_C9btRGAUWSePhOR4UxsVbtK3cJA"
+        apiKey: "AIzaSyAcbDF_C9btRGAUWSePhOR4UxsVbtK3cJA",
+        language: sessionStorage && sessionStorage.getItem('lang') || 'en'
       }),
       Angulartics2Module.forRoot(),
       PerfectScrollbarModule,
