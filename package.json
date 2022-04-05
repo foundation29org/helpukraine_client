@@ -45,7 +45,7 @@
     "@ngx-translate/http-loader": "4.0.0",
     "@swimlane/ngx-charts": "^13.0.2",
     "@swimlane/ngx-datatable": "^16.0.3",
-    "@types/googlemaps": "^3.43.3",
+    "@types/googlemaps": "^3.39.13",
     "@types/jquery": "^3.3.34",
     "@types/node": "^13.7.1",
     "angular-calendar": "^0.28.28",
