@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, NgZone } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
@@ -187,8 +187,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   editingDrugIndex: number = -1;
   checks: any = {};
   groupName = '';
+  mapClickListener: any;
+  map: any;
 
-  constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private patientService: PatientService, public searchFilterPipe: SearchFilterPipe, public toastr: ToastrService, private dateService: DateService, private apiDx29ServerService: ApiDx29ServerService, private sortService: SortService, private adapter: DateAdapter<any>, private searchService: SearchService, private router: Router, private apiExternalServices: ApiExternalServices, private apif29BioService: Apif29BioService, private modalService: NgbModal) {
+  constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private patientService: PatientService, public searchFilterPipe: SearchFilterPipe, public toastr: ToastrService, private dateService: DateService, private apiDx29ServerService: ApiDx29ServerService, private sortService: SortService, private adapter: DateAdapter<any>, private searchService: SearchService, private router: Router, private apiExternalServices: ApiExternalServices, private apif29BioService: Apif29BioService, private modalService: NgbModal, private zone: NgZone) {
     this.adapter.setLocale(this.authService.getLang());
     this.lang = this.authService.getLang();
     switch (this.authService.getLang()) {
@@ -230,6 +232,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    if (this.mapClickListener) {
+      this.mapClickListener.remove();
+    }
   }
 
 
@@ -549,6 +554,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.basicInfoPatient.lat = $event.coords.lat;
     this.basicInfoPatient.lng = $event.coords.lng;
     this.showMarker = true;
+  }
+
+  mapReadyHandler(map: google.maps.Map): void {
+    this.map = map;
+    this.mapClickListener = this.map.addListener('click', (e: google.maps.MouseEvent) => {
+      this.zone.run(() => {
+        // Here we can get correct event
+        console.log(e.latLng.lat(), e.latLng.lng());
+        this.basicInfoPatient.lat = e.latLng.lat();
+        this.basicInfoPatient.lng = e.latLng.lng();
+        this.showMarker = true;
+      });
+    });
   }
 
   changedCaretaker(event) {

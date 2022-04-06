@@ -123,10 +123,10 @@
                         <h4 class="content-header d-block row col-12 mb-0">{{'physicians.Location' | translate }}</h4>
                         <p *ngIf="requests[0].lat!=''" class="mb-0">{{'war.This is where the patient is currently located' | translate }}</p>
                         <p *ngIf="requests[0].lat==''" class="mb-0" [innerHTML]="'war.optionalLocation' | translate "></p>
-                        <agm-map *ngIf="requests[0].lat==''" [latitude]="lat" [longitude]="lng" [zoom]="zoom"  (mapClick)="changePickupMarkerLocation($event, 0)">
+                        <agm-map *ngIf="requests[0].lat==''" [latitude]="lat" [longitude]="lng" [zoom]="zoom"  (mapReady)="mapReadyHandler2($event)">
                             <agm-marker *ngIf="showMarker && requests[0].lat!=''" [latitude]="requests[0].lat" [longitude]="requests[0].lng" [title]="'Pickup Location'"></agm-marker>
                         </agm-map>
-                        <agm-map *ngIf="requests[0].lat!=''" [latitude]="requests[0].lat" [longitude]="requests[0].lng" [zoom]="zoom"  (mapClick)="changePickupMarkerLocation($event, 0)">
+                        <agm-map *ngIf="requests[0].lat!=''" [latitude]="requests[0].lat" [longitude]="requests[0].lng" [zoom]="zoom"  (mapReady)="mapReadyHandler2($event)">
                             <agm-marker *ngIf="showMarker && requests[0].lat!=''" [latitude]="requests[0].lat" [longitude]="requests[0].lng" [title]="'Pickup Location'"></agm-marker>
                         </agm-map>
                         <a *ngIf="showMarker && requests[0].lat!=''" class="mt-2 btn btn-primary" (click)="deletelocation1()">{{'war.nosharelocation' | translate }}</a>
@@ -218,10 +218,10 @@
                     <div class="justify-content-center align-items-center text-left">
                         <div *ngIf="step=='1'">
                             <h2 class="content-header mb-3 mt-0" style="font-weight: 600;">{{'homeraito.p1title' | translate }}</h2>
-                            <p class="text-muted font-small-2">
+                            <p class="text-muted">
                                 {{'homeraito.p1' | translate }}
                             </p>
-                            <p class="text-muted font-small-2">
+                            <p class="text-muted">
                                 {{'homeraito.p1.1' | translate }}
                             </p>                          
                             <div class="center-elements mt-1">
@@ -262,7 +262,7 @@
                                     <p class="text-bold-500 mt-0 mb-0">{{'physicians.Location' | translate }}</p>
                                     <p class="mb-2">{{'war.location2' | translate }}</p>
                                     <p *ngIf="actualRequest.lat==''" class="mb-2" [innerHTML]="'war.optionalLocation' | translate "></p>
-                                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"  (mapClick)="changePickupMarkerLocation2($event)">
+                                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"  (mapReady)="mapReadyHandler($event)">
                                         <agm-marker *ngIf="showMarker && actualRequest.lat!=''" [latitude]="actualRequest.lat" [longitude]="actualRequest.lng" [title]="'Pickup Location'"></agm-marker>
                                     </agm-map>
                                     <a *ngIf="showMarker && actualRequest.lat!=''" class="mt-2 btn btn-primary" (click)="deletelocation0()">{{'war.nosharelocation' | translate }}</a>
@@ -360,7 +360,7 @@
 	</div>
 	<div class="modal-body">
 		<div class="px-3">
-
+            <p class="modal-subtitle"><span [innerHTML]="'war.needsSubtitle' | translate "></span> <span class="ml-1"><a class="info" (click)="openModal(SampleDrug)">{{'war.helpdrug2' | translate }}</a></span></p>
 			<div class="form-body">
 				<div class="row">
 					<div class="col-sm-12">

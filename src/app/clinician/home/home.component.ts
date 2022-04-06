@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, NgZone } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
@@ -83,8 +83,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   tasksLoaded: boolean = false;
   isWizard: boolean = false;
   groupName = '';
+  mapClickListener: any;
+  map: any;
 
-  constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private requestCliService: RequestCliService, public searchFilterPipe: SearchFilterPipe, public toastr: ToastrService, private dateService: DateService, private apiDx29ServerService: ApiDx29ServerService, private sortService: SortService, private adapter: DateAdapter<any>, private searchService: SearchService, private router: Router, private apiExternalServices: ApiExternalServices, private apif29BioService: Apif29BioService, private modalService: NgbModal) {
+  constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private requestCliService: RequestCliService, public searchFilterPipe: SearchFilterPipe, public toastr: ToastrService, private dateService: DateService, private apiDx29ServerService: ApiDx29ServerService, private sortService: SortService, private adapter: DateAdapter<any>, private searchService: SearchService, private router: Router, private apiExternalServices: ApiExternalServices, private apif29BioService: Apif29BioService, private modalService: NgbModal, private zone: NgZone) {
     this.adapter.setLocale(this.authService.getLang());
     this.lang = this.authService.getLang();
     switch (this.authService.getLang()) {
@@ -109,12 +111,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscription.add(this.apiDx29ServerService.loadGroups()
       .subscribe((res: any) => {
         //show patients with epilepsy and diabetes and None
-        for (let i = 0; i < res.length; i++) {
+        /*for (let i = 0; i < res.length; i++) {
           if (res[i].name == 'Patients with epilepsy' || res[i].name == 'Diabetes' || res[i].name == 'None') {
             this.groups.push(res[i]);
           }
-        }
-        //this.groups = res;
+        }*/
+        this.groups = res;
         this.groups.sort(this.sortService.GetSortOrder("order"));
       }, (err) => {
         console.log(err);
@@ -135,6 +137,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    if (this.mapClickListener) {
+      this.mapClickListener.remove();
+    }
   }
 
 
@@ -324,6 +329,32 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.actualRequest.lat = $event.coords.lat;
     this.actualRequest.lng = $event.coords.lng;
     this.showMarker = true;
+  }
+
+  mapReadyHandler(map: google.maps.Map): void {
+    this.map = map;
+    this.mapClickListener = this.map.addListener('click', (e: google.maps.MouseEvent) => {
+      this.zone.run(() => {
+        // Here we can get correct event
+        console.log(e.latLng.lat(), e.latLng.lng());
+        this.actualRequest.lat = e.latLng.lat();
+        this.actualRequest.lng = e.latLng.lng();
+        this.showMarker = true;
+      });
+    });
+  }
+
+  mapReadyHandler2(map: google.maps.Map): void {
+    this.map = map;
+    this.mapClickListener = this.map.addListener('click', (e: google.maps.MouseEvent) => {
+      this.zone.run(() => {
+        // Here we can get correct event
+        console.log(e.latLng.lat(), e.latLng.lng());
+        this.requests[0].lat = e.latLng.lat();
+        this.requests[0].lng = e.latLng.lng();
+        this.showMarker = true;
+      });
+    });
   }
 
   confirmDeleteDrug(index, isWizard) {

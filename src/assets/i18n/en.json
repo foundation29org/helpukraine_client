@@ -725,7 +725,8 @@
   },
   "homedx": {
     "Contact us": "Contact us",
-    "Donate": "Donate"
+    "Donate": "Donate",
+    "Institutions": "Institutions"
   },
   "homepatientdx": {
     "title": "When you donate blood, you can save a life",
@@ -1330,7 +1331,7 @@
     "t2.3": "Are you the patient or a caregiver?",
     "t2.4": "Select who you are below.",
     "t3": "Do you give us your consent to do so?",
-    "p1title": "Welcome to Relief Ukuaine!",
+    "p1title": "Welcome to Relief Ukraine!",
     "p1": "This site let's you engage with a NGO and communicate your medication needs for them to be able to organize help and coordinate with others.",
     "p1.1": "Given the situation, there is no guarantee that your needs can be attended, but communicating them is the first step towards getting the aid you require.",
     "p2": "Thank you.",

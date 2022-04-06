@@ -7,6 +7,21 @@
 
 .redes-line {border-right: 1px solid #efefef;position: relative;height: 100%; margin-right: 20px;}
 
+.img-responsive{
+  max-height: 80px;
+    opacity: 0.5;
+    filter: brightness( 100% ) contrast( 100% ) saturate( 0% ) blur( 0px ) hue-rotate( 0deg );
+    max-width: 100%;
+    max-width: -moz-available;          /* For Mozzila */
+    max-width: -webkit-fill-available;  /* For Chrome */
+    max-width: stretch;
+}
+
+.img-responsive:hover{
+  opacity: 1;
+  filter: brightness( 100% ) contrast( 100% ) saturate( 100% ) blur( 0px ) hue-rotate( 0deg );
+}
+
 @media (max-width: 1091px) {
   .btn-about{
     display: block !important;

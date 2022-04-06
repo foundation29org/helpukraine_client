@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-5 center-xs pts pbxl start-sm panel-about">
         <nav>
-          <a href="https://www.foundation29.org" target="_blank"><img class=""
+          <a href="https://www.foundation29.org" target="_blank"><img style="width: 150px;" class=""
               src='assets/img/logo-foundation-twentynine-footer.png' /></a>
           <p class="ptm mb-0 mt-2">© 2021 {{'generics.Foundation 29' | translate }}</p>
           <p>info@foundation29.org</p>
@@ -33,51 +33,12 @@
       <a id="contact"></a>
       <div class="col-md-5 center-xs start-sm form-contact">
         <div class="card-block">
-          <h3>{{'homedx.Contact us' | translate }}</h3>
-          <form class="form" (ngSubmit)="sendMsg()" #f="ngForm">
-            <div class="form-body">
-              <div class="">
-                <div class="">
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="userName" id="userName"
-                      placeholder="{{'generics.Name' | translate }}" ngModel required #userName="ngModel">
-                    <small class="form-text text-muted danger"
-                      *ngIf="!userName.valid && (userName.dirty || userName.touched)">{{'generics.required' | translate
-                      }}</small>
-                  </div>
-                </div>
-                <div class="">
-                  <div class="form-group">
-                    <input type="email" class="form-control" name="email" id="email"
-                      placeholder="{{'generics.Email' | translate }}" ngModel required email #email="ngModel">
-                    <small class="form-text text-muted danger"
-                      *ngIf="!email.valid && (email.dirty || email.touched)">{{'generics.entervalidemail' | translate
-                      }}</small>
-                  </div>
-                </div>
-                <div class="">
-                  <div class="form-group">
-                    <textarea name="description" id="textarea1"
-                      placeholder="{{'support.Message' | translate }}" class="form-control" ngModel
-                      required #description="ngModel"></textarea>
-                    <small class="form-text text-muted danger"
-                      *ngIf="!description.valid && (description.dirty || description.touched)">{{'generics.required' |
-                      translate }}</small>
-                  </div>
-                </div>
-              </div>
+          <h3>{{'homedx.Institutions' | translate }}</h3>
+          <div class="row center-elements">
+            <div class="col-6 col-sm-3 mb-3 p-1">
+              <img class="img-responsive" src='assets/img/home/logos/WDO_Logo_Large.png'>
             </div>
-            <div *ngIf="!sending" class="center-elements">
-              <div *ngIf="f.valid;then formValid else formError"></div>
-              <ng-template #formValid><button class="btn btn-primary round" type="submit"> {{'support.Send' |
-                  translate }}</button></ng-template>
-              <ng-template #formError><button class="btn btn-primary round" type="button"
-                  (click)="submitInvalidForm()"> {{'support.Send' | translate }}</button></ng-template>
-            </div>
-            <div class="form-actions" *ngIf="sending" class="center-elements">
-              <span><i class="fa fa-spinner fa-spin fa-3x fa-fw pink"></i></span>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
