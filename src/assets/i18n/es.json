@@ -1565,6 +1565,8 @@
     "Requester": "Solicitante"
   },
   "war":{
+    "statussubtitle": "Cambiar el estado para que el usuario conozca la evolución de sus necesidades",
+    "notessubtitle": "Las notas son para uso interno, solo para ti",
     "status.opt1": "Nuevo que necesita ayuda",
     "status.opt2": "Contactado-verificado",
     "status.opt3": "Ayuda pendiente",

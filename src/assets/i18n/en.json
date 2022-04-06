@@ -1563,6 +1563,8 @@
     "Requester": "Requester"
   },
   "war":{
+    "statussubtitle": "Change the status so that the user knows the evolution of their needs",
+    "notessubtitle": "Notes are for internal use, just for you",
     "status.opt1": "New in need of help",
     "status.opt2": "Contacted-verified",
     "status.opt3": "Help pending",
