@@ -1625,7 +1625,9 @@
     "Dosage strength": "Potencia de la dosis",
     "Generic name": "Nombre genérico",
     "nosharelocation": "No quiero decir mi ubicación aproximada",
-    "optionalLocation": "No se ha añadido la ubicación aproximada. Haga clic en el mapa para seleccionarlo. <strong>Esto es opcional.</strong>"
+    "optionalLocation": "No se ha añadido la ubicación aproximada. Haga clic en el mapa para seleccionarlo. <strong>Esto es opcional.</strong>",
+    "optionalLocation2": "No se ha añadido la ubicación aproximada. <strong>Esto es opcional.</strong>",
+    "map": "Mapa"
   },
   "physicians":{
     "I am a physician who treats patients with": "¿Qué tipo de pacientes tratas?",

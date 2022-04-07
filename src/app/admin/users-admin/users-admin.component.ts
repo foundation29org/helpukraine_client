@@ -13,12 +13,15 @@ import { Subscription } from 'rxjs/Subscription';
 import {DateAdapter} from '@angular/material/core';
 import { SortService} from 'app/shared/services/sort.service';
 import { json2csv } from 'json-2-csv';
+import { ApiDx29ServerService } from 'app/shared/services/api-dx29-server.service';
+import { BlobStorageSupportService, IBlobAccessToken } from 'app/shared/services/blob-storage-support.service';
 
 
 @Component({
     selector: 'app-users-admin',
     templateUrl: './users-admin.component.html',
-    styleUrls: ['./users-admin.component.scss']
+    styleUrls: ['./users-admin.component.scss'],
+    providers: [ApiDx29ServerService]
 })
 
 export class UsersAdminComponent implements OnDestroy{
@@ -32,7 +35,6 @@ export class UsersAdminComponent implements OnDestroy{
   sending: boolean = false;
   loadingUsers: boolean = false;
   users: any = [];
-  usersCopy: any = [];
   user: any = {};
   modalReference: NgbModalRef;
   private subscription: Subscription = new Subscription();
@@ -45,8 +47,17 @@ export class UsersAdminComponent implements OnDestroy{
   lat: number = 50.431134;
   lng: number = 30.654701;
   zoom = 3;
+  rowIndex: number = -1;
+  emailMsg="";
+  msgList: any = {};
+  accessToken: IBlobAccessToken = {
+    // tslint:disable-next-line:max-line-length
+    sasToken: environment.blobAccessToken.sasToken,
+    blobAccountUrl: environment.blobAccessToken.blobAccountUrl,
+    containerName: 'filessupport'
+  };
 
-  constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private authGuard: AuthGuard, public toastr: ToastrService, private modalService: NgbModal, private dateService: DateService,private adapter: DateAdapter<any>, private sortService: SortService){
+  constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private authGuard: AuthGuard, public toastr: ToastrService, private modalService: NgbModal, private dateService: DateService,private adapter: DateAdapter<any>, private sortService: SortService, private apiDx29ServerService: ApiDx29ServerService, private blob: BlobStorageSupportService){
 
     this.adapter.setLocale(this.authService.getLang());
     this.lang = this.authService.getLang()
@@ -67,6 +78,7 @@ export class UsersAdminComponent implements OnDestroy{
     }
     this.currentGroup = this.authService.getGroup()    
     this.loadGroupId();
+    this.getAzureBlobSasToken();
   }
 
   loadCountries(){
@@ -101,13 +113,16 @@ export class UsersAdminComponent implements OnDestroy{
     .subscribe( (res : any) => {
       for(var j=0;j<res.length;j++){
         res[j].userName = this.capitalizeFirstLetter(res[j].userName);
-        res[j].icon = 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000'
-        res[j].role = 'User';
+        if(res[j].role=='User'){
+          res[j].icon = 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000'
+        }else{
+          res[j].icon = 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4'
+        }
       }
       res.sort(this.sortService.GetSortOrder("userName"));
       this.users = res;
-      this.usersCopy = JSON.parse(JSON.stringify(res));
-      this.getRequests();
+      this.loadingUsers = false;
+      //this.getRequests();
       
     }, (err) => {
       console.log(err);
@@ -122,12 +137,11 @@ export class UsersAdminComponent implements OnDestroy{
       
       for(var j=0;j<res.length;j++){
         res[j].userName = this.capitalizeFirstLetter(res[j].userName);
-        res[j].icon = 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4'
+        
         res[j].role = 'Clinical';
         this.users.push(res[j]);
       }
       res.sort(this.sortService.GetSortOrder("userName"));
-      this.usersCopy = JSON.parse(JSON.stringify(this.users));
       this.loadingUsers = false;
       
     }, (err) => {
@@ -210,7 +224,6 @@ export class UsersAdminComponent implements OnDestroy{
   }
 
   closePanel(){
-    //this.users = JSON.parse(JSON.stringify(this.usersCopy));
     this.modalReference.close();
   }
 
@@ -219,7 +232,7 @@ export class UsersAdminComponent implements OnDestroy{
     var data = {blockedaccount: event} ;
     this.subscription.add( this.http.put(environment.api+'/api/admin/users/state/'+user.userId, data)
     .subscribe( (res : any) => {
-      this.usersCopy = JSON.parse(JSON.stringify(this.users));
+      console.log(res);
      }, (err) => {
        console.log(err);
      }));
@@ -286,5 +299,57 @@ export class UsersAdminComponent implements OnDestroy{
     this.zoom = 6;
     window.scrollTo(0, 0)
   }
+
+  openModal(rowIndex, row,EmailPanel){
+    this.rowIndex = rowIndex;
+    this.emailMsg = row.email;
+    this.msgList = row.msgs;
+    let ngbModalOptions: NgbModalOptions = {
+      keyboard: false,
+      windowClass: 'ModalClass-lg'// xl, lg, sm
+    };
+    this.modalReference = this.modalService.open(EmailPanel, ngbModalOptions);
+  }
+
+  getAzureBlobSasToken(){
+    this.subscription.add( this.apiDx29ServerService.getAzureBlobSasToken('filessupport')
+    .subscribe( (res : any) => {
+      this.accessToken.sasToken = '?'+res;
+      this.blob.init(this.accessToken);
+    }, (err) => {
+      console.log(err);
+    }));
+  }
+
+  fieldStatusChanged2(msg, index){
+    console.log(index)
+    msg.statusDate = Date.now();
+    this.subscription.add( this.http.put(environment.api+'/api/support/'+msg._id, msg)
+    .subscribe( (res : any) => {
+      //this.loadMsg();
+      this.toastr.success('', this.translate.instant("generics.Data saved successfully"));
+      this.users[this.rowIndex].msgs[index].status = msg.status;
+      this.users[this.rowIndex].unread = false;
+      this.users[this.rowIndex].msgs.forEach(function(u) {
+        if(u.status=='unread'){
+          this.users[this.rowIndex].unread = true;
+        }
+      }.bind(this))
+     }, (err) => {
+       console.log(err.error);
+       if(err.error.message=='Token expired' || err.error.message=='Invalid Token'){
+         this.authGuard.testtoken();
+       }else{
+         this.toastr.error('', this.translate.instant("generics.error try again"));
+       }
+     }));
+  }
+
+  goToLinkMsg(msg){
+    var description = msg.description.replace(/\n/g, "%0A")
+    var url = 'https://translate.google.com/?hl=en&sl=uk&tl='+this.lang+'&text=Subject:%0A'+msg.subject+'%0A%0AMessage:%0A'+description+'&op=translate'
+      window.open(url, "_blank");
+  }
+  
 
 }

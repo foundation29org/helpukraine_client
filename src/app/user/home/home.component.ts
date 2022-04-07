@@ -230,6 +230,33 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  loadCountries() {
+    this.countries = [];
+    //load countries file
+    this.subscription.add(this.http.get('assets/jsons/phone_codes.json')
+      .subscribe((res: any) => {
+        //get country name
+        for (let row of res) {
+          var countryName = "";
+          var countryNameList = [];
+          countryNameList = row.name.split(/["]/g)
+          countryName = countryNameList[1]
+
+          var countryNombre = "";
+          var countryNombreList = [];
+          countryNombreList = row.nombre.split(/["]/g)
+          countryNombre = countryNombreList[1]
+          this.countries.push({ countryName: countryName, countryNombre: countryNombre })
+        }
+        if (this.lang == 'es') {
+          this.countries.sort(this.sortService.GetSortOrder("countryNombre"));
+        } else {
+          this.countries.sort(this.sortService.GetSortOrder("countryName"));
+        }
+      }));
+
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
     if (this.mapClickListener) {
@@ -441,6 +468,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   question3() {
+    //this.loadCountries();
     this.step = '3';
     if(this.basicInfoPatient.lat==""){
       //this.getLocationInfo();

@@ -102,6 +102,29 @@
                                             <agm-marker *ngIf="showMarker && basicInfoPatient.lat!=''" [latitude]="basicInfoPatient.lat" [longitude]="basicInfoPatient.lng" [title]="'Pickup Location'"></agm-marker>
                                         </agm-map>
                                         <a *ngIf="showMarker && basicInfoPatient.lat!=''" class="mt-2 btn btn-primary" (click)="deletelocation()">{{'war.nosharelocation' | translate }}</a>
+                                        <!--<p class="text-center mt-3">----- or -----</p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>{{'personalinfo.Country' | translate }}</label>
+                                                <select class="form-control" id="countryselectedCode" name="countryselectedCode"
+                                                    [(ngModel)]="basicInfoPatient.country" #countryselectedCode="ngModel" ngModel>
+                                                    <option [ngValue]="null" disabled selected>--{{'personalinfo.Country' | translate }}--</option>
+                                                    <option *ngFor="let country of countries; let i=index"
+                                                        value="{{country.countryName}}">
+                                                        <label *ngIf="lang!='es'"
+                                                            style="color:blue !important">{{country.countryName}}</label>
+                                                        <label *ngIf="lang=='es'"
+                                                            style="color:blue !important">{{country.countryNombre}}</label>
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>{{'personalinfo.City' | translate }}</label>
+                                                <input type="text" id="city" class="form-control" name="city"
+                                                    placeholder="{{'personalinfo.City' | translate }}" [(ngModel)]="basicInfoPatient.city">
+                                            </div>
+                                          </div>-->
+                                        
                                     <div class="center-elements mt-3">
                                         <span *ngIf="!sending">
                                             <button class="btn btn-dark mr-1 mb-0"

@@ -1623,7 +1623,9 @@
     "Dosage strength": "Dosage strength",
     "Generic name": "Generic name",
     "nosharelocation": "I don't want to say my approximate location",
-    "optionalLocation": "The approximate location has not been added. Click on the map to select it. <strong>This is optional.</strong>"
+    "optionalLocation": "The approximate location has not been added. Click on the map to select it. <strong>This is optional.</strong>",
+    "optionalLocation2": "The approximate location has not been added. <strong>This is optional.</strong>",
+    "map": "Map"
   },
   "physicians":{
     "I am a physician who treats patients with": "What kind of patients do you treat?",
