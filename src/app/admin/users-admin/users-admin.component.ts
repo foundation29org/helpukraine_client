@@ -15,8 +15,6 @@ import { SortService} from 'app/shared/services/sort.service';
 import { json2csv } from 'json-2-csv';
 import { ApiDx29ServerService } from 'app/shared/services/api-dx29-server.service';
 import { BlobStorageSupportService, IBlobAccessToken } from 'app/shared/services/blob-storage-support.service';
-import { Console } from 'console';
-
 
 @Component({
     selector: 'app-users-admin',
