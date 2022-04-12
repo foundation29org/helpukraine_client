@@ -15,6 +15,7 @@ import { SortService} from 'app/shared/services/sort.service';
 import { json2csv } from 'json-2-csv';
 import { ApiDx29ServerService } from 'app/shared/services/api-dx29-server.service';
 import { BlobStorageSupportService, IBlobAccessToken } from 'app/shared/services/blob-storage-support.service';
+import { Console } from 'console';
 
 
 @Component({
@@ -258,17 +259,17 @@ export class UsersAdminComponent implements OnDestroy{
     var a = document.createElement('a');
     var dateNow = new Date();
     var stringDateNow = this.dateService.transformDate(dateNow);
-    a.download    = "dataRaito_"+stringDateNow+".csv";
+    a.download    = "reliefukraine_"+stringDateNow+".csv";
     a.href        = url;
-    a.textContent = "dataRaito_"+stringDateNow+".csv";
+    a.textContent = "reliefukraine_"+stringDateNow+".csv";
     a.setAttribute("id", "download")
 
     document.getElementById('content').appendChild(a);
     document.getElementById("download").click();
   }.bind(this);
 
-  //var options ={'expandArrayObjects' :true}
-  json2csv(res, json2csvCallback);
+  var options ={'expandArrayObjects' :true, "delimiter": { 'field': ';' }, excelBOM: true}
+  json2csv(res, json2csvCallback, options);
 
   }
 
