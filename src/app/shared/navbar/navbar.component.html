@@ -143,6 +143,52 @@
                       </div>
                   </li>
                 </ul>
+                <ul class="navbar-nav m-r-0" *ngIf="role=='SuperAdmin'">
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/superadmin/users">
+                      <i class="ft-home font-medium-3 white" [ngClass]="{'grey': actualUrl=='/superadmin/users'}"></i>
+                      <p class="d-none">{{'menu.Dashboard' | translate }}</p>
+                    </a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/superadmin/support">
+                    <i class="ft-mail font-medium-3 white" [ngClass]="{'grey': actualUrl=='/superadmin/support'}"></i>
+                    <p class="d-none">{{'mydata.title' | translate }}</p>
+                  </a>
+                </li>
+                  <li class="nav-item" ngbDropdown display="dynamic" placement="auto">
+                      <a class="nav-link position-relative" id="dropdownBasic3" ngbDropdownToggle title="{{'generics.Options' | translate }}">
+                          <i class="fa fa-cog font-medium-3 white" [ngClass]="{'grey': actualUrl=='/pages/profile' || actualUrl=='/pages/support' || actualUrl=='/privacy-policy'}"></i>
+                          <p class="d-none">{{'navbar.User Settings' | translate }}</p>
+                      </a>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
+                          <a class="dropdown-item" routerLink="/pages/profile">
+                              <i class="ft-edit fa-xs mr-2"></i>
+                              <span>{{'navbar.My Profile' | translate }}</span>
+                          </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" routerLink="/pages/support">
+                            <i class="ft-mail fa-xs mr-2"></i>
+                            <span>{{'support.support' | translate }}</span>
+                          </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" routerLink="/privacy-policy">
+                            <i class="ft-shield fa-xs mr-2"></i>
+                            <span>{{'registration.Privacy Policy' | translate }}</span>
+                          </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="javascript:;" (click)="logout()">
+                              <i class="ft-power fa-xs mr-2"></i>
+                              <span>{{'navbar.Logout' | translate }}</span>
+                          </a>
+                          <div *ngIf="isApp && isAndroid" class="dropdown-divider"></div>
+                          <a *ngIf="isApp && isAndroid" class="dropdown-item" href="javascript:;" (click)="exit()">
+                              <i class="ft-log-out fa-xs mr-2"></i>
+                              <span>{{'navbar.Exit' | translate }}</span>
+                          </a>
+                      </div>
+                  </li>
+                </ul>
             </div>
         </div>
     </div>

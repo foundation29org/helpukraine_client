@@ -56,8 +56,11 @@ export class UsersAdminComponent implements OnDestroy{
     containerName: 'filessupport'
   };
 
-  constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private authGuard: AuthGuard, public toastr: ToastrService, private modalService: NgbModal, private dateService: DateService,private adapter: DateAdapter<any>, private sortService: SortService, private apiDx29ServerService: ApiDx29ServerService, private blob: BlobStorageSupportService){
+  groups: Array<any> = [];
+  groupSelected: any ={};
 
+  constructor(private http: HttpClient, public translate: TranslateService, private authService: AuthService, private authGuard: AuthGuard, public toastr: ToastrService, private modalService: NgbModal, private dateService: DateService,private adapter: DateAdapter<any>, private sortService: SortService, private apiDx29ServerService: ApiDx29ServerService, private blob: BlobStorageSupportService){
+    this.loadGroups();
     this.adapter.setLocale(this.authService.getLang());
     this.lang = this.authService.getLang()
     switch(this.authService.getLang()){
@@ -75,6 +78,23 @@ export class UsersAdminComponent implements OnDestroy{
           break;
 
     }
+    
+  }
+
+  loadGroups() {
+    //cargar los grupos actuales
+    this.subscription.add( this.http.get(environment.api+'/api/groups/')
+    .subscribe( (res : any) => {
+      console.log(res);
+      this.groups = res;
+     }, (err) => {
+       console.log(err);
+     }));
+  }
+
+  onChangeGroup(value){
+    this.groupSelected = value;
+    this.authService.setGroup(value.name)
     this.currentGroup = this.authService.getGroup()    
     this.loadGroupId();
     this.getAzureBlobSasToken();

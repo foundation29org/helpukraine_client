@@ -1,10 +1,20 @@
-<div class="row">
+<div class="row mt-3">
+	<div class="col-md-6">
+	  <div class="form-group">
+		<label for="lang">{{'groups.Groups' | translate }}</label>
+		<select id="lang" name="lang" class="form-control"  [(ngModel)]="groupSelected" #groupselected (ngModelChange)="onChangeGroup(groupSelected)">
+		  <option *ngFor="let group of groups" [ngValue]="group"> {{group.name}}</option>
+		</select>
+	  </div>
+	</div>
+	</div>
+<div class="row" *ngIf="groupSelected._id">
 	<div class="col-sm-12">
 		<div class="content-header">{{'adminRole.title' | translate }} {{currentGroup}}</div>
 		<p class="content-sub-header">{{'adminRole.subtitle' | translate }}</p>
 	</div>
 </div>
-<section id="">
+<section id="" *ngIf="groupSelected._id">
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card">
@@ -40,7 +50,7 @@
 		</div>
 	</div>
 </section>
-<div class="row" *ngIf="!addedlang && !working">
+<div class="row" *ngIf="!addedlang && !working && groupSelected._id">
 	<div class="col-lg-12 col-12">
 
 
@@ -149,7 +159,7 @@
 						[sortable]="true">
 						<ng-template let-value="value" ngx-datatable-cell-template let-row="row">
 							<span>
-								<select id="status" name="status{{i}}" [(ngModel)]="row.status"
+								<select id="status" name="status{{i}}" [(ngModel)]="row.status" [disabled]="true"
 									(change)="fieldStatusChanged(row)">
 									<option [ngValue]="null" disabled selected>--{{'generics.Select' | translate }}--
 									</option>
@@ -243,8 +253,7 @@
 								<p class="mb-0">
 									<strong>{{'war.Blocked account' | translate }}</strong>
 								</p>
-								<ui-switch id="blockedaccount" (change)="userChangedEvent(user, $event)"
-									name="row.blockedaccount" [(ngModel)]="user.blockedaccount"></ui-switch>
+								{{user.blockedaccount}}
 							</div>
 						</div>
 
@@ -295,7 +304,7 @@
 						<p class="mb-0">{{'war.statussubtitle' | translate }}</p>
 						<div class="row mb-2">
 							<div class="col-md-12">
-								<select id="status" name="status{{i}}" class="" [(ngModel)]="user.status"
+								<select id="status" name="status{{i}}" class="" [(ngModel)]="user.status" [disabled]="true"
 									(change)="fieldStatusChanged(user)">
 									<option [ngValue]="null" disabled selected>--{{'generics.Select' | translate }}--
 									</option>
@@ -375,7 +384,7 @@
 						</h4>
 						<div class="row">
 							<div class="col-md-12">
-								<p *ngIf="user.needsOther!=''" [innerHTML]="user.needsOther | safe: 'html'"
+								<p *ngIf="user.needsOther!=''" [innerHTML]="user.needsOther | safe2: 'html'"
 									style="white-space: pre-line; display: block;"></p>
 								<span class="" *ngIf="lang!='uk' && user.needsOther!=''">
 									<a href="javascript:;" (click)="goToLink(user.needsOther)"
@@ -393,11 +402,9 @@
 						<p class="mb-0">{{'war.notessubtitle' | translate }}</p>
 						<div class="row">
 							<div class="col-md-12">
-								<textarea [autosize]="true" name="notes" [(ngModel)]="user.notes"
+								<textarea [autosize]="true" name="notes" [(ngModel)]="user.notes" [disabled]="true"
 									placeholder="{{'seizures.Write down any details' | translate }}"
 									class="form-control"></textarea>
-								<a class="mt-2 btn btn-dark" (click)="saveNotes()" href="javascript:void(0)">{{'war.Save
-									notes' | translate }}</a>
 							</div>
 						</div>
 					</div>
@@ -434,7 +441,7 @@
 							<tbody>
 								<tr *ngFor="let msg of msgList ; let i = index">
 									<td>{{msg.subject}}</td>
-									<td><span [innerHTML]="msg.description | safe: 'html'"
+									<td><span [innerHTML]="msg.description | safe2: 'html'"
 											style="white-space: pre-line; display: block;"></span>
 										<span class="" *ngIf="lang!='uk'">
 											<a href="javascript:;" (click)="goToLinkMsg(msg)"
@@ -458,7 +465,7 @@
 									</td>
 									<td>{{msg.date | date: timeformat}}</td>
 									<td>
-										<select id="status" name="status{{i}}" [(ngModel)]="msg.status"
+										<select id="status" name="status{{i}}" [(ngModel)]="msg.status" [disabled]="true"
 											(change)="fieldStatusChanged2(msg, i)">
 											<option value="unread">{{'support.Unread' | translate }}</option>
 											<option value="read">{{'support.Read' | translate }}</option>

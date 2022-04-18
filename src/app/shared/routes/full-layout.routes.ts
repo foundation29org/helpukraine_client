@@ -22,6 +22,12 @@ export const Full_ROUTES: Routes = [
     data: { expectedRole: ['Admin'] }
   },
   {
+    path: 'superadmin',
+    loadChildren: () => import('../../superadmin/superadmin.module').then(m => m.SuperAdminModule),
+    canActivate: [RoleGuard],
+    data: { expectedRole: ['SuperAdmin'] }
+  },
+  {
     path: 'pages',
     loadChildren: () => import('../../pages/full-pages/full-pages.module').then(m => m.FullPagesModule)
   }
