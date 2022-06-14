@@ -108,11 +108,8 @@
                                         patient group' | translate }}</span>
                                 </option>
                             </select>
-                            <div *ngIf="requests[0].group == '622f83174c824c0dec16c78b'" class="mb-3 mt-2">
-                                <p class="mb-1 text-bold-500">{{'physicians.othertreat' | translate }}</p>
-                                <input type="text" class="form-control" name="othergroup" id="othergroup"
-                                placeholder="{{'war.Write the name of your disease' | translate }}" ngModel required
-                                #othergroup="ngModel" [(ngModel)]="requests[0].othergroup">
+                            <div *ngIf="requests[0].group == '622f83174c824c0dec16c78b' || requests[0].group == '627d390dd438121d58195dd4'" class="mb-3 mt-2">
+                                <span>{{'war.Sorry, we cant help you' | translate }}</span> <a class="ml-1" href="https://rarediseaseshub4ua.org/" target="_blank"  >Rare Diseases Hub Ukraine</a>
                             </div>
                             <small class="form-text text-muted danger"
                                 *ngIf="!group.valid && (group.dirty || group.touched)">{{'generics.required'
@@ -242,11 +239,8 @@
                                 </option>
                             </select>
                             <div *ngIf="actualRequest.group">
-                                <div *ngIf="actualRequest.group == '622f83174c824c0dec16c78b'" class="mb-3">
-                                    <p class="mb-1 text-bold-500">{{'physicians.othertreat' | translate }}</p>
-                                    <input type="text" class="form-control" name="othergroup" id="othergroup"
-                                    placeholder="{{'physicians.Write what kind of patients you treat' | translate }}" ngModel required
-                                    #othergroup="ngModel" [(ngModel)]="actualRequest.othergroup">
+                                <div *ngIf="actualRequest.group == '622f83174c824c0dec16c78b' || actualRequest.group == '627d390dd438121d58195dd4'" class="mb-3">
+                                    <span>{{'war.Sorry, we cant help you' | translate }}</span> <a class="ml-1" href="https://rarediseaseshub4ua.org/" target="_blank"  >Rare Diseases Hub Ukraine</a>
                                 </div>
                                 
                             </div>
@@ -254,7 +248,7 @@
                             <div class="center-elements">
                                 <button class="mb-0 btn btn-primary mr-1"
                                           (click)="step='1'">{{'generics.Previous' | translate }}</button>
-                                <button class="mb-0 btn btn-dark ml-1" [disabled]="actualRequest.group==null  || (actualRequest.group == '622f83174c824c0dec16c78b' && (actualRequest.othergroup==null || actualRequest.othergroup==''))"
+                                <button class="mb-0 btn btn-dark ml-1" [disabled]="actualRequest.group==null  || (actualRequest.group == '622f83174c824c0dec16c78b' || actualRequest.group == '627d390dd438121d58195dd4')"
                                     (click)="question1();">{{'generics.Next' | translate }}</button>
                             </div>
                         </div>

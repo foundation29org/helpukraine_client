@@ -49,13 +49,8 @@
                                 </option>
                             </select>
                             <div *ngIf="group">
-                                <div *ngIf="group == '622f83174c824c0dec16c78b'" class="mb-3">
-                                    <p class="text-muted mb-1">
-                                        {{'homeraito.t2.2' | translate }}
-                                    </p>
-                                    <input type="text" class="form-control" name="othergroup" id="othergroup"
-                                    placeholder="{{'war.Write the name of your disease' | translate }}" ngModel required
-                                    #othergroup="ngModel" [(ngModel)]="basicInfoPatient.othergroup">
+                                <div *ngIf="group == '622f83174c824c0dec16c78b' || group == '627d390dd438121d58195dd4'" class="mb-3">
+                                    <span>{{'war.Sorry, we cant help you' | translate }}</span> <a class="ml-1" href="https://rarediseaseshub4ua.org/" target="_blank"  >Rare Diseases Hub Ukraine</a>
                                 </div>
                                 
                             </div>
@@ -90,7 +85,7 @@
                             <div class="center-elements">
                                 <button class="mt-3 btn btn-dark mr-1"
                                     (click)="step='1'">{{'generics.Previous' | translate }}</button>
-                                <button class="mt-3 btn btn-primary" [disabled]="group==null || (group == '622f83174c824c0dec16c78b' && (basicInfoPatient.othergroup =='' || basicInfoPatient.othergroup == null))"
+                                <button class="mt-3 btn btn-primary" [disabled]="group==null || ((group == '622f83174c824c0dec16c78b' || group == '627d390dd438121d58195dd4'))"
                                     (click)="question3();">{{'generics.Next' | translate }}</button>
                             </div>
                         </div>
@@ -335,14 +330,9 @@
                                             patient group' | translate }}</span>
                                     </option>
                                 </select>
-                                <div *ngIf="basicInfoPatient.group == '622f83174c824c0dec16c78b'" class="mb-3 mt-2">
-                                    <input type="text" class="form-control" name="othergroup" id="othergroup"
-                                    placeholder="{{'war.Write the name of your disease' | translate }}" ngModel required
-                                    #othergroup="ngModel" [(ngModel)]="basicInfoPatient.othergroup">
+                                <div *ngIf="basicInfoPatient.group == '622f83174c824c0dec16c78b' || basicInfoPatient.group == '627d390dd438121d58195dd4'" class="mb-3 mt-2">
+                                    <span>{{'war.Sorry, we cant help you' | translate }}</span> <a class="ml-1" href="https://rarediseaseshub4ua.org/" target="_blank"  >Rare Diseases Hub Ukraine</a>
                                 </div>
-                                <small class="form-text text-muted danger"
-                                    *ngIf="!group.valid && (group.dirty || group.touched)">{{'generics.required'
-                                    | translate }}</small>
                             </div>
                         </div>
                         <div class="form-group">
