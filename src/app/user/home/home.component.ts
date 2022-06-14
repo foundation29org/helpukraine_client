@@ -212,24 +212,28 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   loadGroups() {
+    this.groups = [];
     this.subscription.add(this.apiDx29ServerService.loadGroups()
       .subscribe((res: any) => {
         console.log(res);
         for(let i = 0; i < res.length; i++){
-          if(res[i].name == 'None'){
-            res[i].name = this.translate.instant("personalinfo.I dont belong to a patient group"); 
-          }else{
-            for(let j = 0; j < res[i].translations.length; j++){
-              if(this.lang==res[i].translations[j].code){
-                res[i].name = res[i].translations[j].name;
+          if(res[i].show){
+            if(res[i].name == 'None'){
+              res[i].name = this.translate.instant("personalinfo.I dont belong to a patient group"); 
+            }else{
+              for(let j = 0; j < res[i].translations.length; j++){
+                if(this.lang==res[i].translations[j].code){
+                  res[i].name = res[i].translations[j].name;
+                }
               }
             }
+            this.groups.push(res[i])
           }
           
         }
         
         
-        this.groups = res;
+        //this.groups = res;
         this.groups.sort(this.sortService.GetSortOrder("order"));
       }, (err) => {
         console.log(err);
